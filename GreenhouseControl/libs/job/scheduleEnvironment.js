@@ -16,7 +16,12 @@ ghConfig.getEnvironmentConfig(null, function(confs){
 		log.debug(conf);
 		
 		environment.value(conf, function(err, result){
-			log.debug(result);
+
+			store.read(conf, function(err, result){
+				conf.docs = result;
+				log.debug(conf);
+			});
+			
 		});
 	});
 });

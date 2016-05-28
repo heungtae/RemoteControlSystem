@@ -1,29 +1,5 @@
 [
     {
-        "date": "2016-05-26T10:30:00.281Z",
-        "unit": "Temperature",
-        "zone": "Soil",
-        "value": "2"
-    },
-    {
-        "date": "2016-05-26T10:40:00.268Z",
-        "unit": "Temperature",
-        "zone": "Soil",
-        "value": "2"
-    },
-    {
-        "date": "2016-05-26T10:50:00.245Z",
-        "unit": "Temperature",
-        "zone": "Soil",
-        "value": "2"
-    },
-    {
-        "date": "2016-05-26T11:00:00.221Z",
-        "unit": "Temperature",
-        "zone": "Soil",
-        "value": "2"
-    },
-    {
         "date": "2016-05-27T14:27:07.432Z",
         "unit": "Temperature",
         "zone": "Soil",
@@ -37,6 +13,42 @@
     },
     {
         "date": "2016-05-28T05:50:00.113Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
+    },
+    {
+        "date": "2016-05-28T06:20:00.499Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
+    },
+    {
+        "date": "2016-05-28T06:50:00.842Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
+    },
+    {
+        "date": "2016-05-28T13:10:00.091Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
+    },
+    {
+        "date": "2016-05-28T13:20:00.083Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
+    },
+    {
+        "date": "2016-05-28T13:30:00.060Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
+    },
+    {
+        "date": "2016-05-28T13:40:00.049Z",
         "unit": "Temperature",
         "zone": "Soil",
         "value": "2"

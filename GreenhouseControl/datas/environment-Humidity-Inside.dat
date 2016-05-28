@@ -1,29 +1,5 @@
 [
     {
-        "date": "2016-05-26T10:30:00.284Z",
-        "unit": "Humidity",
-        "zone": "Inside",
-        "value": "3"
-    },
-    {
-        "date": "2016-05-26T10:40:00.269Z",
-        "unit": "Humidity",
-        "zone": "Inside",
-        "value": "3"
-    },
-    {
-        "date": "2016-05-26T10:50:00.246Z",
-        "unit": "Humidity",
-        "zone": "Inside",
-        "value": "3"
-    },
-    {
-        "date": "2016-05-26T11:00:00.222Z",
-        "unit": "Humidity",
-        "zone": "Inside",
-        "value": "3"
-    },
-    {
         "date": "2016-05-27T14:27:07.432Z",
         "unit": "Humidity",
         "zone": "Inside",
@@ -37,6 +13,42 @@
     },
     {
         "date": "2016-05-28T05:50:00.115Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-28T06:20:00.500Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-28T06:50:00.846Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-28T13:10:00.097Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-28T13:20:00.088Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-28T13:30:00.065Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-28T13:40:00.052Z",
         "unit": "Humidity",
         "zone": "Inside",
         "value": "3"

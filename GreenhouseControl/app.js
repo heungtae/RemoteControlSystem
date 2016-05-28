@@ -63,14 +63,14 @@ log4js.configure('log4j.json', { reloadSecs: 300 });
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-app.get('/', routes.index);
+app.get('/', chart.data);
 app.get('/chart', chart.data);
 app.get('/shutter', shutter.data);
 app.get('/sprinkler', sprinkler.data);
 app.get('/scheduleSprinkler', scheduleSprinkler.data);
 app.get('/scheduleShutter', scheduleShutter.data);
 app.get('/notification', notification.data);
+app.get('/history', routes.index);
 
 var	log = log4js.getLogger('app');
 

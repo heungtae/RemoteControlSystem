@@ -1,29 +1,5 @@
 [
     {
-        "date": "2016-05-26T10:30:00.286Z",
-        "unit": "Temperature",
-        "zone": "Outside",
-        "value": 0
-    },
-    {
-        "date": "2016-05-26T10:40:00.271Z",
-        "unit": "Temperature",
-        "zone": "Outside",
-        "value": 0
-    },
-    {
-        "date": "2016-05-26T10:50:00.248Z",
-        "unit": "Temperature",
-        "zone": "Outside",
-        "value": 0
-    },
-    {
-        "date": "2016-05-26T11:00:00.225Z",
-        "unit": "Temperature",
-        "zone": "Outside",
-        "value": 0
-    },
-    {
         "date": "2016-05-27T14:27:07.434Z",
         "unit": "Temperature",
         "zone": "Outside",
@@ -37,6 +13,36 @@
     },
     {
         "date": "2016-05-28T05:50:00.119Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-28T06:50:00.891Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-28T13:10:00.120Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-28T13:20:00.103Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-28T13:30:00.085Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-28T13:40:00.069Z",
         "unit": "Temperature",
         "zone": "Outside",
         "value": 0

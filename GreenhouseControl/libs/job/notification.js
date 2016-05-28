@@ -40,7 +40,7 @@ var job = new CronJob('*/10 * * * *', function() {
 							if(doc.inTime && doc.isEnvironment && !doc.isJobCompleted ){
 								checkPriority(doc, function(){
 									
-									send.message(doc.title + '으로 예약된 창 제어를 시작했습니다. \n ' + doc.alias + '를 ' + stepDesc);
+									send.message(doc.title + '의 환경 데이터가 이상이 있습니다. \n');
 								});
 							}
 						});
@@ -48,7 +48,6 @@ var job = new CronJob('*/10 * * * *', function() {
 				});
 			}
 			
-			clearJobCompletedList(docs);
 		});
 	}catch(e){
 		log.error(e);
