@@ -5,7 +5,6 @@ log.setLevel(config.loglevel);
 
 var notificationFile = './datas/notification.dat';
 
-//delete는 id를 제외한 모든 데이터를 삭제하는 것으로 진행한다.
 exports.update = function(docs){
 	try{
 		log.debug('update: ' + notificationFile);
