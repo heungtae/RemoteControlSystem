@@ -1,0 +1,58 @@
+[2016-05-28 14:51:21.011] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) Environment configuration length : 7
+[2016-05-28 14:51:21.011] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":0}
+[2016-05-28 14:51:21.011] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":"1"}
+[2016-05-28 14:51:21.011] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"2"}
+[2016-05-28 14:51:21.012] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"3"}
+[2016-05-28 14:51:21.012] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"4"}
+[2016-05-28 14:51:21.012] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"5"}
+[2016-05-28 14:51:21.012] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Light","zone":"Inside","alias":"조도","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"use":{"shutter":true,"sprinkler":true},"value":"6"}
+[2016-05-28 14:51:21.012] [TRACE] libs.job.scheduleSprinkler - [clearJobCompletedList] Job Completed List :[]
+[2016-05-28 14:51:30.002] [DEBUG] libs.store.scheduleSprinkler - read: ./datas/scheduleSprinkler.dat
+[2016-05-28 14:51:30.003] [DEBUG] libs.store.scheduleSprinkler - [read] read data, [
+    {
+        "id": 1,
+        "title": "test 1",
+        "unit": "firstvalve",
+        "alias": "소품 벨브 ",
+        "start": "12:00",
+        "period": "50",
+        "cycle": "1"
+    },
+    {
+        "id": 2,
+        "title": "test 2",
+        "unit": "secondvalve",
+        "alias": "중품 벨브 ",
+        "start": "10:00",
+        "period": "50",
+        "cycle": "1"
+    }
+]
+[2016-05-28 14:51:30.003] [DEBUG] libs.store.scheduleSprinkler - [{"id":1,"title":"test 1","unit":"firstvalve","alias":"소품 벨브 ","start":"12:00","period":"50","cycle":"1"},{"id":2,"title":"test 2","unit":"secondvalve","alias":"중품 벨브 ","start":"10:00","period":"50","cycle":"1"}]
+[2016-05-28 14:51:30.003] [DEBUG] libs.db.scheduleSprinkler - found schedule sprinkler: length= 2
+[2016-05-28 14:51:30.004] [DEBUG] libs.db.scheduleSprinkler - found shutter config: length= 4
+[2016-05-28 14:51:30.004] [DEBUG] ghConfig - sprinkler [{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"3"},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"4"},{"unit":"Light","zone":"Inside","alias":"조도","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"use":{"shutter":true,"sprinkler":true},"value":"6"}]
+[2016-05-28 14:51:30.004] [DEBUG] libs.db.scheduleSprinkler - found environments config: length= 3
+[2016-05-28 14:51:30.004] [TRACE] libs.job.scheduleSprinkler - [CronJob] test 1(1) Sat May 28 2016 12:00:00 GMT+0900 (KST) ~ Sat May 28 2016 12:50:00 GMT+0900 (KST) & Sat May 28 2016 14:51:30 GMT+0900 (KST)
+[2016-05-28 14:51:30.004] [TRACE] libs.job.scheduleSprinkler - [CronJob] test 1(1) 149 1
+[2016-05-28 14:51:30.004] [DEBUG] ghConfig - sys = null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":0},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":"1"},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"2"},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"3"},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"4"},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"5"},{"unit":"Light","zone":"Inside","alias":"조도","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"use":{"shutter":true,"sprinkler":true},"value":"6"}]
+[2016-05-28 14:51:30.004] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) Environment configuration length : 7
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) {"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":0}
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) {"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":"1"}
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) {"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"2"}
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"3"}
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) {"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"4"}
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) {"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"5"}
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 1(1) {"unit":"Light","zone":"Inside","alias":"조도","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"use":{"shutter":true,"sprinkler":true},"value":"6"}
+[2016-05-28 14:51:30.005] [TRACE] libs.job.scheduleSprinkler - [CronJob] test 2(2) Sat May 28 2016 10:00:00 GMT+0900 (KST) ~ Sat May 28 2016 10:50:00 GMT+0900 (KST) & Sat May 28 2016 14:51:30 GMT+0900 (KST)
+[2016-05-28 14:51:30.006] [TRACE] libs.job.scheduleSprinkler - [CronJob] test 2(2) 149 1
+[2016-05-28 14:51:30.006] [DEBUG] ghConfig - sys = null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":0},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":"1"},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"2"},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"3"},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"4"},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"5"},{"unit":"Light","zone":"Inside","alias":"조도","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"use":{"shutter":true,"sprinkler":true},"value":"6"}]
+[2016-05-28 14:51:30.006] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) Environment configuration length : 7
+[2016-05-28 14:51:30.006] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":0}
+[2016-05-28 14:51:30.006] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"use":{"shutter":true,"sprinkler":false},"value":"1"}
+[2016-05-28 14:51:30.006] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"2"}
+[2016-05-28 14:51:30.006] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"3"}
+[2016-05-28 14:51:30.006] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"use":{"shutter":false,"sprinkler":true},"value":"4"}
+[2016-05-28 14:51:30.007] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"use":{"shutter":false,"sprinkler":false},"value":"5"}
+[2016-05-28 14:51:30.007] [TRACE] libs.job.scheduleSprinkler - [checkEnvironment] test 2(2) {"unit":"Light","zone":"Inside","alias":"조도","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"use":{"shutter":true,"sprinkler":true},"value":"6"}
+[2016-05-28 14:51:30.007] [TRACE] libs.job.scheduleSprinkler - [clearJobCompletedList] Job Completed List :[]

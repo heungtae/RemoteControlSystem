@@ -4,7 +4,7 @@
         "title": "test 1",
         "unit": "firstvalve",
         "alias": "소품 벨브 ",
-        "start": "10:00",
+        "start": "12:00",
         "period": "50",
         "cycle": "1"
     },
