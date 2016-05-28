@@ -1,0 +1,32 @@
+[
+    {
+        "date": "2016-05-26T10:30:00.285Z",
+        "unit": "Light",
+        "zone": "Inside",
+        "value": "6"
+    },
+    {
+        "date": "2016-05-26T10:40:00.271Z",
+        "unit": "Light",
+        "zone": "Inside",
+        "value": "6"
+    },
+    {
+        "date": "2016-05-26T10:50:00.247Z",
+        "unit": "Light",
+        "zone": "Inside",
+        "value": "6"
+    },
+    {
+        "date": "2016-05-26T11:00:00.224Z",
+        "unit": "Light",
+        "zone": "Inside",
+        "value": "6"
+    },
+    {
+        "date": "2016-05-27T14:27:07.433Z",
+        "unit": "Light",
+        "zone": "Inside",
+        "value": "6"
+    }
+]

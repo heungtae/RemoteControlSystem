@@ -1,0 +1,22 @@
+{
+  "name": "Study",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.2.6",
+    "ejs": "*",
+    "bootstrap": "*",
+    "jquery" : "*",
+    "socket.io": "*",
+    "body-parser": "*",
+    "pi-gpio": "*",
+    "rpi-temp-module": "*",
+    "log4js": "*",
+    "cron": "*",
+    "telegram-bot-api": "*",
+    "serialport":"*"
+  }
+}

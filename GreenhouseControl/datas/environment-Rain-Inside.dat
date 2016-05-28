@@ -1,0 +1,32 @@
+[
+    {
+        "date": "2016-05-26T10:30:00.285Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-05-26T10:40:00.270Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-05-26T10:50:00.247Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-05-26T11:00:00.224Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-05-27T14:27:07.433Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    }
+]

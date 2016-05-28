@@ -1,0 +1,32 @@
+[
+    {
+        "date": "2016-05-26T10:30:00.284Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-26T10:40:00.269Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-26T10:50:00.246Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-26T11:00:00.222Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-27T14:27:07.432Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    }
+]

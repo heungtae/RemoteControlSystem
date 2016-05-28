@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%=title%></title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="./bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./stylesheets/style.css" rel="stylesheet">
+    <link href="./stylesheets/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <nav class="navbar navbar-inverse navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><%=title%></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+	 		<ul class="nav navbar-nav">		  		
+		  		<li><a href="/chart">환경데이터</a></li>
+		  		<li><a href="/shutter">창 제어</a></li>
+		  		<li><a href="/sprinkler">관수 제어</a></li>		
+		  		<li class="active" class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">제어예약<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li class="active"><a href="/scheduleShutter">창 예약</a></li>
+		  		    <li><a href="/scheduleSprinkler">관수 예약</a></li>
+		  		    <li><a href="/notification">환경데이터 알림</a></li>
+		  		  </ul>
+                </li>	
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">자동예약<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/soilMonistureControl">토양습도 자동제어</a></li>
+		  			<li><a href="/temperatureControl">내부온도 자동제어</a></li>
+                  </ul>
+                </li>	
+                <li><a href="/">제어 이력</a></li>
+	 		</ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+  
+  	<div class="container">
+	  	<div class="row">
+	        <div class="col-md-12">
+	        	<div class="page-header">
+				    <h2>자연환기 창 예약</h2>
+				</div>
+				<div class="alert alert-warning fade in">
+				    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				    <strong>Warning!</strong> 시작 혹은 종료 시간을 확인 하세요.
+				</div>    
+				 <%
+				  
+				  var len = shutterSchedule == null ? 0 : shutterSchedule.length;
+				  
+				  var maxStepNum = 0;
+				  for(i = 0; i < shutterConfig.length; i++){
+			  		var stepNum = shutterConfig[i].stepNum;
+			  		if(maxStepNum < stepNum){
+				  		maxStepNum = stepNum;
+				  	}
+				  }
+				  
+				%>
+				   
+			    <div class="form-horizontal my-form" role="form">
+				    <div class="form-group">
+					  <label class="col-sm-2 control-label">제목</label>
+					  <div class="col-sm-10">
+						  <div class="col-xs-8">
+						   <input type="text" id="title" class="form-control" placeholder="창 제어 제목을 작성하세요.">
+						  </div>
+						  <label class="col-xs-2 control-label">우선순위</label>
+						  <div class="col-xs-2">
+						    <input id="priority" style='min-width:80px'  type="number" min="1" max="10" class="form-control" value="3">
+						  </div>
+						  
+					  </div>
+					  
+					</div>
+	 
+				    <div class="form-group">
+				      <label class="col-sm-2 control-label">창 선택</label>
+				      <div class="col-sm-10">
+					      <div class="col-sm-2 btn-group"> <a id='side-position' class="btn btn-default dropdown-toggle btn-select side" data-toggle="dropdown" defaultValue="<%= shutterConfig[0].alias%>" href="#" value="<%= shutterConfig[0].side + '-' + shutterConfig[0].position%>" ><%= shutterConfig[0].alias%><span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+							        <%
+							        var j;
+							        
+							  		for(j = 0; j < shutterConfig.length; j++){
+			
+								  	%>
+							        <li><a href="#" value='<%= shutterConfig[j].side + '-' + shutterConfig[j].position%>' ><%= shutterConfig[j].alias%></a></li>
+								  	
+								    <%	
+								    	}
+								    %>
+							        
+							    </ul>
+						  </div>
+					      <div class="col-sm-2 btn-group"> <a id='step' class="btn btn-default dropdown-toggle btn-select step" data-toggle="dropdown" defaultValue="열림" value='<%= maxStepNum + 1%>' href="#" >열림<span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+							       
+								    <li><a href="#" value='<%= maxStepNum + 1%>' >열림</a></li>
+							        <li class="divider"></li>
+							        <%
+							        var j;
+							  		for(j = 1; j <= maxStepNum; j++){
+								  	%>
+							        <li><a href="#" value='<%= j%>' ><%= j + ' 단계'%></a></li>
+								  	
+								    <%
+								    	}
+								    %>
+							        
+							        <li class="divider"></li>
+							        <li><a href="#" value='0' >닫힘</a></li>
+								        
+							        
+							    </ul>
+						</div>
+					</div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">시간</label>
+				    <div class="col-sm-10">
+					    <div class="col-xs-5">
+					      <input id='start'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="08:00">
+					    </div>
+					    <div class="col-xs-5"> 
+					      <input id='end'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="10:00">
+					    </div>
+				    </div>
+				  </div>
+				  <%
+				  	 for(ev = 0; ev < environmentConfig.length; ev++){
+				    	var envConf = environmentConfig[ev];
+				    %>
+					  	<%
+					  	if(envConf.type == 'number'){
+					  	%>
+					  	<div class="form-group">
+				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
+				    	  <div class="col-sm-10 btn-group">
+						  	  <div class="col-xs-2 material-switch">
+		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
+		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
+		                      </div>
+						  	  <div class="col-xs-3">
+						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-value'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="0">
+						  	  </div>
+						  	  <div class="col-xs-2 btn-group"> 
+						  	  		<a id='<%= envConf.unit + '-' + envConf.zone + '-Oper'%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" value=">"><%='클 경우'%><span class="caret"></span></a>
+								    <ul class="dropdown-menu">
+								        <li><a href="#" value='>'><%='클 경우'%></a></li>
+									  	<li><a href="#" value='<'><%='작을 경우'%></a></li>
+								    </ul>
+								</div>
+						  	 
+						  </div>
+				  	   </div>
+					  	<%
+					  	}else if(envConf.type == 'boolean') {
+					  	%>
+					  	<div class="form-group">
+				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
+				    	  <div class="col-sm-10 btn-group">
+						  	  <div class="col-xs-2 material-switch">
+		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
+		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
+		                      </div>
+						  	
+					  		 
+						  	  <div class="col-xs-2 btn-group"> 
+						  	  		<a id='<%= envConf.unit + '-' + envConf.zone + '-Oper'%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" value="true"><%='true'%><span class="caret"></span></a>
+								    <ul class="dropdown-menu">
+								        <li><a href="#" value='true'>true</a></li>
+								        <li><a href="#" value='false'>false</a></li>
+								    </ul>
+							  </div>
+						  </div>
+				  	   </div> 
+				  	<%
+				  		}
+				  	}
+				  	%>
+				  <div class="form-group">
+					  
+						    <div class="col-xs-3">
+						    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
+						    </div>
+						    <div class="col-xs-2">
+						    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
+						    </div>
+						    <div class="col-xs-2">
+						    	<button id="btnCencel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
+						    </div>
+					    </div>
+			  </div>
+	</div>
+
+    <br><br><br>
+   
+      <div class="container">
+	  	<div class="row">
+	        <div class="col-md-12">
+			    <table class="table table-hover" align="center" id="myTable">
+			     <tr>
+				    <th>번호</th>
+				    <th>제목</th>
+				    <th>우선순위</th>
+				    <th>창</th>
+				    <th>단계</th>
+				    <th>시작시간</th>
+				    <th>종료시간</th>
+				    <%
+				    //environmentConfig
+				    for(ev = 0; ev < environmentConfig.length; ev++){
+				    	var conf = environmentConfig[ev];
+				    	
+				    	%>
+					    
+					    <th><%= conf.alias%></th>
+					    
+					    <%
+				    }
+				    %>
+				    <th>Delete</th>
+				  </tr>
+				  
+				  <%
+				  
+				  var len = shutterSchedule == null ? 0 : shutterSchedule.length;
+				  for (i = 0; i < len; i++) { 
+					schedule = shutterSchedule[i];
+				  
+				  %>
+					  <tr class="clickable-row" data-id='<%= schedule.id%>'>
+					  	<td><%= i + 1 %></td> 
+					  	<td><%= schedule.title %></td> 
+					  	<td><%= schedule.priority %></td> 
+					  	<td><%= schedule.alias %></td> 
+					  	<td><%= schedule.step == 0 ? '닫기' : schedule.step == (maxStepNum + 1) ? '열기' : schedule.step + ' 단계'%></td>
+					  	<td><%= schedule.start %></td> 
+					  	<td><%= schedule.end %></td> 
+					  	<%
+					  	 for(ev = 0; ev < environmentConfig.length; ev++){
+					    	var envConf = environmentConfig[ev];
+					    	
+					    	if(schedule[envConf.unit + '-' + envConf.zone + '-Oper'] != null){
+
+					    
+					    	  if(envConf.type == 'number'){
+					    %>
+						      <td><%= schedule[envConf.unit + '-' + envConf.zone + '-Value'] + ' 보다 '+  (schedule[envConf.unit + '-' + envConf.zone + '-Oper'] == '>' ? '클 경우' : '작을 경우')  %></td>
+						  	
+					  	<%
+					  		 	}else{
+						%>
+						      <td><%= schedule[envConf.unit + '-' + envConf.zone + '-Oper'] + '일 경우'%></td>
+						  	
+					  	<%		  		 	
+					  			}
+					  		}else{
+					  		%>
+					  		<td>조건 없음</td>
+					  		<%
+					  		}
+					  	}
+					  	%>
+		        		<td><button type="button" onclick="del('<%= schedule.id%>')"  class="btn btn-success">Delete</button></td>
+					  </tr>
+				  <%} %>
+				</table>
+			</div>
+		 </div>
+	   </div>
+	   
+		 <!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	    <script src="./jquery/dist/jquery.min.js"></script>
+	    <script src="./bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script src="./bootstrap/dist/js/bootstrap-table.js"></script>
+	    <script src="./bootstrap/dist/js/extensions/mobile/bootstrap-table-mobile.js"></script>
+	    <script src="./socket.io/socket.io.js"></script>
+	    <script src="./javascript/unitScheduleShutterController.js"></script>
+	    <script src="./javascript/bootstrap-datetimepicker.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><%=title%></title>
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="./bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    
+  </head>
+  <body>
+	<nav class="navbar navbar-inverse navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><%=title%></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+	 		<ul class="nav navbar-nav">		  		
+		  		<li><a href="/chart">환경데이터</a></li>
+		  		<li><a href="/shutter">창 제어</a></li>
+		  		<li><a href="/sprinkler">관수 제어</a></li>		
+		  		<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">제어예약<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/scheduleShutter">창 예약</a></li>
+		  		    <li><a href="/scheduleSprinkler">관수 예약</a></li>
+		  		    <li><a href="/notification">환경데이터 알림</a></li>
+		  		  </ul>
+                </li>	
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">자동예약<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/soilMonistureControl">토양습도 자동제어</a></li>
+		  			<li><a href="/temperatureControl">내부온도 자동제어</a></li>
+                  </ul>
+                </li>	
+                <li class="active"><a href="/">제어 이력</a></li>
+	 		</ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+	<div class="container">
+	  	<div class="row">
+	        <div class="col-md-12">
+			    <table class="table table-striped" align="center">
+			     <tr>
+				    <th>Date</th>
+				    <th>History</th>
+				  </tr>
+				  <%
+				  histories.forEach(function(data){ 
+				  	if(data.date != undefined){
+				  %>
+				  <tr>
+				    <td class="col-sm-2"><%= new Date(data.date).toLocaleString()%></td> 
+				    <td class="col-sm-8"><%= data.history%></td> 
+				  </tr>
+				  <%
+				  	}
+				  }); %>
+				</table>
+			</div>
+		 </div>
+	   </div>
+	   
+	<!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	    <script src="./jquery/dist/jquery.min.js"></script>
+	    <script src="./bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script src="./socket.io/socket.io.js"></script>
+	    <script src="./javascript/unitIndexController.js"></script>
+  </body>
+</html>

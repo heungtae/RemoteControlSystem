@@ -1,0 +1,32 @@
+[
+    {
+        "date": "2016-05-26T10:30:00.286Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-26T10:40:00.271Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-26T10:50:00.248Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-26T11:00:00.225Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-27T14:27:07.434Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    }
+]

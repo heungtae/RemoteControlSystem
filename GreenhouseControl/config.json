@@ -1,0 +1,46 @@
+{
+  "app": {
+    "title": { 
+    	"home": "Greenhouse Control",
+    	"chart": "환경데이터",
+    	"shutter": "창 제어",
+    	"sprinkler": "관수 제어",
+    	"shutterSchedule" : "창 예약설정",
+    	"sprinklerSchedule" : "관수 예약설정",
+    	"notification" : "환경데이터 알림설정",
+    	"soilMoisture" : "토양습도 자동제어",
+    	"temperature" : "내부온도 자동제어"
+    },
+    "shutter": {
+    	"defaultCommand" : "off",
+    	"defaultSleep" : 3,
+    	"device": "gpio"
+    },
+    "sprinkler": {
+    	"defaultCommand" : "off",
+    	"device": "gpio"
+    },  
+    "history": {
+    	"remainday" : 2
+    },
+    "environment": {
+    	"remainday" : 2
+    },
+    "ip" : "localhost",
+    "port": 8090
+  },
+  "loglevel": "trace",
+  "logfile" : "logs/debug.log",
+  "usbSensor" : {
+	  "port": "/dev/ttyUSB0",
+	  "baudrate": 9600
+  },
+  "usbRelay" : {
+	  "port": "/dev/ttyUSB1",
+	  "baudrate": 19200
+  },
+  "development": true,
+  "telegram":{
+	  "token": "167537300:AAFa8zPQHvjyUk84ke__owGsgPdbZP9iUlE"
+  }
+}

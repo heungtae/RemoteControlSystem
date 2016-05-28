@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "test 1",
+        "unit": "firstvalve",
+        "alias": "소품 벨브 ",
+        "start": "10:00",
+        "period": "50",
+        "cycle": "1"
+    },
+    {
+        "id": 2,
+        "title": "test 2",
+        "unit": "secondvalve",
+        "alias": "중품 벨브 ",
+        "start": "10:00",
+        "period": "50",
+        "cycle": "1"
+    }
+]
