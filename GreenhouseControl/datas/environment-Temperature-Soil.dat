@@ -28,5 +28,17 @@
         "unit": "Temperature",
         "zone": "Soil",
         "value": "2"
+    },
+    {
+        "date": "2016-05-28T03:00:00.870Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
+    },
+    {
+        "date": "2016-05-28T05:50:00.113Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": "2"
     }
 ]

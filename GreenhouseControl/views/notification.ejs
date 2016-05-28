@@ -182,31 +182,31 @@
 				  
 				  <%
 				  
-				  var len = shutterSchedule == null ? 0 : shutterSchedule.length;
+				  var len = notifications == null ? 0 : notifications.length;
 				  for (i = 0; i < len; i++) { 
-					schedule = shutterSchedule[i];
+					notification = notifications[i];
 				  
 				  %>
-					  <tr class="clickable-row" data-id='<%= schedule.id%>'>
+					  <tr class="clickable-row" data-id='<%= notification.id%>'>
 					  	<td><%= i + 1 %></td> 
-					  	<td><%= schedule.title %></td> 
-					  	<td><%= schedule.start %></td> 
-					  	<td><%= schedule.end %></td> 
+					  	<td><%= notification.title %></td> 
+					  	<td><%= notification.start == undefined ? '-' : notification.start %></td> 
+					  	<td><%= notification.end == undefined ? '-' : notification.end %></td> 
 					  	<%
 					  	 for(ev = 0; ev < environmentConfig.length; ev++){
 					    	var envConf = environmentConfig[ev];
 					    	
-					    	if(schedule[envConf.unit + '-' + envConf.zone + '-Oper'] != null){
+					    	if(notification[envConf.unit + '-' + envConf.zone + '-Oper'] != null){
 
 					    
 					    	  if(envConf.type == 'number'){
 					    %>
-						      <td><%= schedule[envConf.unit + '-' + envConf.zone + '-Value'] + ' 보다 '+  (schedule[envConf.unit + '-' + envConf.zone + '-Oper'] == '>' ? '클 경우' : '작을 경우')  %></td>
+						      <td><%= notification[envConf.unit + '-' + envConf.zone + '-Value'] + ' 보다 '+  (notification[envConf.unit + '-' + envConf.zone + '-Oper'] == '>' ? '클 경우' : '작을 경우')  %></td>
 						  	
 					  	<%
 					  		 	}else{
 						%>
-						      <td><%= schedule[envConf.unit + '-' + envConf.zone + '-Oper'] + '일 경우'%></td>
+						      <td><%= notification[envConf.unit + '-' + envConf.zone + '-Oper'] + '일 경우'%></td>
 						  	
 					  	<%		  		 	
 					  			}
@@ -217,7 +217,7 @@
 					  		}
 					  	}
 					  	%>
-		        		<td><button type="button" onclick="del('<%= schedule.id%>')"  class="btn btn-success">Delete</button></td>
+		        		<td><button type="button" onclick="del('<%= notification.id%>')"  class="btn btn-success">Delete</button></td>
 					  </tr>
 				  <%} %>
 				</table>
@@ -233,7 +233,7 @@
 	    <script src="./bootstrap/dist/js/bootstrap-table.js"></script>
 	    <script src="./bootstrap/dist/js/extensions/mobile/bootstrap-table-mobile.js"></script>
 	    <script src="./socket.io/socket.io.js"></script>
-	    <script src="./javascript/unitScheduleShutterController.js"></script>
+	    <script src="./javascript/unitNotificationController.js"></script>
 	    <script src="./javascript/bootstrap-datetimepicker.min.js"></script>
   </body>
 </html>

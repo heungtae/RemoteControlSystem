@@ -31,7 +31,7 @@ var job = new CronJob('*/10 * * * *', function() {
 				checkTime(doc, function(doc){
 					checkEnvironment(doc, function(doc){
 						checkJobCompleted(doc, function(doc){
-							if(doc.inTime && doc.isEnvironment && !isJobCompleted ){
+							if(doc.inTime && doc.isEnvironment && !doc.isJobCompleted ){
 								checkPriority(doc, function(){
 									
 								});

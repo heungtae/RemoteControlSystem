@@ -90,6 +90,7 @@ server.listen(app.get('port'), function(){
 	sprinkler(io);
 	scheduleShutter(io);
 	scheduleSprinkler(io);
+	notification(io);
 	
 	log.info('Express server listening on port ' + app.get('port'));
 });

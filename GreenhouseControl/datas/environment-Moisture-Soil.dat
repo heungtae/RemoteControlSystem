@@ -28,5 +28,17 @@
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
+    },
+    {
+        "date": "2016-05-28T03:00:00.871Z",
+        "unit": "Moisture",
+        "zone": "Soil",
+        "value": "4"
+    },
+    {
+        "date": "2016-05-28T05:50:00.116Z",
+        "unit": "Moisture",
+        "zone": "Soil",
+        "value": "4"
     }
 ]

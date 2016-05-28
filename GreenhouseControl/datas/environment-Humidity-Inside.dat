@@ -28,5 +28,17 @@
         "unit": "Humidity",
         "zone": "Inside",
         "value": "3"
+    },
+    {
+        "date": "2016-05-28T03:00:00.890Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
+    },
+    {
+        "date": "2016-05-28T05:50:00.115Z",
+        "unit": "Humidity",
+        "zone": "Inside",
+        "value": "3"
     }
 ]

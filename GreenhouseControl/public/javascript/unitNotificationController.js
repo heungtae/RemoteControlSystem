@@ -1,20 +1,12 @@
 var socket = io.connect('http://localhost:8090');
 $('.alert').hide();
-var shutterConfs, envConfs, shutterDocs;
+var notificationConfs, envConfs, notificationDocs;
 var docId;
 var maxStepNum = 0;
 
-socket.on('scheduleShutterConfigCallback', function(docs, conf, envConf){
-	shutterConfs = conf;
+socket.on('notificationConfigCallback', function(docs, envConf){
 	envConfs = envConf;
-	shutterDocs = docs;
-	
-	for(i = 0; i < shutterConfs.length; i++){
-		var stepNum = shutterConfs[i].stepNum;
-		if(maxStepNum < stepNum){
-	  		maxStepNum = stepNum;
-		}
-	}
+	notificationDocs = docs;
 });
 
 $('#myTable').on('click', '.clickable-row', function(event) {
@@ -23,21 +15,19 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  console.log(docId);
 	  
 	  var doc;
-	  for(index = 0; index<shutterDocs.length; index++){
-		  doc = shutterDocs[index];
+	  for(index = 0; index<notificationDocs.length; index++){
+		  doc = notificationDocs[index];
 		  if(doc.id == docId)
 			break;
 	  }
 	  
 	  $('#title').val(doc.title);
-	  $('#priority').val(doc.priority)
-	  $('#side-position').attr('value', conf.side + '-' + conf.position);
-	  $('#side-position').html(conf.alias+' <span class="caret"></span>');
 	  
-	  $('#step').attr('value', doc.step );
-	  $('#step').html(( doc.step == 0 ? '닫힘': doc.step == maxStepNum ? '열림' : doc.step + ' 단계')+' <span class="caret"></span>');
-	  $('#start').val(doc.start);
-	  $('#end').val(doc.end);
+	  if(doc['start'] != null){ 
+		  $('#time-Apply').prop("checked", true);
+		  $('#start').val(doc.start);
+		  $('#end').val(doc.end);
+	  }
 	  
 	  for(ev = 0; ev < envConfs.length; ev++){
 	    	var conf = envConfs[ev];
@@ -60,28 +50,16 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 		    	}
 	    	}
 	    }
-	  
-	  
-	  var conf;
-	  for(sc = 0; sc < shutterConfs.length; sc++){
-	    	conf = shutterConfs[sc];
-	    	
-	    	if(doc.side == conf.side && doc.position == conf.position){
-	    		break;
-	    	}
-	    }
-	  
-	  
-	  
+
 	  $('#btnUpdate').removeAttr('disabled');
 	  $('#btnCencel').removeAttr('disabled');
 	});
 
 function add(index){
 	if(index == -1){	
-		if(shutterDocs.length >= 1){
-			docId = shutterDocs[shutterDocs.length -1].id + 1;
-			index = shutterDocs.length;			
+		if(notificationDocs.length >= 1){
+			docId = notificationDocs[notificationDocs.length -1].id + 1;
+			index = notificationDocs.length;			
 		}else{
 			docId = 1;
 			index = 0;
@@ -94,19 +72,10 @@ function add(index){
 	
 	//title
 	data['title'] = $('#title').val();
-	
-	//shutter unit config
-	var unitArray = $('#side-position').attr('value').split('-');
-	
-	data.side = unitArray[0];
-	data.position = unitArray[1];
-	data.alias = $('#side-position').text(); 
-	
-	//shutter step
-	data.step = $('#step').attr('value');
-	data.start = $('#start').val();
-	data.end = $('#end').val();
-	
+	if($('#time-Apply').is(':checked')){	
+		data.start = $('#start').val();
+		data.end = $('#end').val();
+	}
 	
 	//환경값 설정 결과 수집
 	for(ev = 0; ev < envConfs.length; ev++){
@@ -122,20 +91,20 @@ function add(index){
     	}
     }
 	
-	if(data.start == '' || data.end == '' ){
+	if($('#time-Apply').is(':checked') && (data.start == '' || data.end == '') ){
 		 $('.alert').show();
 	}
 	else{
-		shutterDocs[index] = data;
-		socket.emit('scheduleShutter', shutterDocs);
-		console.log(shutterDocs);
+		notificationDocs[index] = data;
+		socket.emit('notification', notificationDocs);
+		console.log(notificationDocs);
 	}
 };
 	     
 function update(){
 	var index;
-	for(index = 0; index<shutterDocs.length; index++){
-		var doc = shutterDocs[index];
+	for(index = 0; index < notificationDocs.length; index++){
+		var doc = notificationDocs[index];
 		if(doc.id == docId)
 			break;
 	}
@@ -145,22 +114,22 @@ function update(){
 
 function del(id){
 	var index;
-	var newShutterDocs = [];
-	for(index = 0; index<shutterDocs.length; index++){
-		var doc = shutterDocs[index];
+	var newNotificationDocs = [];
+	for(index = 0; index < notificationDocs.length; index++){
+		var doc = notificationDocs[index];
 		if(doc.id != id){
-			newShutterDocs.push(doc);
+			newNotificationDocs.push(doc);
 		}
 	}
 	
-	socket.emit('scheduleShutter', newShutterDocs);
+	socket.emit('notification', newNotificationDocs);
 };
 
 function cancel(){
 	location.reload();
 }
 
-socket.on('scheduleShutterCallback', function(){
+socket.on('notificationCallback', function(){
 	location.reload();
 });
 

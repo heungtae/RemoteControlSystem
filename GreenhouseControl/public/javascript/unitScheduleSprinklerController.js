@@ -24,6 +24,12 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  }
 	  
 	  $('#title').val(doc.title);
+	  $('#unit').attr('value', conf.unit);
+	  $('#unit').html(conf.alias+' <span class="caret"></span>');
+	  $('#start').val(doc.start);
+	  $('#period').val(doc.period);
+	  $('#cycle').val(doc.cycle);
+	  
 	  for(ev = 0; ev < envConfs.length; ev++){
 	    	var conf = envConfs[ev];
 	    	
@@ -54,13 +60,7 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	    	if(doc.unit == conf.unit){
 	    		break;
 	    	}
-	    }
-	  
-	  $('#unit').attr('value', conf.unit);
-	  $('#unit').html(conf.alias+' <span class="caret"></span>');
-	  $('#start').val(doc.start);
-	  $('#period').val(doc.period);
-	  $('#cycle').val(doc.cycle);
+	  }	 
 	  
 	  $('#btnUpdate').removeAttr('disabled');
 	  $('#btnCencel').removeAttr('disabled');

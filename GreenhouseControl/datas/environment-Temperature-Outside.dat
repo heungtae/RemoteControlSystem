@@ -28,5 +28,17 @@
         "unit": "Temperature",
         "zone": "Outside",
         "value": 0
+    },
+    {
+        "date": "2016-05-28T03:00:00.890Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
+    },
+    {
+        "date": "2016-05-28T05:50:00.119Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 0
     }
 ]
