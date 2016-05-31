@@ -3,10 +3,10 @@
         "id": 1,
         "title": "test 1",
         "unit": "firstvalve",
-        "alias": "소품 벨브 ",
+        "alias": "소품 벨브   ",
         "start": "12:00",
         "period": "50",
-        "cycle": "1"
+        "cycle": "2"
     },
     {
         "id": 2,

@@ -33,18 +33,18 @@
 		  		<li><a href="/chart">환경데이터</a></li>
 		  		<li><a href="/shutter">창 제어</a></li>
 		  		<li><a href="/sprinkler">관수 제어</a></li>		
-		  		<li class="active" class="dropdown">
+		  		<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">제어예약<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="/scheduleShutter">창 예약</a></li>
-		  		    <li class="active"><a href="/scheduleSprinkler">관수 예약</a></li>
+		  		    <li><a href="/scheduleSprinkler">관수 예약</a></li>
 		  		    <li><a href="/notification">환경데이터 알림</a></li>
 		  		  </ul>
                 </li>	
-                <li class="dropdown">
+                <li class="active" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">자동예약<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/soilMoistureControl">토양습도 자동제어</a></li>
+                    <li class="active"><a href="/soilMoistureControl">토양습도 자동제어</a></li>
 		  			<li><a href="/temperatureControl">내부온도 자동제어</a></li>
                   </ul>
                 </li>	
@@ -58,10 +58,7 @@
   	<div class="container">
 	  	<div class="row">
 	        <div class="col-md-12">
-	        	<div class="page-header">
-				    <h2>관수 장치 예약</h2>
-				</div>
-				<div class="alert alert-warning fade in">
+	        	<div class="alert alert-warning fade in">
 				    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				    <strong>Warning!</strong> 시작 시간을 확인 하세요.
 				</div>    
@@ -71,7 +68,7 @@
 					  <label class="col-sm-2 control-label">제목</label>
 					  <div class="col-sm-10">
 						  <div class="col-sm-12">
-						   <input type="text" id="title" class="form-control" placeholder="관수 제어 제목을 작성하세요.">
+						   <input type="text" id="title" class="form-control" placeholder="토양습도 자동제어 제목을 작성하세요."/>
 						  </div>
 					  </div>
 					</div>
@@ -98,18 +95,28 @@
 					</div>
 				  </div>
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label">시작시간</label>
+				    <label class="col-sm-2 control-label">자동제어 구간</label>
 				    <div class="col-sm-10">
-				        <div class="col-sm-4">
-					      <input id="start" style='min-width:140px'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="08:00">
-					    </div>
-				    	<label class="col-sm-2 control-label">지속시간(분)</label>
+				    	<label class="col-sm-2 control-label">시작</label>
 				        <div class="col-sm-2">
-					      <input id="period" style='min-width:80px'  type="number" step="0.1" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="1">
+					      <input id="start" style='min-width:140px'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="08:00"> 
 					    </div>
-						<label class="col-sm-2 control-label">반복(일)</label>
+					    <label class="col-sm-2 control-label">종료</label>
+					    <div class="col-sm-2">
+					      <input id="end" style='min-width:140px'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="20:00">
+					    </div>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">반복 옵션</label>
+				    <div class="col-sm-10">
+				    	<label class="col-sm-2 control-label">관수시간(분)</label>
 				        <div class="col-sm-2">
-					       <input id="cycle" style='min-width:80px'  type="number" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="1">
+					      <input id="period" style='min-width:80px'  type="number" step="0.1" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="2">
+					    </div>
+						<label class="col-sm-2 control-label">대기시간(분)</label>
+				        <div class="col-sm-2">
+					       <input id="wait" style='min-width:80px'  type="number" step="0.1" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="30">
 					    </div>
 				    </div>
 				  </div>
@@ -192,8 +199,9 @@
 				    <th>제목</th>
 				    <th>장치명</th>
 				    <th>시작시간</th>
-				    <th>지속시간(분)</th>
-				    <th>반복(일)</th>
+				    <th>종료시간</th>
+				    <th>관수시간(분)</th>
+				    <th>대기시간(분)</th>
 				    <%
 				    //environmentConfig
 				    for(ev = 0; ev < environmentConfig.length; ev++){
@@ -211,34 +219,35 @@
 				  
 				  <%
 				  
-				  var len = sprinklerSchedule == null ? 0 : sprinklerSchedule.length;
+				  var len = soilMoistureDocs == null ? 0 : soilMoistureDocs.length;
 				  
 				  for (i = 0; i < len; i++) { 
-					schedule = sprinklerSchedule[i];
+					doc = soilMoistureDocs[i];
 				  
 				  %>
-					  <tr class="clickable-row" data-id='<%= schedule.id%>'>
+					  <tr class="clickable-row" data-id='<%= doc.id%>'>
 					  	<td><%= i + 1 %></td> 
-					  	<td><%= schedule.title %></td> 
-					  	<td><%= schedule.alias %></td> 
-					  	<td><%= schedule.start %></td>
-					  	<td><%= schedule.period %></td> 
-					  	<td><%= schedule.cycle %></td> 
+					  	<td><%= doc.title %></td> 
+					  	<td><%= doc.alias %></td> 
+					  	<td><%= doc.start %></td>
+					  	<td><%= doc.end %></td>
+					  	<td><%= doc.period %></td> 
+					  	<td><%= doc.wait %></td> 
 					  	<%
 					  	 for(ev = 0; ev < environmentConfig.length; ev++){
 					    	var envConf = environmentConfig[ev];
 					    	
-					    	if(schedule[envConf.unit + '-' + envConf.zone + '-Oper'] != null){
+					    	if(doc[envConf.unit + '-' + envConf.zone + '-Oper'] != null){
 
 					    
 					    	  if(envConf.type == 'number'){
 					    %>
-						      <td><%= schedule[envConf.unit + '-' + envConf.zone + '-Value'] + ' 보다 '+  (schedule[envConf.unit + '-' + envConf.zone + '-Oper'] == '>' ? '클 경우' : '작을 경우')  %></td>
+						      <td><%= doc[envConf.unit + '-' + envConf.zone + '-Value'] + ' 보다 '+  (doc[envConf.unit + '-' + envConf.zone + '-Oper'] == '>' ? '클 경우' : '작을 경우')  %></td>
 						  	
 					  	<%
 					  		 	}else{
 						%>
-						      <td><%= schedule[envConf.unit + '-' + envConf.zone + '-Oper'] + '일 경우'%></td>
+						      <td><%= doc[envConf.unit + '-' + envConf.zone + '-Oper'] + '일 경우'%></td>
 						  	
 					  	<%		  		 	
 					  			}
@@ -249,7 +258,7 @@
 					  		}
 					  	}
 					  	%>
-		        		<td><button type="button" onclick="del('<%= schedule.id%>')"  class="btn btn-success">Delete</button></td>
+		        		<td><button type="button" onclick="del('<%= doc.id%>')"  class="btn btn-success">Delete</button></td>
 					  </tr>
 				  <%} %>
 				</table>
@@ -265,7 +274,7 @@
 	    <script src="./bootstrap/dist/js/bootstrap-table.js"></script>
 	    <script src="./bootstrap/dist/js/extensions/mobile/bootstrap-table-mobile.js"></script>
 	    <script src="./socket.io/socket.io.js"></script>
-	    <script src="./javascript/unitScheduleSprinklerController.js"></script>
+	    <script src="./javascript/unitSoilMoistureController.js"></script>
 	    <script src="./javascript/bootstrap-datetimepicker.min.js"></script>
   </body>
 </html>

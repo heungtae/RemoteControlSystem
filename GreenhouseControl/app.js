@@ -18,10 +18,14 @@ var express = require('express')
   , scheduleSprinkler = require('./routes/scheduleSprinkler')
   , scheduleShutter = require('./routes/scheduleShutter')
   , notification = require('./routes/notification')
+  , soilMoistureControl = require('./routes/soilMoistureControl')
+  , tempControl = require('./routes/temperatureControl')
   , scheduleSprinklerJob = require('./libs/job/scheduleSprinkler')
   , scheduleShutterJob = require('./libs/job/scheduleShutter')
   , scheduleEnvironmentJob = require('./libs/job/scheduleEnvironment')
   , notificationJob = require('./libs/job/notification')
+ // , soilMoistureControlJob = require('./libs/job/soilMoistureControl')
+ // , tempControlJob = require('./libs/job/temperatureControl')
   , env = require('./libs/db/environment')
   , log4js = require('log4js') 
   , http = require('http')
@@ -71,6 +75,9 @@ app.get('/scheduleSprinkler', scheduleSprinkler.data);
 app.get('/scheduleShutter', scheduleShutter.data);
 app.get('/notification', notification.data);
 app.get('/history', routes.index);
+app.get('/soilMoistureControl', soilMoistureControl.data);
+app.get('/temperatureControl', tempControl.data);
+
 
 var	log = log4js.getLogger('app');
 
@@ -91,6 +98,8 @@ server.listen(app.get('port'), function(){
 	scheduleShutter(io);
 	scheduleSprinkler(io);
 	notification(io);
+	soilMoistureControl(io);
+	tempControl(io);
 	
 	log.info('Express server listening on port ' + app.get('port'));
 });

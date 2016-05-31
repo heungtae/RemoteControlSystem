@@ -1,13 +1,13 @@
 var socket = io.connect('http://localhost:8090');
 $('.alert').hide();
 
-var sprinklerConfs, envConfs, sprinklerDocs;
+var sprinklerConfs, envConfs, soilMoistureDocs;
 var docId;
 
-socket.on('scheduleSprinklerConfigCallback', function(docs, conf, envConf){
+socket.on('soilMoistureControlConfigCallback', function(docs, conf, envConf){
+	soilMoistureDocs = docs;
 	sprinklerConfs = conf;
 	envConfs = envConf;
-	sprinklerDocs = docs;
 });
 
 
@@ -17,18 +17,19 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  console.log(docId);
 	  
 	  var doc;
-	  for(index = 0; index<sprinklerDocs.length; index++){
-		  doc = sprinklerDocs[index];
+	  for(index = 0; index<soilMoistureDocs.length; index++){
+		  doc = soilMoistureDocs[index];
 		  if(doc.id == docId)
 			break;
 	  }
 	  
 	  $('#title').val(doc.title);
-	  $('#unit').attr('value', conf.unit);
-	  $('#unit').html(conf.alias+' <span class="caret"></span>');
+	  $('#unit').attr('value', doc.unit);
+	  $('#unit').html(doc.alias+' <span class="caret"></span>');
 	  $('#start').val(doc.start);
+	  $('#end').val(doc.end);
 	  $('#period').val(doc.period);
-	  $('#cycle').val(doc.cycle);
+	  $('#wait').val(doc.wait);
 	  
 	  for(ev = 0; ev < envConfs.length; ev++){
 	    	var conf = envConfs[ev];
@@ -63,14 +64,14 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  }	 
 	  
 	  $('#btnUpdate').removeAttr('disabled');
-	  $('#btnCencel').removeAttr('disabled');
+	  $('#btnCancel').removeAttr('disabled');
 	});
 
 function add(index){
 	if(index == -1){	
-		if(sprinklerDocs.length >= 1){
-			docId = sprinklerDocs[sprinklerDocs.length -1].id + 1;
-			index = sprinklerDocs.length;			
+		if(soilMoistureDocs.length >= 1){
+			docId = soilMoistureDocs[soilMoistureDocs.length -1].id + 1;
+			index = soilMoistureDocs.length;			
 		}else{
 			docId = 1;
 			index = 0;
@@ -89,9 +90,9 @@ function add(index){
 	
 	//shutter step
 	data.start = $('#start').val();
+	data.end = $('#end').val();
 	data.period = $('#period').val();
-	data.cycle = $('#cycle').val();
-	
+	data.wait = $('#wait').val();
 	
 	//환경값 설정 결과 수집
 	for(ev = 0; ev < envConfs.length; ev++){
@@ -111,9 +112,9 @@ function add(index){
 		 $('.alert').show();
 	}
 	else{
-		sprinklerDocs[index] = data;
-		socket.emit('scheduleSprinkler', sprinklerDocs);
-		console.log(sprinklerDocs);
+		soilMoistureDocs[index] = data;
+		socket.emit('soilMoistureControl', soilMoistureDocs);
+		console.log(soilMoistureDocs);
 	}
 };
 	     
@@ -123,8 +124,8 @@ function update(){
 	if(docId == undefined)
 		return;
 	
-	for(index = 0; index<sprinklerDocs.length; index++){
-		var doc = sprinklerDocs[index];
+	for(index = 0; index<soilMoistureDocs.length; index++){
+		var doc = soilMoistureDocs[index];
 		if(doc.id == docId)
 			break;
 	}
@@ -134,22 +135,22 @@ function update(){
 
 function del(id){
 	var index;
-	var newSprinklerDocs = [];
-	for(index = 0; index<sprinklerDocs.length; index++){
-		var doc = sprinklerDocs[index];
+	var newSoilMoistureDocs = [];
+	for(index = 0; index<soilMoistureDocs.length; index++){
+		var doc = soilMoistureDocs[index];
 		if(doc.id != id){
-			newSprinklerDocs.push(doc);
+			newSoilMoistureDocs.push(doc);
 		}
 	}
 	
-	socket.emit('scheduleSprinkler', newSprinklerDocs);
+	socket.emit('soilMoistureControl', newSoilMoistureDocs);
 };
 
 function cancel(){
 	location.reload();
 }
 
-socket.on('scheduleSprinklerCallback', function(){
+socket.on('soilMoistureControlCallback', function(){
 	location.reload();
 });
 

@@ -1,48 +1,30 @@
 [
     {
-        "date": "2016-05-27T14:27:07.434Z",
+        "date": "2016-05-31T12:10:00.121Z",
         "unit": "Temperature",
         "zone": "Outside",
         "value": 0
     },
     {
-        "date": "2016-05-28T03:00:00.890Z",
+        "date": "2016-05-31T12:30:00.749Z",
         "unit": "Temperature",
         "zone": "Outside",
         "value": 0
     },
     {
-        "date": "2016-05-28T05:50:00.119Z",
+        "date": "2016-05-31T12:39:51.877Z",
         "unit": "Temperature",
         "zone": "Outside",
         "value": 0
     },
     {
-        "date": "2016-05-28T06:50:00.891Z",
+        "date": "2016-05-31T12:40:00.888Z",
         "unit": "Temperature",
         "zone": "Outside",
         "value": 0
     },
     {
-        "date": "2016-05-28T13:10:00.120Z",
-        "unit": "Temperature",
-        "zone": "Outside",
-        "value": 0
-    },
-    {
-        "date": "2016-05-28T13:20:00.103Z",
-        "unit": "Temperature",
-        "zone": "Outside",
-        "value": 0
-    },
-    {
-        "date": "2016-05-28T13:30:00.085Z",
-        "unit": "Temperature",
-        "zone": "Outside",
-        "value": 0
-    },
-    {
-        "date": "2016-05-28T13:40:00.069Z",
+        "date": "2016-05-31T12:50:00.077Z",
         "unit": "Temperature",
         "zone": "Outside",
         "value": 0

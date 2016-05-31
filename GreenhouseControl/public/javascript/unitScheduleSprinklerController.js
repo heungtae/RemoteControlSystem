@@ -24,8 +24,8 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  }
 	  
 	  $('#title').val(doc.title);
-	  $('#unit').attr('value', conf.unit);
-	  $('#unit').html(conf.alias+' <span class="caret"></span>');
+	  $('#unit').attr('value', doc.unit);
+	  $('#unit').html(doc.alias+' <span class="caret"></span>');
 	  $('#start').val(doc.start);
 	  $('#period').val(doc.period);
 	  $('#cycle').val(doc.cycle);
@@ -63,7 +63,7 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  }	 
 	  
 	  $('#btnUpdate').removeAttr('disabled');
-	  $('#btnCencel').removeAttr('disabled');
+	  $('#btnCancel').removeAttr('disabled');
 	});
 
 function add(index){

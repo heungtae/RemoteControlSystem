@@ -1,121 +1,173 @@
 var socket = io.connect('http://localhost:8090');
 $('.alert').hide();
-var shutterConfs, envConfs, shutterDocs;
+var shutterConfs, envConfs, temperatureControlDocs;
+var docId;
+var maxStepNum = 0;
 
-socket.on('scheduleShutterConfigCallback', function(docs, conf, envConf){
-	console.log(conf);
+socket.on('temperatureControlConfigCallback', function(docs, conf, envConf){
 	shutterConfs = conf;
 	envConfs = envConf;
-	shutterDocs = docs;
+	temperatureControlDocs = docs;
+	
+	for(i = 0; i < shutterConfs.length; i++){
+		var stepNum = shutterConfs[i].stepNum;
+		if(maxStepNum < stepNum){
+	  		maxStepNum = stepNum;
+		}
+	}
 });
 
-function scheduleAction(id, command){
-	var data = {
-			id: id,
-			title: null,
-			side: null,
-			position: null,
-			step: null,
-			start: null,
-			end: null,
-			apply: 'false'
-	};
+$('#myTable').on('click', '.clickable-row', function(event) {
+	  $(this).addClass('active').siblings().removeClass('active');
+	  docId = $(this).data("id");
+	  console.log(docId);
+	  
+	  var doc;
+	  for(index = 0; index<temperatureControlDocs.length; index++){
+		  doc = temperatureControlDocs[index];
+		  if(doc.id == docId)
+			break;
+	  }
+	  
+	  $('#title').val(doc.title);
+	  $('#priority').val(doc.priority)
+	  $('#side-position').attr('value', doc.side + '-' + doc.position);
+	  $('#side-position').html(doc.alias+' <span class="caret"></span>');
+	  
+	  $('#step').attr('value', doc.step );
+	  $('#step').html(( doc.step == 0 ? '닫힘': doc.step == maxStepNum ? '열림' : doc.step + ' 단계')+' <span class="caret"></span>');
+	  $('#start').val(doc.start);
+	  $('#end').val(doc.end);
+	  
+	  for(ev = 0; ev < envConfs.length; ev++){
+	    	var conf = envConfs[ev];
+	    	
+	    	if(doc[conf.unit + '-' + conf.zone + '-Oper'] != null){
+	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", true);
+	    		
+	    		$('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value', doc[conf.unit + '-' + conf.zone + '-Oper']);
+	    		
+		    	if(conf.type == 'number'){
+		    		$('#' + conf.unit + '-' + conf.zone + '-value').val(doc[conf.unit + '-' + conf.zone + '-Value']);
+		    	}
+	    	}else{
+	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", false);
+	    		
+	    		$('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value', $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('defaultvalue'));
+	    		
+		    	if(conf.type == 'number'){
+		    		$('#' + conf.unit + '-' + conf.zone + '-value').val(0);
+		    	}
+	    	}
+	    }
+	  
+	  
+	  var conf;
+	  for(sc = 0; sc < shutterConfs.length; sc++){
+	    	conf = shutterConfs[sc];
+	    	
+	    	if(doc.side == conf.side && doc.position == conf.position){
+	    		break;
+	    	}
+	    }
+	  
+	  
+	  
+	  $('#btnUpdate').removeAttr('disabled');
+	  $('#btnCencel').removeAttr('disabled');
+	});
+
+function add(index){
+	if(index == -1){	
+		if(temperatureControlDocs.length >= 1){
+			docId = temperatureControlDocs[temperatureControlDocs.length -1].id + 1;
+			index = temperatureControlDocs.length;			
+		}else{
+			docId = 1;
+			index = 0;
+		}
+		
+	}
+	var data = {};
+	//id
+	data['id'] = docId;
 	
+	//title
+	data['title'] = $('#title').val();
+	
+	//shutter unit config
+	var unitArray = $('#side-position').attr('value').split('-');
+	
+	data.side = unitArray[0];
+	data.position = unitArray[1];
+	data.alias = $('#side-position').text(); 
+	
+	//shutter step
+	data.step = $('#step').attr('value');
+	data.start = $('#start').val();
+	data.end = $('#end').val();
+	
+	
+	//환경값 설정 결과 수집
 	for(ev = 0; ev < envConfs.length; ev++){
     	var conf = envConfs[ev];
     	
-    	if(envConfs.length > (ev+1) && conf.unit == envConfs[ev+1].unit){
-    		continue;
-    	}
-    	
-    	data[conf.unit] = null;
-    	data[conf.unit + 'Apply'] = null;
-    	data[conf.unit + 'Zone'] = null;
-    	
-    	if(conf.type == 'number'){
-    		data[conf.unit + 'Oper'] = null;
+    	if($('#' + conf.unit + '-' + conf.zone + '-Apply').is(':checked')){	
+	    	if(conf.type == 'number'){
+	    		data[conf.unit + '-' + conf.zone + '-Value'] = $('#' + conf.unit + '-' + conf.zone + '-value').val();
+	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');
+	    	}else if(conf.type == 'boolean'){
+	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');
+	    	}
     	}
     }
 	
-	if(command == 'add'){
-		data.title = $("#title-" + id).val();
-		data.side = $("#side-" + id).text();
-		data.position = $("#position-" + id).text();
-		data.step = $("#step-" + id).text();
-		data.start = $("#start-" + id).val();
-		data.end = $("#end-" + id).val();
-		data.apply = $("#apply-" + id).is(":checked");
-		
-		for(ev = 0; ev < envConfs.length; ev++){
-	    	var conf = envConfs[ev];
-	    	
-	    	if(envConfs.length > (ev+1) && conf.unit == envConfs[ev+1].unit){
-	    		continue;
-	    	}
-	    	
-	    	
-	    	data[conf.unit + 'Apply'] = $("#" + conf.unit + "Apply-" + id).is(":checked");
-	    	data[conf.unit + 'Zone'] = $("#" + conf.unit + "Zone-" + id).text();
-	    	
-	    	if(conf.type == 'number'){
-	    		data[conf.unit] = $("#" + conf.unit + "-" + id).val();
-	    		data[conf.unit + 'Oper'] = $("#" + conf.unit + "Oper-" + id).text();;
-	    	}else if(conf.type == 'boolean'){
-	    		data[conf.unit] = $("#" + conf.unit + "-" + id).text();
-	    	}
-	    }
-	}
-
-	if(data.start == "" || data.end == "" ){
+	if(data.start == '' || data.end == '' ){
 		 $('.alert').show();
 	}
 	else{
-		socket.emit('scheduleShutter', data);
-		console.log(data);
+		temperatureControlDocs[index] = data;
+		socket.emit('temperatureControl', temperatureControlDocs);
+		console.log(temperatureControlDocs);
 	}
 };
 	     
-
-socket.on('scheduleShutterCallback', function(data){
-	console.log(data);
-	
-	var id = data.id;
-	
-	$("#title-" + id).val(data.title);
-	
-	if(data.side != null)
-		$("#side-" + id).text(data.side);
-	else{
-		$("#side-" + id).text($("#side-" + id).attr("defaultValue"));
+function update(){
+	var index;
+	for(index = 0; index<temperatureControlDocs.length; index++){
+		var doc = temperatureControlDocs[index];
+		if(doc.id == docId)
+			break;
 	}
 	
-	if(data.position != null)
-		$("#position-" + id).text(data.position);
-	else
-		$("#position-" + id).text($("#position-" + id).attr("defaultValue"));
+	add(index);
+};
+
+function del(id){
+	var index;
+	var newTemperatureControlDocs = [];
+	for(index = 0; index<temperatureControlDocs.length; index++){
+		var doc = temperatureControlDocs[index];
+		if(doc.id != id){
+			newTemperatureControlDocs.push(doc);
+		}
+	}
 	
-	if(data.step != null)
-		$("#step-" + id).text(data.step);
-	else
-		$("#step-" + id).text($("#step-" + id).attr("defaultValue"));
-	
-	
-	$("#start-" + id).val(data.start);
-	$("#end-" + id).val(data.end);
-	$("#temp-" + id).val(data.temp);
-	
-	if(data.tempApply == 'true' )
-		$("#tempApply-" + id).checked = true;
-	else
-		$("#tempApply-" + id).checked = false;
-	
-	if(data.apply == 'true' )
-		$("#apply-" + id).checked = true;
-	else
-		$("#apply-" + id).checked = false;
+	socket.emit('temperatureControl', newTemperatureControlDocs);
+};
+
+function cancel(){
+	location.reload();
+}
+
+socket.on('temperatureControlCallback', function(){
+	location.reload();
 });
 
-$(".dropdown-menu li a").click(function(){
+$('.dropdown-menu li a').click(function(){
   var selText = $(this).text();
+  var selVal = $(this).attr('value');
+  
   $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+  $(this).parents('.btn-group').find('.dropdown-toggle').attr('value', selVal);
 });

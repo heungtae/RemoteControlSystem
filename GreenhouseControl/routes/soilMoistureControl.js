@@ -1,8 +1,8 @@
 //var humidity = require('./humidity');
-var sprinklerData = require('../libs/db/scheduleSprinkler'),
+var sprinklerData = require('../libs/db/soilMoistureControl'),
 	log4js = require('log4js');
 
-var	log = log4js.getLogger('routes.scheduleSprinkler');
+var	log = log4js.getLogger('routes.soilMoistureControl');
 log.setLevel(config.loglevel);
 
 var socket;
@@ -17,14 +17,14 @@ module.exports = function(io){
 			
 			//schedule sprinkler socket function
 			sprinklerData.get(function(err, docs, conf, envConf){
-				socket.emit('scheduleSprinklerConfigCallback', docs, conf, envConf);
+				socket.emit('soilMoistureControlConfigCallback', docs, conf, envConf);
 			});
 			
-			socket.on('scheduleSprinkler', function(data){
+			socket.on('soilMoistureControl', function(data){
 				log.debug(data);
 				sprinklerData.update(data, function(){
 					log.debug('Completed Sprinkler schedule');
-					socket.emit('scheduleSprinklerCallback');
+					socket.emit('soilMoistureControlCallback');
 				});
 			});
 			
@@ -37,9 +37,9 @@ module.exports = function(io){
 
 module.exports.data = function(req, res){
 	sprinklerData.get(function(err, docs, conf, envConf){
-		res.render('scheduleSprinkler', {
-			title : config.app.title.sprinklerSchedule,
-			sprinklerSchedule: docs,
+		res.render('soilMoistureControl', {
+			title : config.app.title.soilMoistureControl,
+			soilMoistureDocs: docs,
 			sprinklerConfig: conf,
 			environmentConfig: envConf
 		});

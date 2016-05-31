@@ -54,281 +54,232 @@
       </div>
     </nav>
     
-     
-    <br><br><br>
-   
-      <div class="container">
+  
+  	<div class="container">
 	  	<div class="row">
 	        <div class="col-md-12">
-	        	<div class="page-header">
-				    <h2>Shutter Schedule</h2>
-				</div>
 				<div class="alert alert-warning fade in">
 				    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				    <strong>Warning!</strong> 시작 혹은 종료 시간을 확인 하세요.
-				</div>     
-				
-			    <table class="table table-striped" align="center">
-			     <tr>
-				    <th>ID</th>
-				    <th>Title</th>
-				    <th>Side</th>
-				    <th>Position</th>
-				    <th>Step</th>
-				    <th>Start</th>
-				    <th>End</th>
-				    <%
-				    //environmentConfig
-				    for(ev = 0; ev < environmentConfig.length; ev++){
-				    	var conf = environmentConfig[ev];
-				    	
-				    	if(environmentConfig.length > (ev+1) && conf.unit == environmentConfig[ev+1].unit){
-				    		continue;
-				    	}
-				    	
-				    	%>
-					    
-					    <th colspan=4><%= conf.unit%></th>
-					    
-					    <%
-				    }
-				    %>
-				    <th>Apply</th>
-				    <th>Add</th>
-				    <th>Delete</th>
-				  </tr>
-				  
-				  <%
-				  
-				  var len = shutterSchedule == null ? 0 : shutterSchedule.length;
-				  
+				</div>    
+			<%
 				  var maxStepNum = 0;
-				  var i;  
-			  	  for(i = 0; i < shutterConfig.length; i++){
+				  for(i = 0; i < shutterConfig.length; i++){
 			  		var stepNum = shutterConfig[i].stepNum;
 			  		if(maxStepNum < stepNum){
 				  		maxStepNum = stepNum;
 				  	}
 				  }
-				  console.log(maxStepNum);
 				  
-				  var sides = [];
-				  
-				  for(i = 0; i < shutterConfig.length; i++){
-					var side = shutterConfig[i].side;
-					var sameValue = false;
-					for(var j=0; j < sides.length; j++){
-						if(side == sides[j])
-							sameValue = true;
-					}
-					
-					if(!sameValue)
-						sides.push(side);
-				  }
-				  
-				  console.log(sides);
-				  
-				  var positions = [];
-				  
-				  for(i = 0; i < shutterConfig.length; i++){
-					var position = shutterConfig[i].position;
-					var sameValue = false;
-					for(var j=0; j < positions.length; j++){
-						if(position == positions[j])
-							sameValue = true;
-					}
-					
-					if(!sameValue)
-						positions.push(position);
-				  }
-				  
-				  console.log(positions);
-				  
-				  for (i = 0; i < len; i++) { 
-					schedule = shutterSchedule[i];
-				  
-				  %>
-				  <tr>
-				  	<td id='id-<%= schedule.id%>'><%= schedule.id%></td> 
-				  	<td>
-				  	<input id='title-<%= schedule.id%>' style='min-width: 120px;' type="text" class="form-control" placeholder="scheduling title" aria-describedby="basic-addon2" value='<%= schedule.title == null ? '' : schedule.title%>'>
-				  	</td> 
-				  	<td>
-			  			<div class="btn-group"> <a id='side-<%= schedule.id%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" defaultValue="<%= sides[0]%>" href="#" ><%= schedule.side == null ? sides[0] : schedule.side %><span class="caret"></span></a>
-						    <ul class="dropdown-menu">
-						        <%
-						        var j;
-						        
-						  		for(j = 0; j < sides.length; j++){
-		
-							  	%>
-						        <li><a href="#" value='<%= sides[j]%>' ><%= sides[j]%></a></li>
-							  	
-							    <%	
-							    	}
-							    %>
-						        
-						    </ul>
-						</div>
-							
-				  	</td> 
-				  	<td>
-			  			<div class="btn-group"> <a id='position-<%= schedule.id%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" defaultValue="<%= shutterConfig[0].position%>" href="#" ><%= schedule.position == null ? shutterConfig[0].position : schedule.position %> <span class="caret"></span></a>
-						    <ul class="dropdown-menu">
-						        <%
-						        var j;
-						        for(j = 0; j < positions.length; j++){
-		
-							  	%>
-						        <li><a href="#" value='<%= positions[j]%>' ><%= positions[j]%></a></li>
-							  	
-							    <%	
-							    	}
-							    %>
-						        
-						    </ul>
-						</div>
-							
-				  	</td> 
-				  	<td>
-				  	 <%
-				        var j;
-				        
-					  	
-					  %>
-					  	
-			  			<div class="btn-group"> <a id='step-<%= schedule.id%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" defaultValue="<%=  'Full Open'%>" href="#" ><%= schedule.step == null ? 'Full Open' : schedule.step%> <span class="caret"></span></a>
-						    <ul class="dropdown-menu">
-						       
-							    <li><a href="#" value='<%= maxStepNum + 1%>' >Full Open</a></li>
-						        <li class="divider"></li>
-						        <%
-						        var j;
-						  		for(j = 1; j <= maxStepNum; j++){
-							  	%>
-						        <li><a href="#" value='<%= j%>' ><%= j + ' 단계'%></a></li>
-							  	
+			%>
+				   
+			    <div class="form-horizontal my-form" role="form">
+				    <div class="form-group">
+					  <label class="col-sm-2 control-label">제목</label>
+					  <div class="col-sm-10">
+						  <div class="col-xs-8">
+						   <input type="text" id="title" class="form-control" placeholder="창 제어 제목을 작성하세요.">
+						  </div>
+						  <label class="col-xs-2 control-label">우선순위</label>
+						  <div class="col-xs-2">
+						    <input id="priority" style='min-width:80px'  type="number" min="1" max="10" class="form-control" value="3">
+						  </div>
+						  
+					  </div>
+					  
+					</div>
+	 
+				    <div class="form-group">
+				      <label class="col-sm-2 control-label">창 선택</label>
+				      <div class="col-sm-10">
+					      <div class="col-sm-2 btn-group"> <a id='side-position' class="btn btn-default dropdown-toggle btn-select side" data-toggle="dropdown" defaultValue="<%= shutterConfig[0].alias%>" href="#" value="<%= shutterConfig[0].side + '-' + shutterConfig[0].position%>" ><%= shutterConfig[0].alias%><span class="caret"></span></a>
+							    <ul class="dropdown-menu">
 							    <%
-							    	}
-							    %>
-						        
-						        <li class="divider"></li>
-						        <li><a href="#" value='0' >Full Close</a></li>
+							        var j;
 							        
-						        
-						    </ul>
+							  		for(j = 0; j < shutterConfig.length; j++){
+			
+								%>
+							        <li><a href="#" value='<%= shutterConfig[j].side + '-' + shutterConfig[j].position%>' ><%= shutterConfig[j].alias%></a></li>
+								  	
+								<%	
+								    	}
+								%>
+							        
+							    </ul>
+						  </div>
+					      <div class="col-sm-2 btn-group"> <a id='step' class="btn btn-default dropdown-toggle btn-select step" data-toggle="dropdown" defaultValue="열림" value='<%= maxStepNum + 1%>' href="#" >열림<span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+							       
+								    <li><a href="#" value='<%= maxStepNum + 1%>' >열림</a></li>
+							        <li class="divider"></li>
+							        <%
+							        	var j;
+							  			for(j = 1; j <= maxStepNum; j++){
+								  	%>
+							        <li><a href="#" value='<%= j%>' ><%= j + ' 단계'%></a></li>
+								  	
+								    <%
+								    	}
+								    %>
+							        
+							        <li class="divider"></li>
+							        <li><a href="#" value='0' >닫힘</a></li>
+								        
+							        
+							    </ul>
 						</div>
-							
-				  	</td>
-				  	<td >
-				  		<input style='max-width: 125px;' id='start-<%= schedule.id%>'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="<%= schedule.start == null ? '' : schedule.start%>">
-				  	</td> 
-				  	<td >
-				  		<input style='max-width: 125px;' id='end-<%= schedule.id%>'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="<%= schedule.end == null ? '' : schedule.end%>">
-				  	</td> 
-				  	<%
+					</div>
+				  </div>
+				  <div class="form-group">
+				    <label class="col-sm-2 control-label">시간</label>
+				    <div class="col-sm-10">
+					    <div class="col-xs-5">
+					      <input id='start'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="08:00">
+					    </div>
+					    <div class="col-xs-5"> 
+					      <input id='end'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="10:00">
+					    </div>
+				    </div>
+				  </div>
+				  <%
 				  	 for(ev = 0; ev < environmentConfig.length; ev++){
 				    	var envConf = environmentConfig[ev];
 				    %>
 					  	<%
 					  	if(envConf.type == 'number'){
 					  	%>
-					  	<td>
-					  	  <div class="material-switch pull-right">
-	                            <input id='<%= envConf.unit + 'Apply-' + schedule.id%>' name='<%= envConf.unit + 'Apply-' + schedule.id%>' type="checkbox" <%= schedule[envConf.unit + 'Apply'] == null ? '' : schedule[envConf.unit + 'Apply'] == true ? 'checked': ''%>/>
-	                            <label for='<%= envConf.unit + 'Apply-' + schedule.id%>' class="label-primary"></label>
-	                      </div>
-					  	</td>
-					  	<td>
-				  			<div class="btn-group"> <a id='<%= envConf.unit + 'Zone-' + schedule.id%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" ><%= schedule[envConf.unit + 'Zone'] == null ? envConf.zone : schedule[envConf.unit + 'Zone'] %><span class="caret"></span></a>
-							    <ul class="dropdown-menu">
-							    	<%
-							    	while(true){
-							    		
-							    		
-							    	%>
-							        <li><a href="#" value='<%= envConf.zone%>'><%= envConf.zone%></a></li>
-							        <%
-								        if(environmentConfig.length > (ev + 1) && envConf.unit == environmentConfig[ev+1].unit){
-								        	ev++;
-								        	
-								        	envConf = environmentConfig[ev];
-								        }else{
-								        	break;
-								        }
-							        }
-							        %>
-							    </ul>
-							</div>
-					  	</td> 
-					  	<td>
-				  			<div class="btn-group"> <a id='<%= envConf.unit + 'Oper-' + schedule.id%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" ><%= schedule[envConf.unit + 'Oper'] == null ? '>' : schedule[envConf.unit + 'Oper'] %><span class="caret"></span></a>
-							    <ul class="dropdown-menu">
-							        <li><a href="#" value='>'><%='>'%></a></li>
-								  	<li><a href="#" value='<'><%='<'%></a></li>
-							    </ul>
-							</div>
-					  	</td> 
-					  	
-					  	<td>
-					  		<input style='max-width: 120px; min-width:55px' id='<%= envConf.unit + '-' + schedule.id%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="<%= schedule[envConf.unit] == null ? 0 : schedule[envConf.unit]%>">
-					  	</td> 
-
-				  	
+					  	<div class="form-group">
+				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
+				    	  <div class="col-sm-10 btn-group">
+						  	  <div class="col-xs-2 material-switch">
+		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
+		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
+		                      </div>
+						  	  <div class="col-xs-3">
+						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-value'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="0">
+						  	  </div>
+						  	  <div class="col-xs-2 btn-group"> 
+						  	  		<a id='<%= envConf.unit + '-' + envConf.zone + '-Oper'%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" value=">"><%='클 경우'%><span class="caret"></span></a>
+								    <ul class="dropdown-menu">
+								        <li><a href="#" value='>'><%='클 경우'%></a></li>
+									  	<li><a href="#" value='<'><%='작을 경우'%></a></li>
+								    </ul>
+								</div>
+						  	 
+						  </div>
+				  	   </div>
 					  	<%
 					  	}else if(envConf.type == 'boolean') {
 					  	%>
-					  	<td>
-					  	  <div class="material-switch pull-right">
-	                            <input id='<%= envConf.unit + 'Apply-' + schedule.id%>' name='<%= envConf.unit + 'Apply-' + schedule.id%>' type="checkbox" <%= schedule[envConf.unit + 'Apply'] == null ? '' : schedule[envConf.unit + 'Apply'] == true ? 'checked': ''%>/>
-	                            <label for='<%= envConf.unit + 'Apply-' + schedule.id%>' class="label-primary"></label>
-	                      </div>
-					  	</td>
-					  	<td>
-				  			<div class="btn-group"> <a id='<%= envConf.unit + 'Zone-' + schedule.id%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" ><%= schedule[envConf.unit + 'Zone'] == null ? envConf.zone : schedule[envConf.unit + 'Zone'] %><span class="caret"></span></a>
-							    <ul class="dropdown-menu">
-							    	<%
-							    	while(true){
-							    	
-							    	%>
-							        <li><a href="#" value='<%= envConf.zone%>'><%= envConf.zone%></a></li>
-							        <%
-							     
-								        if(environmentConfig.length > (ev + 1) && envConf.unit == environmentConfig[ev+1].unit){
-								        	ev++;
-								        	
-								        	envConf = environmentConfig[ev];
-								        }else{
-								        	break;
-								        }
-							        }
-							        %>
-								 
-							    </ul>
-							</div>
-					  	</td>
-					  	 <td colspan=2>
-				  			<div class="btn-group"> <a id='<%= envConf.unit + '-' + schedule.id%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" ><%= schedule[envConf.unit] == null ? 'true' : schedule[envConf.unit] %><span class="caret"></span></a>
-							    <ul class="dropdown-menu">
-							        <li><a href="#" value='true'>true</a></li>
-							        <li><a href="#" value='false'>false</a></li>
-							    </ul>
-							</div>
-					  	</td> 
-					  	 
+					  	<div class="form-group">
+				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
+				    	  <div class="col-sm-10 btn-group">
+						  	  <div class="col-xs-2 material-switch">
+		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
+		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
+		                      </div>
+						  	
+					  		 
+						  	  <div class="col-xs-2 btn-group"> 
+						  	  		<a id='<%= envConf.unit + '-' + envConf.zone + '-Oper'%>' class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" value="true"><%='true'%><span class="caret"></span></a>
+								    <ul class="dropdown-menu">
+								        <li><a href="#" value='true'>true</a></li>
+								        <li><a href="#" value='false'>false</a></li>
+								    </ul>
+							  </div>
+						  </div>
+				  	   </div> 
 				  	<%
 				  		}
 				  	}
 				  	%>
-				    <td>
-				  	  <div class="material-switch pull-right">
-                            <input id='apply-<%= schedule.id%>' name='apply-<%= schedule.id%>' type="checkbox" <%= schedule.apply == null ? '' : schedule.apply == true ? 'checked': ''%>/>
-                            <label for='apply-<%= schedule.id%>' class="label-primary"></label>
-                      </div>
-				  	</td>
-				    <td><button type="button" onclick="scheduleAction('<%= schedule.id%>', 'add')"  class="btn btn-primary">Add</button></td>
-	        		<td><button type="button" onclick="scheduleAction('<%= schedule.id%>', 'delete')"  class="btn btn-success">Delete</button></td>
+				  <div class="form-group">
+					  
+						    <div class="col-xs-3">
+						    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
+						    </div>
+						    <div class="col-xs-2">
+						    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
+						    </div>
+						    <div class="col-xs-2">
+						    	<button id="btnCencel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
+						    </div>
+					    </div>
+			  </div>
+	</div>
+
+    <br><br><br>
+   
+      <div class="container">
+	  	<div class="row">
+	        <div class="col-md-12">
+			    <table class="table table-hover" align="center" id="myTable">
+			     <tr>
+				    <th>번호</th>
+				    <th>제목</th>
+				    <th>우선순위</th>
+				    <th>창</th>
+				    <th>단계</th>
+				    <th>시작시간</th>
+				    <th>종료시간</th>
+				    <%
+				    //environmentConfig
+				    for(ev = 0; ev < environmentConfig.length; ev++){
+				    	var conf = environmentConfig[ev];
+				    	
+				    	%>
+					    
+					    <th><%= conf.alias%></th>
+					    
+					    <%
+				    }
+				    %>
+				    <th>Delete</th>
 				  </tr>
+				  
+				  <%
+				  
+				  var len = temperatureControlDocs == null ? 0 : temperatureControlDocs.length;
+				  for (i = 0; i < len; i++) { 
+					doc = temperatureControlDocs[i];
+				  
+				  %>
+					  <tr class="clickable-row" data-id='<%= doc.id%>'>
+					  	<td><%= i + 1 %></td> 
+					  	<td><%= doc.title %></td> 
+					  	<td><%= doc.priority %></td> 
+					  	<td><%= doc.alias %></td> 
+					  	<td><%= doc.step == 0 ? '닫기' : doc.step == (maxStepNum + 1) ? '열기' : doc.step + ' 단계'%></td>
+					  	<td><%= doc.start %></td> 
+					  	<td><%= doc.end %></td> 
+					  	<%
+					  	 for(ev = 0; ev < environmentConfig.length; ev++){
+					    	var envConf = environmentConfig[ev];
+					    	
+					    	if(doc[envConf.unit + '-' + envConf.zone + '-Oper'] != null){
+
+					    
+					    	  if(envConf.type == 'number'){
+					    %>
+						      <td><%= doc[envConf.unit + '-' + envConf.zone + '-Value'] + ' 보다 '+  (doc[envConf.unit + '-' + envConf.zone + '-Oper'] == '>' ? '클 경우' : '작을 경우')  %></td>
+						  	
+					  	<%
+					  		 	}else{
+						%>
+						      <td><%= doc[envConf.unit + '-' + envConf.zone + '-Oper'] + '일 경우'%></td>
+						  	
+					  	<%		  		 	
+					  			}
+					  		}else{
+					  		%>
+					  		<td>조건 없음</td>
+					  		<%
+					  		}
+					  	}
+					  	%>
+		        		<td><button type="button" onclick="del('<%= doc.id%>')"  class="btn btn-success">Delete</button></td>
+					  </tr>
 				  <%} %>
 				</table>
 			</div>
@@ -340,6 +291,8 @@
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="./jquery/dist/jquery.min.js"></script>
 	    <script src="./bootstrap/dist/js/bootstrap.min.js"></script>
+	    <script src="./bootstrap/dist/js/bootstrap-table.js"></script>
+	    <script src="./bootstrap/dist/js/extensions/mobile/bootstrap-table-mobile.js"></script>
 	    <script src="./socket.io/socket.io.js"></script>
 	    <script src="./javascript/unitScheduleShutterController.js"></script>
 	    <script src="./javascript/bootstrap-datetimepicker.min.js"></script>

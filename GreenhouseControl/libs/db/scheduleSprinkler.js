@@ -12,7 +12,7 @@ exports.get = function(callback){
 			log.debug('found schedule sprinkler: length= ' + docs.length);
 			
 			ghConfig.getSprinklerConfig(function(conf){
-				log.debug('found shutter config: length= ' + conf.length);
+				log.debug('found sprinkler config: length= ' + conf.length);
 
 				ghConfig.getEnvironmentConfig('sprinkler', function(envConf){
 					log.debug('found environments config: length= ' + envConf.length);

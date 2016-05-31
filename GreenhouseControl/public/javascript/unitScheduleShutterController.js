@@ -31,8 +31,8 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  
 	  $('#title').val(doc.title);
 	  $('#priority').val(doc.priority)
-	  $('#side-position').attr('value', conf.side + '-' + conf.position);
-	  $('#side-position').html(conf.alias+' <span class="caret"></span>');
+	  $('#side-position').attr('value', doc.side + '-' + doc.position);
+	  $('#side-position').html(doc.alias+' <span class="caret"></span>');
 	  
 	  $('#step').attr('value', doc.step );
 	  $('#step').html(( doc.step == 0 ? '닫힘': doc.step == maxStepNum ? '열림' : doc.step + ' 단계')+' <span class="caret"></span>');
