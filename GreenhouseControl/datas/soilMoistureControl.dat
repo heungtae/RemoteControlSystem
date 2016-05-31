@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "title": "test 1",
+        "unit": "pump",
+        "alias": "관수 펌프  ",
+        "start": "08:00",
+        "end": "20:00",
+        "period": "5",
+        "wait": "30",
+        "Humidity-Inside-Value": "97",
+        "Humidity-Inside-Oper": "<"
+    }
+]
