@@ -20,12 +20,14 @@ var express = require('express')
   , notification = require('./routes/notification')
   , soilMoistureControl = require('./routes/soilMoistureControl')
   , tempControl = require('./routes/temperatureControl')
+  , emergencyControl = require('./routes/emergencyControl')
   , scheduleSprinklerJob = require('./libs/job/scheduleSprinkler')
   , scheduleShutterJob = require('./libs/job/scheduleShutter')
   , scheduleEnvironmentJob = require('./libs/job/scheduleEnvironment')
   , notificationJob = require('./libs/job/notification')
  // , soilMoistureControlJob = require('./libs/job/soilMoistureControl')
  // , tempControlJob = require('./libs/job/temperatureControl')
+ // , tempControlJob = require('./libs/job/emergencyControl')
   , env = require('./libs/db/environment')
   , log4js = require('log4js') 
   , http = require('http')
@@ -77,6 +79,7 @@ app.get('/notification', notification.data);
 app.get('/history', routes.index);
 app.get('/soilMoistureControl', soilMoistureControl.data);
 app.get('/temperatureControl', tempControl.data);
+app.get('/emergencyControl', emergencyControl.data);
 
 
 var	log = log4js.getLogger('app');
@@ -100,6 +103,7 @@ server.listen(app.get('port'), function(){
 	notification(io);
 	soilMoistureControl(io);
 	tempControl(io);
+	emergencyControl(io);
 	
 	log.info('Express server listening on port ' + app.get('port'));
 });

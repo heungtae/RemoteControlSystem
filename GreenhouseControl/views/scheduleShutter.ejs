@@ -44,8 +44,9 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">자동예약<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/soilMoistureControl">토양습도 자동제어</a></li>
-		  			<li><a href="/temperatureControl">내부온도 자동제어</a></li>
+                    <li><a href="/soilMoistureControl">습도제어</a></li>
+		  			<li><a href="/temperatureControl">온도제어</a></li>
+		  			<li><a href="/emergencyControl">긴급제어</a></li>
                   </ul>
                 </li>	
                 <li><a href="/history">제어 이력</a></li>
@@ -78,10 +79,10 @@
 				    <div class="form-group">
 					  <label class="col-sm-2 control-label">제목</label>
 					  <div class="col-sm-10">
-						  <div class="col-xs-8">
+						  <div class="col-xs-6">
 						   <input type="text" id="title" class="form-control" placeholder="창 제어 제목을 작성하세요.">
 						  </div>
-						  <label class="col-xs-2 control-label">우선순위</label>
+						  <label style='min-width:80px'  class="col-xs-1 control-label">우선순위</label>
 						  <div class="col-xs-2">
 						    <input id="priority" style='min-width:80px'  type="number" min="1" max="10" class="form-control" value="3">
 						  </div>
@@ -93,7 +94,7 @@
 				    <div class="form-group">
 				      <label class="col-sm-2 control-label">창 선택</label>
 				      <div class="col-sm-10">
-					      <div class="col-sm-2 btn-group"> <a id='side-position' class="btn btn-default dropdown-toggle btn-select side" data-toggle="dropdown" defaultValue="<%= shutterConfig[0].alias%>" href="#" value="<%= shutterConfig[0].side + '-' + shutterConfig[0].position%>" ><%= shutterConfig[0].alias%><span class="caret"></span></a>
+					      <div class="col-sm-2 btn-group"> <a style='min-width:150px' id='side-position' class="btn btn-default dropdown-toggle btn-select side" data-toggle="dropdown" defaultValue="<%= shutterConfig[0].alias%>" href="#" value="<%= shutterConfig[0].side + '-' + shutterConfig[0].position%>" ><%= shutterConfig[0].alias%><span class="caret"></span></a>
 							    <ul class="dropdown-menu">
 							        <%
 							        var j;
@@ -109,7 +110,7 @@
 							        
 							    </ul>
 						  </div>
-					      <div class="col-sm-2 btn-group"> <a id='step' class="btn btn-default dropdown-toggle btn-select step" data-toggle="dropdown" defaultValue="열림" value='<%= maxStepNum + 1%>' href="#" >열림<span class="caret"></span></a>
+					      <div class="col-sm-2 btn-group"> <a style='min-width:100px' id='step' class="btn btn-default dropdown-toggle btn-select step" data-toggle="dropdown" defaultValue="열림" value='<%= maxStepNum + 1%>' href="#" >열림<span class="caret"></span></a>
 							    <ul class="dropdown-menu">
 							       
 								    <li><a href="#" value='<%= maxStepNum + 1%>' >열림</a></li>
@@ -133,15 +134,17 @@
 					</div>
 				  </div>
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label">시간</label>
+				    <label class="col-sm-2 control-label">시간 구간</label>
 				    <div class="col-sm-10">
-					    <div class="col-xs-5">
-					      <input id='start'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="08:00">
+				    	<label class="col-sm-1 control-label">시작</label>
+					    <div class="col-sm-2">
+					      <input id='start' style='min-width:140px'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="08:00">
 					    </div>
-					    <div class="col-xs-5"> 
-					      <input id='end'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="10:00">
+					    <label class="col-sm-1 control-label">종료</label>
+					    <div class="col-sm-2"> 
+					      <input id='end' style='min-width:140px'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="10:00">
 					    </div>
-				    </div>
+					 </div>
 				  </div>
 				  <%
 				  	 for(ev = 0; ev < environmentConfig.length; ev++){
@@ -153,11 +156,11 @@
 					  	<div class="form-group">
 				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
 				    	  <div class="col-sm-10 btn-group">
-						  	  <div class="col-xs-2 material-switch">
+						  	  <div style='min-width:70px' class="col-xs-1 material-switch">
 		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
 		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
 		                      </div>
-						  	  <div class="col-xs-3">
+						  	  <div style='min-width:100px' class="col-xs-2">
 						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-value'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="0">
 						  	  </div>
 						  	  <div class="col-xs-2 btn-group"> 
@@ -176,7 +179,7 @@
 					  	<div class="form-group">
 				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
 				    	  <div class="col-sm-10 btn-group">
-						  	  <div class="col-xs-2 material-switch">
+						  	  <div style='min-width:70px' class="col-xs-1 material-switch">
 		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
 		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
 		                      </div>
@@ -195,19 +198,19 @@
 				  		}
 				  	}
 				  	%>
-				  <div class="form-group">
+				<div class="form-group">
 					  
-						    <div class="col-xs-3">
-						    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
-						    </div>
-						    <div class="col-xs-2">
-						    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
-						    </div>
-						    <div class="col-xs-2">
-						    	<button id="btnCencel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
-						    </div>
-					    </div>
-			  </div>
+				    <div style='min-width:100px' class="col-xs-3">
+				    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
+				    </div>
+				    <div style='min-width:100px' class="col-xs-1">
+				    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
+				    </div>
+				    <div style='min-width:100px' class="col-xs-1">
+				    	<button id="btnCencel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
+				    </div>
+			    </div>
+			 </div>
 	</div>
 
     <br><br><br>

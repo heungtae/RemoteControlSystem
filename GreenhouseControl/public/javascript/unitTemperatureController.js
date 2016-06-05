@@ -61,18 +61,6 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	    	}
 	    }
 	  
-	  
-	  var conf;
-	  for(sc = 0; sc < shutterConfs.length; sc++){
-	    	conf = shutterConfs[sc];
-	    	
-	    	if(doc.side == conf.side && doc.position == conf.position){
-	    		break;
-	    	}
-	    }
-	  
-	  
-	  
 	  $('#btnUpdate').removeAttr('disabled');
 	  $('#btnCencel').removeAttr('disabled');
 	});
@@ -94,19 +82,30 @@ function add(index){
 	
 	//title
 	data['title'] = $('#title').val();
+	int cnt = 0;
 	
-	//shutter unit config
-	var unitArray = $('#side-position').attr('value').split('-');
+	for(index = 1; index <= shutterConfs.length; index++){
+    	
+    	if($('#side-position' + index).attr('value') != ''){
+    		
+    		//shutter unit config
+    		var unitArray = $('#side-position' + index).attr('value').split('-');
+    		
+    		data.units[cnt++]['side'] = unitArray[0];
+	    	data.units[cnt++]['position'] = unitArray[1];
+	    	data.units[cnt++]['alias'] = $('#side-position' + index).text(); 
+		
+    	}
+    }
 	
-	data.side = unitArray[0];
-	data.position = unitArray[1];
-	data.alias = $('#side-position').text(); 
+	//shutter period, wait
+	data.period = $('#period').val() / 60;
+	data.wait = $('#wait').val() / 60;
 	
-	//shutter step
-	data.step = $('#step').attr('value');
-	data.start = $('#start').val();
-	data.end = $('#end').val();
-	
+	if($('#time-Apply').is(':checked')){	
+		data.start = $('#start').val();
+		data.end = $('#end').val();
+	}
 	
 	//환경값 설정 결과 수집
 	for(ev = 0; ev < envConfs.length; ev++){

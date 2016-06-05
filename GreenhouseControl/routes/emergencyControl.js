@@ -1,10 +1,10 @@
 //var humidity = require('./humidity');
 var gpio = require('../libs/gpio'),
-	controlData = require('../libs/db/temperatureControl'),
+	controlData = require('../libs/db/emergencyControl'),
 	history = require('../libs/db/history'),
 	log4js = require('log4js');
 
-var	log = log4js.getLogger('routes.temperatureControl');
+var	log = log4js.getLogger('routes.emergencyControl');
 log.setLevel(config.loglevel);
 
 var socket;
@@ -19,14 +19,14 @@ module.exports = function(io){
 			
 			//schedule shutter socket function
 			controlData.get(function(err, docs, conf, envConf){
-				socket.emit('temperatureControlConfigCallback', docs, conf, envConf);
+				socket.emit('emergencyControlConfigCallback', docs, conf, envConf);
 			});
 			
-			socket.on('temperatureControl', function(data){
+			socket.on('emergencyControl', function(data){
 				log.debug(data);
 				controlData.update(data, function(){
 					log.debug('Completed shutter schedule');
-					socket.emit('temperatureControlCallback', data);
+					socket.emit('emergencyControlCallback', data);
 				});
 			});
 			         
@@ -40,9 +40,9 @@ module.exports = function(io){
 
 module.exports.data = function(req, res){
 	controlData.get(function(err, docs, conf, envConf){
-		res.render('temperatureControl', {
-			title : config.app.title.temperatureControl,
-			temperatureControlDocs: docs,
+		res.render('emergencyControl', {
+			title : config.app.title.emergencyControl,
+			emergencyControlDocs: docs,
 			shutterConfig: conf,
 			environmentConfig: envConf
 		});

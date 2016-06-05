@@ -53,15 +53,6 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	    }
 	  
 	  
-	  var conf;
-	  for(sc = 0; sc < sprinklerConfs.length; sc++){
-	    	conf = sprinklerConfs[sc];
-	    	
-	    	if(doc.unit == conf.unit){
-	    		break;
-	    	}
-	  }	 
-	  
 	  $('#btnUpdate').removeAttr('disabled');
 	  $('#btnCancel').removeAttr('disabled');
 	});

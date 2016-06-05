@@ -1,15 +1,21 @@
 var socket = io.connect('http://localhost:8090');
 $('.alert').hide();
-
-var sprinklerConfs, envConfs, soilMoistureDocs;
+var shutterConfs, envConfs, emergencyControlDocs;
 var docId;
+var maxStepNum = 0;
 
-socket.on('soilMoistureControlConfigCallback', function(docs, conf, envConf){
-	soilMoistureDocs = docs;
-	sprinklerConfs = conf;
+socket.on('emergencyControlConfigCallback', function(docs, conf, envConf){
+	shutterConfs = conf;
 	envConfs = envConf;
+	emergencyControlDocs = docs;
+	
+	for(i = 0; i < shutterConfs.length; i++){
+		var stepNum = shutterConfs[i].stepNum;
+		if(maxStepNum < stepNum){
+	  		maxStepNum = stepNum;
+		}
+	}
 });
-
 
 $('#myTable').on('click', '.clickable-row', function(event) {
 	  $(this).addClass('active').siblings().removeClass('active');
@@ -17,19 +23,25 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  console.log(docId);
 	  
 	  var doc;
-	  for(index = 0; index<soilMoistureDocs.length; index++){
-		  doc = soilMoistureDocs[index];
+	  for(index = 0; index<emergencyControlDocs.length; index++){
+		  doc = emergencyControlDocs[index];
 		  if(doc.id == docId)
 			break;
 	  }
 	  
 	  $('#title').val(doc.title);
-	  $('#unit').attr('value', doc.unit);
-	  $('#unit').html(doc.alias+' <span class="caret"></span>');
-	  $('#start').val(doc.start);
-	  $('#end').val(doc.end);
-	  $('#period').val(doc.period);
-	  $('#wait').val(doc.wait);
+	  $('#priority').val(doc.priority)
+	  $('#side-position').attr('value', doc.side + '-' + doc.position);
+	  $('#side-position').html(doc.alias+' <span class="caret"></span>');
+	  
+	  $('#step').attr('value', doc.step );
+	  $('#step').html(( doc.step == 0 ? '닫힘': doc.step == maxStepNum ? '열림' : doc.step + ' 단계')+' <span class="caret"></span>');
+	  
+	  if(doc['start'] != null){
+		  $('#time-Apply').prop("checked", true);
+		  $('#start').val(doc.start);
+		  $('#end').val(doc.end);
+	  }
 	  
 	  for(ev = 0; ev < envConfs.length; ev++){
 	    	var conf = envConfs[ev];
@@ -54,35 +66,42 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	    }
 	  
 	  $('#btnUpdate').removeAttr('disabled');
-	  $('#btnCancel').removeAttr('disabled');
+	  $('#btnCencel').removeAttr('disabled');
 	});
 
 function add(index){
 	if(index == -1){	
-		if(soilMoistureDocs.length >= 1){
-			docId = soilMoistureDocs[soilMoistureDocs.length -1].id + 1;
-			index = soilMoistureDocs.length;			
+		if(emergencyControlDocs.length >= 1){
+			docId = emergencyControlDocs[emergencyControlDocs.length -1].id + 1;
+			index = emergencyControlDocs.length;			
 		}else{
 			docId = 1;
 			index = 0;
 		}
 		
 	}
-	
 	var data = {};
 	//id
 	data['id'] = docId;
 	
 	//title
 	data['title'] = $('#title').val();
-	data.unit = $('#unit').attr('value');
-	data.alias = $('#unit').text(); 
+	
+	//shutter unit config
+	var unitArray = $('#side-position').attr('value').split('-');
+	
+	data.side = unitArray[0];
+	data.position = unitArray[1];
+	data.alias = $('#side-position').text(); 
 	
 	//shutter step
-	data.start = $('#start').val();
-	data.end = $('#end').val();
-	data.period = $('#period').val();
-	data.wait = $('#wait').val();
+	data.step = $('#step').attr('value');
+	
+	if($('#time-Apply').is(':checked')){	
+		data.start = $('#start').val();
+		data.end = $('#end').val();
+	}
+	
 	
 	//환경값 설정 결과 수집
 	for(ev = 0; ev < envConfs.length; ev++){
@@ -102,20 +121,16 @@ function add(index){
 		 $('.alert').show();
 	}
 	else{
-		soilMoistureDocs[index] = data;
-		socket.emit('soilMoistureControl', soilMoistureDocs);
-		console.log(soilMoistureDocs);
+		emergencyControlDocs[index] = data;
+		socket.emit('emergencyControl', emergencyControlDocs);
+		console.log(emergencyControlDocs);
 	}
 };
 	     
 function update(){
 	var index;
-	
-	if(docId == undefined)
-		return;
-	
-	for(index = 0; index<soilMoistureDocs.length; index++){
-		var doc = soilMoistureDocs[index];
+	for(index = 0; index<emergencyControlDocs.length; index++){
+		var doc = emergencyControlDocs[index];
 		if(doc.id == docId)
 			break;
 	}
@@ -125,22 +140,22 @@ function update(){
 
 function del(id){
 	var index;
-	var newSoilMoistureDocs = [];
-	for(index = 0; index<soilMoistureDocs.length; index++){
-		var doc = soilMoistureDocs[index];
+	var newEmergencyControlDocs = [];
+	for(index = 0; index<emergencyControlDocs.length; index++){
+		var doc = emergencyControlDocs[index];
 		if(doc.id != id){
-			newSoilMoistureDocs.push(doc);
+			newEmergencyControlDocs.push(doc);
 		}
 	}
 	
-	socket.emit('soilMoistureControl', newSoilMoistureDocs);
+	socket.emit('emergencyControl', newEmergencyControlDocs);
 };
 
 function cancel(){
 	location.reload();
 }
 
-socket.on('soilMoistureControlCallback', function(){
+socket.on('emergencyControlCallback', function(){
 	location.reload();
 });
 

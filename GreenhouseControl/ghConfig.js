@@ -105,9 +105,11 @@ var Environment = [
                 	   connect : 'gpio',
                 	   param : '28-03157454e5ff',
                 	   defaultvalue : 0,
+                	   standardUnit : '℃',
                 	   use: {
                 		   shutter : true,
-                		   sprinkler : false
+                		   sprinkler : false,
+                		   temperature : false
                 	   }
                 	   
                    },
@@ -119,9 +121,11 @@ var Environment = [
                 	   connect : 'zigbee',
                 	   param : 'At',
                 	   defaultvalue : 0,
+                	   standardUnit : '℃',
                 	   use: {
                 		   shutter : true,
-                		   sprinkler : false
+                		   sprinkler : false,
+                		   temperature : true
                 	   }
                 	   
                    },
@@ -133,9 +137,11 @@ var Environment = [
                 	   connect : 'zigbee',
                 	   param : 'Lt',
                 	   defaultvalue : 0,
+                	   standardUnit : '℃',
                 	   use: {
                 		   shutter : false,
-                		   sprinkler : false
+                		   sprinkler : false,
+                		   temperature : false
                 	   }
                 	   
                    }
@@ -148,9 +154,11 @@ var Environment = [
                 	   connect : 'zigbee',
                 	   param : 'Ah',
                 	   defaultvalue : 0,
+                	   standardUnit : '%',
                 	   use: {
                 		   shutter : false,
-                		   sprinkler : true
+                		   sprinkler : true,
+                		   temperature : false
                 	   }
                    },
                    {
@@ -161,9 +169,11 @@ var Environment = [
                 	   connect : 'zigbee',
                 	   param : 'Lh',
                 	   defaultvalue : 0,
+                	   standardUnit : '%',
                 	   use: {
                 		   shutter : false,
-                		   sprinkler : true
+                		   sprinkler : true,
+                		   temperature : false
                 	   }
                    },
                    {
@@ -174,22 +184,26 @@ var Environment = [
                 	   connect : 'zigbee',
                 	   param : 'Ra',
                 	   defaultvalue : 0,
+                	   standardUnit : '',
                 	   use: {
                 		   shutter : false,
-                		   sprinkler : false
+                		   sprinkler : false,
+                		   temperature : false
                 	   }
                    },
                    {
                 	   unit : 'Light',
                 	   zone : 'Inside',
-                	   alias : '조도',
+                	   alias : '일사',
                 	   type : 'number',
                 	   connect : 'zigbee',
                 	   param : 'Li',
                 	   defaultvalue : 0,
+                	   standardUnit : '',
                 	   use: {
                 		   shutter : true,
-                		   sprinkler : true
+                		   sprinkler : true,
+                		   temperature : false
                 	   }
                    }];
 //============================config end =============================

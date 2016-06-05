@@ -61,18 +61,6 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	    	}
 	    }
 	  
-	  
-	  var conf;
-	  for(sc = 0; sc < shutterConfs.length; sc++){
-	    	conf = shutterConfs[sc];
-	    	
-	    	if(doc.side == conf.side && doc.position == conf.position){
-	    		break;
-	    	}
-	    }
-	  
-	  
-	  
 	  $('#btnUpdate').removeAttr('disabled');
 	  $('#btnCencel').removeAttr('disabled');
 	});

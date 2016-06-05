@@ -1,30 +1,654 @@
 [
     {
-        "date": "2016-05-31T12:10:00.101Z",
+        "date": "2016-06-03T14:30:00.486Z",
         "unit": "Rain",
         "zone": "Inside",
         "value": "5"
     },
     {
-        "date": "2016-05-31T12:30:00.735Z",
+        "date": "2016-06-03T14:40:00.432Z",
         "unit": "Rain",
         "zone": "Inside",
         "value": "5"
     },
     {
-        "date": "2016-05-31T12:39:51.871Z",
+        "date": "2016-06-03T14:50:00.416Z",
         "unit": "Rain",
         "zone": "Inside",
         "value": "5"
     },
     {
-        "date": "2016-05-31T12:40:00.882Z",
+        "date": "2016-06-03T15:00:00.417Z",
         "unit": "Rain",
         "zone": "Inside",
         "value": "5"
     },
     {
-        "date": "2016-05-31T12:50:00.063Z",
+        "date": "2016-06-03T21:00:00.283Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T21:10:00.234Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T21:20:00.213Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T21:30:00.216Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T21:40:00.162Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T21:50:00.138Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T22:00:00.255Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T22:10:00.229Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T22:20:00.193Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T22:30:00.175Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T22:40:00.151Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T22:50:00.139Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T23:00:00.132Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T23:10:00.114Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T23:20:00.099Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T23:30:00.082Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T23:40:00.069Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-03T23:50:00.060Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T00:00:00.055Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T00:00:01.065Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T00:10:01.044Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T00:20:01.046Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T00:30:01.036Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T00:40:01.041Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T00:50:01.001Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T01:00:00.982Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T01:10:00.969Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T01:20:00.959Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T01:30:00.953Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T01:40:00.934Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T01:50:00.928Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T02:00:00.946Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T02:10:00.937Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T02:20:00.921Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T02:30:00.879Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T02:40:00.865Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T02:50:00.860Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T03:00:00.845Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T03:10:00.868Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T03:20:00.849Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T03:30:00.840Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T03:40:00.824Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T03:50:00.778Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T04:00:00.773Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T04:10:00.764Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T04:20:00.783Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T04:30:00.772Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T04:40:00.755Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T04:50:00.706Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T05:00:00.696Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T05:10:00.717Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T05:20:00.717Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T05:30:00.691Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T05:40:00.646Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T05:50:00.629Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T06:00:00.643Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T06:10:00.648Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T06:20:00.626Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T06:30:00.578Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T06:40:00.566Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T06:50:00.577Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T07:00:00.575Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T07:10:00.564Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T07:20:00.558Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T07:30:00.498Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T07:40:00.527Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T07:50:00.508Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T08:00:00.497Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T08:10:00.448Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T08:20:00.442Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T08:30:00.464Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T08:40:00.512Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T08:50:00.392Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T09:00:00.430Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T09:10:00.429Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T09:20:00.377Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T09:30:00.414Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T09:40:00.333Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T09:50:00.335Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T10:00:00.311Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T10:10:00.296Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T10:20:00.233Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T10:30:00.252Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T10:40:00.254Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T10:50:00.241Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:00:00.195Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:10:00.204Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:20:00.212Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:20:01.147Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:30:00.174Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:30:01.139Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:40:01.126Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T11:50:01.124Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T12:00:01.116Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T12:10:01.095Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T12:20:01.096Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T12:30:01.073Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T12:40:01.058Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T12:50:01.028Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T13:00:01.042Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T13:10:01.003Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T13:20:00.984Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T13:30:01.039Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-04T13:40:00.370Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": "5"
+    },
+    {
+        "date": "2016-06-05T05:50:00.466Z",
         "unit": "Rain",
         "zone": "Inside",
         "value": "5"

@@ -44,8 +44,9 @@
                 <li class="active" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">자동예약<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li class="active"><a href="/soilMoistureControl">토양습도 자동제어</a></li>
-		  			<li><a href="/temperatureControl">내부온도 자동제어</a></li>
+                    <li class="active"><a href="/soilMoistureControl">습도제어</a></li>
+		  			<li><a href="/temperatureControl">온도제어</a></li>
+		  			<li><a href="/emergencyControl">긴급제어</a></li>
                   </ul>
                 </li>	
                 <li><a href="/history">제어 이력</a></li>
@@ -67,8 +68,8 @@
 				    <div class="form-group">
 					  <label class="col-sm-2 control-label">제목</label>
 					  <div class="col-sm-10">
-						  <div class="col-sm-12">
-						   <input type="text" id="title" class="form-control" placeholder="토양습도 자동제어 제목을 작성하세요."/>
+						  <div class="col-sm-6">
+						   <input type="text" id="title" class="form-control" placeholder="습도 자동제어 제목을 작성하세요."/>
 						  </div>
 					  </div>
 					</div>
@@ -95,7 +96,7 @@
 					</div>
 				  </div>
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label">자동제어 구간</label>
+				    <label class="col-sm-2 control-label">시간 구간</label>
 				    <div class="col-sm-10">
 				    	<label class="col-sm-2 control-label">시작</label>
 				        <div class="col-sm-2">
@@ -112,11 +113,11 @@
 				    <div class="col-sm-10">
 				    	<label class="col-sm-2 control-label">관수시간(분)</label>
 				        <div class="col-sm-2">
-					      <input id="period" style='min-width:80px'  type="number" step="0.1" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="2">
+					      <input id="period" style='min-width:140px'  type="number" step="0.1" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="2">
 					    </div>
 						<label class="col-sm-2 control-label">대기시간(분)</label>
 				        <div class="col-sm-2">
-					       <input id="wait" style='min-width:80px'  type="number" step="0.1" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="30">
+					       <input id="wait" style='min-width:140px'  type="number" step="0.1" min="1" max="240" class="form-control" placeholder="분" aria-describedby="basic-addon1" value="30">
 					    </div>
 				    </div>
 				  </div>
@@ -131,11 +132,11 @@
 					  	<div class="form-group">
 				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
 				    	  <div class="col-sm-10 btn-group">
-						  	  <div class="col-xs-2 material-switch">
+						  	  <div style='min-width:70px' class="col-xs-1 material-switch">
 		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
 		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
 		                      </div>
-						  	  <div class="col-xs-3">
+						  	  <div style='min-width:100px' class="col-xs-2">
 						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-value'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="0">
 						  	  </div>
 						  	  <div class="col-xs-2 btn-group"> 
@@ -154,7 +155,7 @@
 					  	<div class="form-group">
 				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
 				    	  <div class="col-sm-10 btn-group">
-						  	  <div class="col-xs-2 material-switch">
+						  	  <div style='min-width:70px' class="col-xs-1 material-switch">
 		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
 		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
 		                      </div>
@@ -175,16 +176,16 @@
 				  	%>
 				  <div class="form-group">
 					  
-						    <div class="col-xs-3">
-						    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
-						    </div>
-						    <div class="col-xs-2">
-						    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
-						    </div>
-						    <div class="col-xs-2">
-						    	<button id="btnCancel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
-						    </div>
-					    </div>
+				    <div style='min-width:100px' class="col-xs-3">
+				    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
+				    </div>
+				    <div style='min-width:100px' class="col-xs-1">
+				    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
+				    </div>
+				    <div style='min-width:100px' class="col-xs-1">
+				    	<button id="btnCencel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
+				    </div>
+			    </div>
 			  </div>
 	</div>
 

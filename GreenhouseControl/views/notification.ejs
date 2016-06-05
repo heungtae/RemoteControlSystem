@@ -44,8 +44,9 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">자동예약<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/soilMoistureControl">토양습도 자동제어</a></li>
-		  			<li><a href="/temperatureControl">내부온도 자동제어</a></li>
+                    <li><a href="/soilMoistureControl">습도제어</a></li>
+		  			<li><a href="/temperatureControl">온도제어</a></li>
+		  			<li><a href="/emergencyControl">긴급제어</a></li>
                   </ul>
                 </li>	
                 <li><a href="/history">제어 이력</a></li>
@@ -63,23 +64,23 @@
 				    <div class="form-group">
 					  <label class="col-sm-2 control-label">제목</label>
 					  <div class="col-sm-10">
-						  <div class="col-sm-12">
+						  <div class="col-sm-6">
 						   <input type="text" id="title" class="form-control" placeholder="제목을 작성하세요.">
 						  </div>
 					  </div>
 					</div>
 	    
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label">시간</label>
+				    <label class="col-sm-2 control-label">감시 구간</label>
 				    <div class="col-sm-10">
-				    	<div class="col-xs-2 material-switch">
+				    	<div style='min-width:70px' class="col-xs-1 material-switch">
 		                     <input id='time-Apply' type="checkbox" />
 		                     <label for='time-Apply' class="label-primary"></label>
 		                </div>
-					    <div class="col-xs-5">
+					    <div class="col-xs-4">
 					      <input id='start'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="08:00">
 					    </div>
-					    <div class="col-xs-5"> 
+					    <div class="col-xs-4"> 
 					      <input id='end'  type="time" data-format="hh:mm" class="form-control" placeholder="10:00" aria-describedby="basic-addon1" value="10:00">
 					    </div>
 				    </div>
@@ -94,11 +95,11 @@
 					  	<div class="form-group">
 				    	  <label class="col-sm-2 control-label"><%=envConf.alias%> 조건</label>
 				    	  <div class="col-sm-10 btn-group">
-						  	  <div class="col-xs-2 material-switch">
+						  	  <div style='min-width:70px' class="col-xs-1 material-switch">
 		                            <input id='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' type="checkbox" />
 		                            <label for='<%= envConf.unit + '-' + envConf.zone + '-Apply'%>' class="label-primary"></label>
 		                      </div>
-						  	  <div class="col-xs-3">
+						  	  <div style='min-width:100px' class="col-xs-2">
 						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-value'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="0">
 						  	  </div>
 						  	  <div class="col-xs-2 btn-group"> 
@@ -136,18 +137,18 @@
 				  		}
 				  	}
 				  	%>
-				  <div class="form-group">
+				<div class="form-group">
 					  
-						    <div class="col-xs-3">
-						    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
-						    </div>
-						    <div class="col-xs-2">
-						    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
-						    </div>
-						    <div class="col-xs-2">
-						    	<button id="btnCencel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
-						    </div>
-					    </div>
+				    <div style='min-width:100px' class="col-xs-3">
+				    	<button id="btnNew" onclick="add(-1)" class="btn btn-default pull-right">새규칙</button>
+				    </div>
+				    <div style='min-width:100px' class="col-xs-1">
+				    	<button id="btnUpdate" onclick="update();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">수정</button>
+				    </div>
+				    <div style='min-width:100px' class="col-xs-1">
+				    	<button id="btnCencel" onclick="cancel();$(this).attr('disabled', 'true');" class="btn btn-default pull-right" disabled="true">취소</button>
+				    </div>
+			    </div>
 			  </div>
 	</div>
 

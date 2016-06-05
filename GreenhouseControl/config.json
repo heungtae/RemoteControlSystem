@@ -8,8 +8,9 @@
     	"shutterSchedule" : "창 예약설정",
     	"sprinklerSchedule" : "관수 예약설정",
     	"notification" : "환경데이터 알림설정",
-    	"soilMoistureControl" : "토양습도 자동제어",
-    	"temperatureControl" : "내부온도 자동제어"
+    	"soilMoistureControl" : "습도 자동제어",
+    	"temperatureControl" : "온도 자동제어",
+    	"emergencyControl" : "긴급 자동제어"
     },
     "shutter": {
     	"defaultCommand" : "off",

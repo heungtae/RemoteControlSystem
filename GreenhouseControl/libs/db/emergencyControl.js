@@ -1,20 +1,20 @@
 var ghConfig = require('../../ghConfig'),
-	store = require('../store/temperatureControl'),
+	store = require('../store/emergencyControl'),
 	log4js = require('log4js');
 
-var	log = log4js.getLogger('libs.db.temperatureControl');
+var	log = log4js.getLogger('libs.db.emergencyControl');
 
 log.setLevel(config.loglevel);
 
 exports.get = function(callback){
 	try{
 		store.read(function(err, docs){
-			log.debug('found temperature Control Docs length= ' + docs.length);
+			log.debug('found emergency Control Docs length= ' + docs.length);
 			
 			ghConfig.getShutterConfig(function(conf){
 				log.debug('found shutter config length= ' + conf.length);
 
-				ghConfig.getEnvironmentConfig('temperature', function(envConf){
+				ghConfig.getEnvironmentConfig(null, function(envConf){
 					if(envConf == null)
 						log.debug('found environment config: null');
 					else
