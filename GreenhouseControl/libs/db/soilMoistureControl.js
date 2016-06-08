@@ -32,7 +32,7 @@ exports.get = function(callback){
 exports.update = function(data, callback){
 	try{
 		store.update(data);
-		callback(err, 'document(s) updated');
+		callback('document(s) updated');
 	}catch(e){
 		log.error(e);
 		callback(e, null);

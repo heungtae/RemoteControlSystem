@@ -8,7 +8,7 @@ var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting notification -- server.io');
+		console.log('setting notification server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

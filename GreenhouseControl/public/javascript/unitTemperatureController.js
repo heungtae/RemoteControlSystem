@@ -82,21 +82,23 @@ function add(index){
 	
 	//title
 	data['title'] = $('#title').val();
-	int cnt = 0;
-	
-	for(index = 1; index <= shutterConfs.length; index++){
+	var cnt = 0;
+	var units = [];
+	for(i = 1; i <= shutterConfs.length; i++){
     	
-    	if($('#side-position' + index).attr('value') != ''){
-    		
+    	if($('#side-position-' + i).attr('value') != ''){
     		//shutter unit config
-    		var unitArray = $('#side-position' + index).attr('value').split('-');
+    		var unitArray = $('#side-position-' + i).attr('value').split('-');
+    		var unit={};
+    		unit['side'] = unitArray[0];
+    		unit['position'] = unitArray[1];
+    		unit['alias'] = $('#side-position-' + i).text(); 
     		
-    		data.units[cnt++]['side'] = unitArray[0];
-	    	data.units[cnt++]['position'] = unitArray[1];
-	    	data.units[cnt++]['alias'] = $('#side-position' + index).text(); 
-		
+    		units[cnt++] = unit;
     	}
     }
+	
+	data.units = units;
 	
 	//shutter period, wait
 	data.period = $('#period').val() / 60;
@@ -121,14 +123,9 @@ function add(index){
     	}
     }
 	
-	if(data.start == '' || data.end == '' ){
-		 $('.alert').show();
-	}
-	else{
-		temperatureControlDocs[index] = data;
-		socket.emit('temperatureControl', temperatureControlDocs);
-		console.log(temperatureControlDocs);
-	}
+	temperatureControlDocs[index] = data;
+	socket.emit('temperatureControl', temperatureControlDocs);
+	console.log(temperatureControlDocs);
 };
 	     
 function update(){

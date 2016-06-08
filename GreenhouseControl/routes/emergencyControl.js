@@ -11,7 +11,7 @@ var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting schedule shutter server.io');
+		console.log('setting emergency control server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

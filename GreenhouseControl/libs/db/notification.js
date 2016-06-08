@@ -30,7 +30,7 @@ exports.update = function(docs, callback){
 	try{
 		store.update(docs);
 		
-		callback(err, ' document(s) updated');
+		callback('document(s) updated');
 	}catch(e){
 		log.error(e);
 		callback(e, null);

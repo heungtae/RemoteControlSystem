@@ -11,7 +11,7 @@ var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting schedule shutter server.io');
+		console.log('setting termperature control server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;
@@ -26,7 +26,7 @@ module.exports = function(io){
 				log.debug(data);
 				controlData.update(data, function(){
 					log.debug('Completed shutter schedule');
-					socket.emit('temperatureControlCallback', data);
+				//	socket.emit('temperatureControlCallback', data);
 				});
 			});
 			         
