@@ -40,13 +40,20 @@ var job = new CronJob('*/10 * * * *', function() {
 							if(doc.inTime && doc.isEnvironment && !doc.isJobCompleted ){
 								checkPriority(doc, function(){
 									
-									send.message(doc.title + '의 환경 데이터가 이상이 있습니다. \n');
 								});
 							}
 						});
 					});
 				});
 			}
+			
+			for(i = 0; i < jobExecuteList.length; i++){
+				var doc = jobExecuteList[i];
+				var msg = doc.title + '의 환경데이터가 이탈했습니다. \n 환경데이터의 값은 ' + envDesc + ' 입니다.';
+				send.message(msg);
+			}
+			
+			clearJobCompletedList(docs);
 			
 		});
 	}catch(e){
@@ -79,10 +86,12 @@ var checkTime = function(doc, callback){
 var checkEnvironment = function(doc, callback){
 	
 	var envCount = 0,
-		check = 0;
+		check = 0,
+		envDesc = '';
 	
 	ghConfig.getEnvironmentConfig(null, function(envResult){
 		log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') Environment configuration length : ' + envResult.length);
+		
 		envResult.forEach(function(envConf){
 			var unitKey = envConf.unit + '-' + envConf.zone;
 			var operKey = envConf.unit + '-' + envConf.zone + 'Oper';
@@ -91,7 +100,8 @@ var checkEnvironment = function(doc, callback){
 			
 			if(doc[operKey] != undefined){
 				envCount++;
-					
+				envDesc = envDesc + (envDesc == '' ? '': ' 그리고 ') + envConf.alias + '가 ' + envConf.value;	
+				
 				if(envConf.value != undefined){
 					
 					if(envConf.type == 'number'){
@@ -122,6 +132,7 @@ var checkEnvironment = function(doc, callback){
 		}else{
 			doc.isEnvironment = false;
 		}
+		doc.envDesc = envDesc;
 		
 		callback(doc);
 	});
@@ -166,3 +177,14 @@ var checkPriority = function(newDoc, callback){
 	callback();
 }
 
+var clearJobCompletedList = function(docs){
+	for(var key in docs){
+		var doc = docs[key];
+		
+		if(!doc.inTime && jobCompletedList[doc.id] != undefined){			
+			delete jobCompletedList[doc.id]; 
+		}
+	}
+	
+	log.trace('[clearJobCompletedList] Job Completed List :' + JSON.stringify(jobCompletedList));
+}

@@ -222,9 +222,12 @@ var getStep = function(doc, confs, callback){
 
 
 var clearJobCompletedList = function(docs){
-	for(var id in docs){
-		if(jobCompletedList[docs[id].id] != undefined)
-			delete jobCompletedList[key]; 
+	for(var key in docs){
+		var doc = docs[key];
+		
+		if(!doc.inTime && jobCompletedList[doc.id] != undefined){			
+			delete jobCompletedList[doc.id]; 
+		}
 	}
 	
 	log.trace('[clearJobCompletedList] Job Completed List :' + JSON.stringify(jobCompletedList));

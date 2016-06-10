@@ -26,7 +26,7 @@ module.exports = function(io){
 				log.debug(data);
 				controlData.update(data, function(){
 					log.debug('Completed shutter schedule');
-				//	socket.emit('temperatureControlCallback', data);
+					socket.emit('temperatureControlCallback', data);
 				});
 			});
 			         

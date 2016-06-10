@@ -1,17 +1,21 @@
 [
     {
         "id": 1,
-        "title": "test",
-        "start": "08:00",
-        "end": "10:00",
-        "Temperature-Outside-Value": "10",
+        "title": "teat",
+        "side": "Top",
+        "position": "First",
+        "alias": "천창-1중 ",
+        "step": "2",
+        "Temperature-Outside-Value": "30",
         "Temperature-Outside-Oper": "<"
     },
     {
         "id": 3,
         "title": "test",
-        "start": "08:00",
-        "end": "10:00",
+        "side": "Top",
+        "position": "First",
+        "alias": "천창-1중 ",
+        "step": "6",
         "Temperature-Outside-Value": "10",
         "Temperature-Outside-Oper": ">",
         "Temperature-Inside-Value": "20",

@@ -33,9 +33,8 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  $('#priority').val(doc.priority)
 	  $('#side-position').attr('value', doc.side + '-' + doc.position);
 	  $('#side-position').html(doc.alias+' <span class="caret"></span>');
-	  
 	  $('#step').attr('value', doc.step );
-	  $('#step').html(( doc.step == 0 ? '닫힘': doc.step == maxStepNum ? '열림' : doc.step + ' 단계')+' <span class="caret"></span>');
+	  $('#step').html(( doc.step == 0 ? '닫힘': doc.step > maxStepNum ? '열림' : doc.step + ' 단계')+' <span class="caret"></span>');
 	  
 	  if(doc['start'] != null){
 		  $('#time-Apply').prop("checked", true);
@@ -48,19 +47,26 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	    	
 	    	if(doc[conf.unit + '-' + conf.zone + '-Oper'] != null){
 	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", true);
-	    		
 	    		$('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value', doc[conf.unit + '-' + conf.zone + '-Oper']);
 	    		
+	    		if(doc[conf.unit + '-' + conf.zone + '-Oper'] == '>')
+	    			$('#' + conf.unit + '-' + conf.zone + '-Oper').html('클 경우 <span class="caret"></span>');
+	    		else if(doc[conf.unit + '-' + conf.zone + '-Oper'] == '<')
+	    			$('#' + conf.unit + '-' + conf.zone + '-Oper').html('작을 경우 <span class="caret"></span>');
+	    		else 
+	    			$('#' + conf.unit + '-' + conf.zone + '-Oper').html( doc[conf.unit + '-' + conf.zone + '-Oper'] + ' <span class="caret"></span>');
+	    		
 		    	if(conf.type == 'number'){
-		    		$('#' + conf.unit + '-' + conf.zone + '-value').val(doc[conf.unit + '-' + conf.zone + '-Value']);
+		    		$('#' + conf.unit + '-' + conf.zone + '-Value').val(doc[conf.unit + '-' + conf.zone + '-Value']);
 		    	}
 	    	}else{
 	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", false);
-	    		
 	    		$('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value', $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('defaultvalue'));
+	    		$('#' + conf.unit + '-' + conf.zone + '-Oper').html($(conf.unit + '-' + conf.zone + '-Oper').attr('defaultvalue') + ' <span class="caret"></span>');
 	    		
 		    	if(conf.type == 'number'){
-		    		$('#' + conf.unit + '-' + conf.zone + '-value').val(0);
+		    		$('#' + conf.unit + '-' + conf.zone + '-Oper').html('클 경우 <span class="caret"></span>');
+		    		$('#' + conf.unit + '-' + conf.zone + '-Value').val(0);
 		    	}
 	    	}
 	    }
@@ -109,7 +115,7 @@ function add(index){
     	
     	if($('#' + conf.unit + '-' + conf.zone + '-Apply').is(':checked')){	
 	    	if(conf.type == 'number'){
-	    		data[conf.unit + '-' + conf.zone + '-Value'] = $('#' + conf.unit + '-' + conf.zone + '-value').val();
+	    		data[conf.unit + '-' + conf.zone + '-Value'] = $('#' + conf.unit + '-' + conf.zone + '-Value').val();
 	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');
 	    	}else if(conf.type == 'boolean'){
 	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');

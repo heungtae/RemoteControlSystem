@@ -28,36 +28,35 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 		  if(doc.id == docId)
 			break;
 	  }
+	  console.log(doc);
 	  
 	  $('#title').val(doc.title);
-	  $('#priority').val(doc.priority)
-	  $('#side-position').attr('value', doc.side + '-' + doc.position);
-	  $('#side-position').html(doc.alias+' <span class="caret"></span>');
+	  $('#priority').val(doc.priority);
 	  
-	  $('#step').attr('value', doc.step );
-	  $('#step').html(( doc.step == 0 ? '닫힘': doc.step == maxStepNum ? '열림' : doc.step + ' 단계')+' <span class="caret"></span>');
-	  $('#start').val(doc.start);
-	  $('#end').val(doc.end);
+	  for(i = 1; i <= doc.units.length; i++){
+	  	var unit = doc.units[i-1];
+	  	console.log(unit);
+	   	$('#side-position-' + i).attr('value', unit.side + '-' + unit.position);
+	   	$('#side-position-' + i).html(unit.alias+' <span class="caret"></span>');
+	  }
+	  
+	  $('#period').val(doc.period * 60);
+	  $('#wait').val(doc.wait * 60);
+	  
+	  
+	  if(doc.start != undefined){
+		  $('#time-Apply').prop("checked", true);
+		  $('#start').val(doc.start);
+		  $('#end').val(doc.end);
+	  }
 	  
 	  for(ev = 0; ev < envConfs.length; ev++){
 	    	var conf = envConfs[ev];
 	    	
-	    	if(doc[conf.unit + '-' + conf.zone + '-Oper'] != null){
+	    	if(doc[conf.unit + '-' + conf.zone + '-Target'] != null){
 	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", true);
-	    		
-	    		$('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value', doc[conf.unit + '-' + conf.zone + '-Oper']);
-	    		
-		    	if(conf.type == 'number'){
-		    		$('#' + conf.unit + '-' + conf.zone + '-value').val(doc[conf.unit + '-' + conf.zone + '-Value']);
-		    	}
-	    	}else{
-	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", false);
-	    		
-	    		$('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value', $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('defaultvalue'));
-	    		
-		    	if(conf.type == 'number'){
-		    		$('#' + conf.unit + '-' + conf.zone + '-value').val(0);
-		    	}
+	    		$('#' + conf.unit + '-' + conf.zone + '-Target').val(doc[conf.unit + '-' + conf.zone + '-Target']);
+	    		$('#' + conf.unit + '-' + conf.zone + '-Range').val(doc[conf.unit + '-' + conf.zone + '-Range']);
 	    	}
 	    }
 	  
@@ -82,6 +81,7 @@ function add(index){
 	
 	//title
 	data['title'] = $('#title').val();
+	data['priority'] = $('#priority').val();
 	var cnt = 0;
 	var units = [];
 	for(i = 1; i <= shutterConfs.length; i++){
@@ -114,12 +114,8 @@ function add(index){
     	var conf = envConfs[ev];
     	
     	if($('#' + conf.unit + '-' + conf.zone + '-Apply').is(':checked')){	
-	    	if(conf.type == 'number'){
-	    		data[conf.unit + '-' + conf.zone + '-Value'] = $('#' + conf.unit + '-' + conf.zone + '-value').val();
-	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');
-	    	}else if(conf.type == 'boolean'){
-	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');
-	    	}
+	    	data[conf.unit + '-' + conf.zone + '-Target'] = $('#' + conf.unit + '-' + conf.zone + '-Target').val();
+	    	data[conf.unit + '-' + conf.zone + '-Range'] = $('#' + conf.unit + '-' + conf.zone + '-Range').val();
     	}
     }
 	

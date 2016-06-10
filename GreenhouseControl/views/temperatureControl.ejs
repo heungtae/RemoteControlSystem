@@ -162,11 +162,11 @@
 		                      </div>
 		                      <label style='min-width:70px' class="col-xs-1 control-label">목표</label>
 						  	  <div style='min-width:100px' class="col-xs-2">
-						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-target'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="25">
+						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-Target'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="25">
 						  	  </div>
 						  	  <label style='min-width:70px' class="col-xs-1 control-label">범위</label>
 						  	  <div style='min-width:100px' class="col-xs-2">
-						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-range'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="3">
+						  		<input id='<%= envConf.unit + '-' + envConf.zone + '-Range'%>' type="number" name="quantity" class="form-control" placeholder="0" aria-describedby="basic-addon1" value="3">
 						  	  </div>
 						  	 
 						  </div>
@@ -221,10 +221,9 @@
 				    <th>번호</th>
 				    <th>제목</th>
 				    <th>우선순위</th>
-				    <th>창</th>
-				    <th>단계</th>
-				    <th>시작시간</th>
-				    <th>종료시간</th>
+				    <th>제어순서</th>
+				    <th>실행옵션</th>
+				    <th>시간구간</th>
 				    <%
 				    //environmentConfig
 				    for(ev = 0; ev < environmentConfig.length; ev++){
@@ -251,10 +250,20 @@
 					  	<td><%= i + 1 %></td> 
 					  	<td><%= doc.title %></td> 
 					  	<td><%= doc.priority %></td> 
-					  	<td><%= doc.alias %></td> 
-					  	<td><%= doc.step == 0 ? '닫기' : doc.step == (maxStepNum + 1) ? '열기' : doc.step + ' 단계'%></td>
-					  	<td><%= doc.start %></td> 
-					  	<td><%= doc.end %></td> 
+					  	<%
+					  	var controlUnits = '';
+					  	for(j = 0; j < doc.units.length; j++){
+					  		var unit = doc.units[j];
+					  		if(controlUnits == '')
+					  			controlUnits = controlUnits + unit.alias;
+					  		else
+					  		 	controlUnits = controlUnits + ' > ' + unit.alias;
+					  	}
+					  	
+					  	%>
+					  	<td><%= controlUnits %></td> 
+					  	<td><%= doc.period * 60 + '초 이동 후 ' + doc.wait * 60 + '초 대기' %></td> 
+					  	<td><%= doc.start + ' ~ ' + doc.end %></td> 
 					  	<%
 					  	 for(ev = 0; ev < environmentConfig.length; ev++){
 					    	var envConf = environmentConfig[ev];
