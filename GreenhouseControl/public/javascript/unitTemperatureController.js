@@ -33,12 +33,8 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	  $('#title').val(doc.title);
 	  $('#priority').val(doc.priority);
 	  
-	  for(i = 1; i <= doc.units.length; i++){
-	  	var unit = doc.units[i-1];
-	  	console.log(unit);
-	   	$('#side-position-' + i).attr('value', unit.side + '-' + unit.position);
-	   	$('#side-position-' + i).html(unit.alias+' <span class="caret"></span>');
-	  }
+	  $('#side-position').attr('value', doc.side + '-' + doc.position);
+	  $('#side-position').html(doc.alias+' <span class="caret"></span>');
 	  
 	  $('#period').val(doc.period * 60);
 	  $('#wait').val(doc.wait * 60);
@@ -48,6 +44,8 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 		  $('#time-Apply').prop("checked", true);
 		  $('#start').val(doc.start);
 		  $('#end').val(doc.end);
+	  }else{
+		  $('#time-Apply').prop("checked", false);
 	  }
 	  
 	  for(ev = 0; ev < envConfs.length; ev++){
@@ -57,6 +55,8 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", true);
 	    		$('#' + conf.unit + '-' + conf.zone + '-Target').val(doc[conf.unit + '-' + conf.zone + '-Target']);
 	    		$('#' + conf.unit + '-' + conf.zone + '-Range').val(doc[conf.unit + '-' + conf.zone + '-Range']);
+	    	}else{
+	    		$('#' + conf.unit + '-' + conf.zone + '-Apply').prop("checked", false);
 	    	}
 	    }
 	  
@@ -82,23 +82,13 @@ function add(index){
 	//title
 	data['title'] = $('#title').val();
 	data['priority'] = $('#priority').val();
-	var cnt = 0;
-	var units = [];
-	for(i = 1; i <= shutterConfs.length; i++){
-    	
-    	if($('#side-position-' + i).attr('value') != ''){
-    		//shutter unit config
-    		var unitArray = $('#side-position-' + i).attr('value').split('-');
-    		var unit={};
-    		unit['side'] = unitArray[0];
-    		unit['position'] = unitArray[1];
-    		unit['alias'] = $('#side-position-' + i).text(); 
-    		
-    		units[cnt++] = unit;
-    	}
-    }
+
+	//shutter unit config
+	var unitArray = $('#side-position').attr('value').split('-');
 	
-	data.units = units;
+	data.side = unitArray[0];
+	data.position = unitArray[1];
+	data.alias = $('#side-position').text(); 
 	
 	//shutter period, wait
 	data.period = $('#period').val() / 60;

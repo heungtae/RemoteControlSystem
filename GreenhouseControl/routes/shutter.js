@@ -56,7 +56,7 @@ module.exports.data = function(req, res){
 var update = module.exports.updateJob = function(data, callback){
 	log.debug("Update : " + JSON.stringify(data));
 	
-    addList(data, function(play){
+    addList(data, function(play, data){
     	log.debug('device play = ' + play + ' ' + JSON.stringify(data));
     	
     	if(play){
@@ -106,26 +106,26 @@ var addList = function(data, callback){
     data.location = location;
     
     if(data.command == config.app.shutter.defaultCommand ){
-    	getConfig(data, function(shutterConf){
+    	getConfig(data, function(shutterConf, data){
     		data.playpin = shutterConf.closepinnumber;
-			data.stoppin = shutterConf.openpinnumber;
+    		data.stoppin = shutterConf.openpinnumber;
 			
     		executeList[location] = data;
-    		callback(true);
+    		callback(true, data);
     	});
     }else if(wasData === undefined || wasData.step != step){
-    	checkCommand(data, function(play){
+    	checkCommand(data, function(play, data){
     		log.debug(play + ': ' + JSON.stringify(data));
     
     		if(play){
     			executeList[location] = data;
-    			callback(true);    			
+    			callback(true, data);    			
     		}else{
-    			callback(false);
+    			callback(false, null);
     		}
     	})
     }else{
-    	callback(false);
+    	callback(false, null);
     }
     
 };
@@ -148,7 +148,7 @@ var getConfig = function(data, callback){
 			} 
 		}
 		
-		callback(conf);
+		callback(conf, data);
 	});
 	
 }
@@ -171,7 +171,7 @@ var checkCommand = function(data, callback){
 					data.stepDesc = '최대 닫기';
 					data.command = 'on';
 					data.direction = 'close';
-					callback(true);
+					callback(true, data);
 				}else if(data.step > conf.stepNum){
 					data.settime = Math.round(conf.length/(conf.movelength * conf.motorrpm) * 60 + 30);
 					data.exectime = 0;
@@ -180,8 +180,9 @@ var checkCommand = function(data, callback){
 					data.stepDesc = '최대 열기';
 					data.command = 'on';
 					data.direction = 'open';
-					callback(true);
+					callback(true, data);
 				}else{
+					
 					var stepTime = Math.round(( stepLength * data.step ) * (conf.movelength * conf.motorrpm) * 60);
 					var settime = Math.abs(stepTime - doc.runtime);
 					log.debug(doc);
@@ -195,7 +196,7 @@ var checkCommand = function(data, callback){
 						data.stoppin = conf.closepinnumber;
 						data.command = 'on';	
 						data.direction = 'open';
-						callback(true);
+						callback(true, data);
 					}else if(stepTime < doc.runtime){
 						data.settime = settime;
 						data.exectime = 0;
@@ -203,9 +204,9 @@ var checkCommand = function(data, callback){
 						data.stoppin = conf.openpinnumber;
 						data.command = 'on';
 						data.direction = 'close';
-						callback(true);
+						callback(true, data);
 					}else{
-						callback(false);
+						callback(false, null);
 					}
 					
 					
@@ -215,7 +216,7 @@ var checkCommand = function(data, callback){
 		
 	}catch(e){
 		log.error(e);
-		callback(false);
+		callback(false, null);
 	}
 };
 

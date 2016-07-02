@@ -91,31 +91,24 @@
 					</div>
 	 
 				    <div class="form-group">
-				      <label class="col-sm-2 control-label">제어 순서</label>
+				      <label class="col-sm-2 control-label">제어장치</label>
 				      <div class="col-sm-10">
-						    <%
-						        var i;
-						        
-						  		for(i = 1; i <= shutterConfig.length; i++){
-		
-							%>
-						      <div class="col-sm-2 btn-group"> <a style='min-width:150px' id='side-position-<%=i%>' class="btn btn-default dropdown-toggle btn-select side" data-toggle="dropdown" defaultValue="" href="#" value="" >미선택<span class="caret"></span></a>
-								<ul class="dropdown-menu">
-								  	<%
-								        var j;
-								        
-								  		for(j = 0; j < shutterConfig.length; j++){
-				
-									%>
-								        <li><a href="#" value='<%= shutterConfig[j].side + '-' + shutterConfig[j].position%>' ><%= shutterConfig[j].alias%></a></li>
-							  		<%	
-									    	}
-									%>
-								</ul>
-							  </div>
-							<%	
-							    	}
-							%>
+					      <div class="col-sm-2 btn-group"> <a style='min-width:130px'  id='side-position' class="btn btn-default dropdown-toggle btn-select side" data-toggle="dropdown" defaultValue="<%= shutterConfig[0].alias%>" href="#" value="<%= shutterConfig[0].side + '-' + shutterConfig[0].position%>" ><%= shutterConfig[0].alias%><span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+							    <%
+							        var j;
+							        
+							  		for(j = 0; j < shutterConfig.length; j++){
+			
+								%>
+							        <li><a href="#" value='<%= shutterConfig[j].side + '-' + shutterConfig[j].position%>' ><%= shutterConfig[j].alias%></a></li>
+								  	
+								<%	
+								    	}
+								%>
+							        
+							    </ul>
+						  </div>
 					</div>
 				  </div>
 				 <div class="form-group">
@@ -132,7 +125,7 @@
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label class="col-sm-2 control-label">시간 구간</label>
+				    <label class="col-sm-2 control-label">시간구간</label>
 				    <div class="col-sm-10">
 				    	<div style='min-width:70px' class="col-xs-1 material-switch">
 		                     <input id='time-Apply' type="checkbox" />
@@ -221,7 +214,7 @@
 				    <th>번호</th>
 				    <th>제목</th>
 				    <th>우선순위</th>
-				    <th>제어순서</th>
+				    <th>제어장치</th>
 				    <th>실행옵션</th>
 				    <th>시간구간</th>
 				    <%
@@ -250,38 +243,19 @@
 					  	<td><%= i + 1 %></td> 
 					  	<td><%= doc.title %></td> 
 					  	<td><%= doc.priority %></td> 
-					  	<%
-					  	var controlUnits = '';
-					  	for(j = 0; j < doc.units.length; j++){
-					  		var unit = doc.units[j];
-					  		if(controlUnits == '')
-					  			controlUnits = controlUnits + unit.alias;
-					  		else
-					  		 	controlUnits = controlUnits + ' > ' + unit.alias;
-					  	}
-					  	
-					  	%>
-					  	<td><%= controlUnits %></td> 
+					  	<td><%= doc.alias %></td>  
 					  	<td><%= doc.period * 60 + '초 이동 후 ' + doc.wait * 60 + '초 대기' %></td> 
-					  	<td><%= doc.start + ' ~ ' + doc.end %></td> 
+					  	<td><%= doc.start != undefined ? doc.start + ' ~ ' + doc.end : '조건 없음' %></td> 
 					  	<%
 					  	 for(ev = 0; ev < environmentConfig.length; ev++){
 					    	var envConf = environmentConfig[ev];
 					    	
-					    	if(doc[envConf.unit + '-' + envConf.zone + '-Oper'] != null){
+					    	if(doc[envConf.unit + '-' + envConf.zone + '-Target'] != null){
 
-					    
-					    	  if(envConf.type == 'number'){
 					    %>
-						      <td><%= doc[envConf.unit + '-' + envConf.zone + '-Value'] + ' 보다 '+  (doc[envConf.unit + '-' + envConf.zone + '-Oper'] == '>' ? '클 경우' : '작을 경우')  %></td>
+						     <td><%= '목표 : ' + doc[envConf.unit + '-' + envConf.zone + '-Target'] + ', 범위: '+  doc[envConf.unit + '-' + envConf.zone + '-Range'] %></td>
 						  	
-					  	<%
-					  		 	}else{
-						%>
-						      <td><%= doc[envConf.unit + '-' + envConf.zone + '-Oper'] + '일 경우'%></td>
-						  	
-					  	<%		  		 	
-					  			}
+					  	<%		
 					  		}else{
 					  		%>
 					  		<td>조건 없음</td>

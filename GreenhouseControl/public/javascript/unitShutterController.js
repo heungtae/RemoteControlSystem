@@ -46,6 +46,7 @@ socket.on('shutterCallback', function(data){
   
 function unitAction(side, position, command){
 	var data = {
+		category : 'manual',
 		side: side,
 		position: position,
 		step: step,

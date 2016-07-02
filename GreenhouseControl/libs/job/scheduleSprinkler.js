@@ -114,7 +114,7 @@ var checkEnvironment = function(doc, callback){
 		log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') Environment configuration length : ' + envResult.length);
 		envResult.forEach(function(envConf){
 			var unitKey = envConf.unit + '-' + envConf.zone;
-			var operKey = envConf.unit + '-' + envConf.zone + 'Oper';
+			var operKey = envConf.unit + '-' + envConf.zone + '-Oper';
 			
 			log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') ' + JSON.stringify(envConf));
 			

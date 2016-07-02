@@ -40,6 +40,8 @@ $('#myTable').on('click', '.clickable-row', function(event) {
 		  $('#time-Apply').prop("checked", true);
 		  $('#start').val(doc.start);
 		  $('#end').val(doc.end);
+	  }else{
+		  $('#time-Apply').prop("checked", false);
 	  }
 	  
 	  for(ev = 0; ev < envConfs.length; ev++){
