@@ -1,189 +1,46 @@
-[2016-06-13 20:26:41.950] [DEBUG] libs.store.soilMoistureControl - [{"id":1,"title":"test 1","unit":"pump","alias":"관수 펌프  ","start":"08:00","end":"20:00","period":"5","wait":"30","Humidity-Inside-Value":"97","Humidity-Inside-Oper":"<"},{"id":2,"title":"test","unit":"pump","alias":"관수 펌프     ","start":"08:00","end":"20:00","period":"5","wait":"30","Humidity-Inside-Value":"10","Humidity-Inside-Oper":">","Moisture-Soil-Value":"20","Moisture-Soil-Oper":"<"},{"id":3,"title":"test","unit":"pump","alias":"관수 펌프      ","start":"08:00","end":"20:00","period":"5","wait":"30","Humidity-Inside-Value":"10","Humidity-Inside-Oper":"<","Moisture-Soil-Value":"20","Moisture-Soil-Oper":">"}]
-[2016-06-13 20:26:41.951] [DEBUG] libs.db.soilMoistureControl - found soil moisture control docs length= 3
-[2016-06-13 20:26:41.951] [DEBUG] libs.db.soilMoistureControl - found sprinkler config: length= 4
-[2016-06-13 20:26:41.951] [DEBUG] ghConfig - sprinkler [{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 20:26:41.951] [DEBUG] libs.db.soilMoistureControl - found environments config: length= 3
-[2016-06-13 20:26:41.952] [DEBUG] libs.store.temperatureControl - [read] read data, [
-    {
-        "id": 1,
-        "title": "test",
-        "priority": "3",
-        "side": "Bottom",
-        "position": "First",
-        "alias": "측창-1중  ",
-        "period": 0.5,
-        "wait": 10,
-        "Temperature-Inside-Target": "25",
-        "Temperature-Inside-Range": "3"
-    }
-]
-[2016-06-13 20:26:41.952] [DEBUG] libs.store.temperatureControl - [{"id":1,"title":"test","priority":"3","side":"Bottom","position":"First","alias":"측창-1중  ","period":0.5,"wait":10,"Temperature-Inside-Target":"25","Temperature-Inside-Range":"3"}]
-[2016-06-13 20:26:41.952] [DEBUG] libs.db.temperatureControl - found temperature Control Docs length= 1
-[2016-06-13 20:26:41.952] [DEBUG] libs.db.temperatureControl - found shutter config length= 4
-[2016-06-13 20:26:41.952] [DEBUG] ghConfig - temperature [{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}}]
-[2016-06-13 20:26:41.953] [DEBUG] libs.db.temperatureControl - found environment config: length= 1
-[2016-06-13 20:26:41.953] [DEBUG] libs.store.emergencyControl - [read] read data, [
-    {
-        "id": 1,
-        "title": "teat",
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중 ",
-        "step": "2",
-        "Temperature-Outside-Value": "30",
-        "Temperature-Outside-Oper": "<"
-    },
-    {
-        "id": 3,
-        "title": "test",
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중 ",
-        "step": "6",
-        "Temperature-Outside-Value": "10",
-        "Temperature-Outside-Oper": ">",
-        "Temperature-Inside-Value": "20",
-        "Temperature-Inside-Oper": "<"
-    }
-]
-[2016-06-13 20:26:41.953] [DEBUG] libs.store.emergencyControl - [{"id":1,"title":"teat","side":"Top","position":"First","alias":"천창-1중 ","step":"2","Temperature-Outside-Value":"30","Temperature-Outside-Oper":"<"},{"id":3,"title":"test","side":"Top","position":"First","alias":"천창-1중 ","step":"6","Temperature-Outside-Value":"10","Temperature-Outside-Oper":">","Temperature-Inside-Value":"20","Temperature-Inside-Oper":"<"}]
-[2016-06-13 20:26:41.953] [DEBUG] libs.db.emergencyControl - found emergency Control Docs length= 2
-[2016-06-13 20:26:41.954] [DEBUG] libs.db.emergencyControl - found shutter config length= 4
-[2016-06-13 20:26:41.954] [DEBUG] ghConfig - sys = null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 20:26:41.954] [DEBUG] libs.db.emergencyControl - found environment config: length= 7
-[2016-06-13 21:36:50.021] [INFO] app - Express server listening on port 8090
-[2016-06-13 21:36:52.919] [DEBUG] libs.store.temperatureControl - read: ./datas/temperatureControl.dat
-[2016-06-13 21:36:52.923] [DEBUG] libs.store.temperatureControl - [read] read data, [
-    {
-        "id": 1,
-        "title": "test",
-        "priority": "3",
-        "side": "Bottom",
-        "position": "First",
-        "alias": "측창-1중  ",
-        "period": 0.5,
-        "wait": 10,
-        "Temperature-Inside-Target": "25",
-        "Temperature-Inside-Range": "3"
-    }
-]
-[2016-06-13 21:36:52.923] [DEBUG] libs.store.temperatureControl - [{"id":1,"title":"test","priority":"3","side":"Bottom","position":"First","alias":"측창-1중  ","period":0.5,"wait":10,"Temperature-Inside-Target":"25","Temperature-Inside-Range":"3"}]
-[2016-06-13 21:36:52.923] [DEBUG] libs.db.temperatureControl - found temperature Control Docs length= 1
-[2016-06-13 21:36:52.924] [DEBUG] libs.db.temperatureControl - found shutter config length= 4
-[2016-06-13 21:36:52.925] [DEBUG] ghConfig - temperature [{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}}]
-[2016-06-13 21:36:52.925] [DEBUG] libs.db.temperatureControl - found environment config: length= 1
-[2016-06-13 21:36:53.605] [DEBUG] routes.index - Connection socket
-[2016-06-13 21:36:53.606] [DEBUG] ghConfig - sys = null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 21:36:53.606] [DEBUG] routes.index - get Environment config : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 21:36:53.608] [DEBUG] routes.chart - Connection socket
-[2016-06-13 21:36:53.608] [DEBUG] ghConfig - sys = null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 21:36:53.609] [DEBUG] routes.chart - get Environment config : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 21:36:53.609] [DEBUG] routes.shutter - Connection socket
-[2016-06-13 21:36:53.610] [DEBUG] routes.sprinkler - Connection socket
-[2016-06-13 21:36:53.612] [DEBUG] routes.scheduleShutter - Connection socket
-[2016-06-13 21:36:53.613] [DEBUG] libs.store.scheduleShutter - read: ./datas/scheduleShutter.dat
-[2016-06-13 21:36:53.614] [DEBUG] routes.scheduleSprinkler - Connection socket
-[2016-06-13 21:36:53.614] [DEBUG] libs.store.scheduleSprinkler - read: ./datas/scheduleSprinkler.dat
-[2016-06-13 21:36:53.615] [DEBUG] routes.notification - Connection socket
-[2016-06-13 21:36:53.615] [DEBUG] libs.store.notification - read: ./datas/notification.dat
-[2016-06-13 21:36:53.616] [DEBUG] routes.soilMoistureControl - Connection socket
-[2016-06-13 21:36:53.617] [DEBUG] libs.store.soilMoistureControl - read: ./datas/soilMoistureControl.dat
-[2016-06-13 21:36:53.617] [DEBUG] routes.temperatureControl - Connection socket
-[2016-06-13 21:36:53.618] [DEBUG] libs.store.temperatureControl - read: ./datas/temperatureControl.dat
-[2016-06-13 21:36:53.618] [DEBUG] routes.emergencyControl - Connection socket
-[2016-06-13 21:36:53.619] [DEBUG] libs.store.emergencyControl - read: ./datas/emergencyControl.dat
-[2016-06-13 21:36:53.625] [DEBUG] libs.store.scheduleSprinkler - [read] read data, [
-    {
-        "id": 1,
-        "title": "test 1",
-        "unit": "firstvalve",
-        "alias": "소품 벨브   ",
-        "start": "12:00",
-        "period": "50",
-        "cycle": "2"
-    },
-    {
-        "id": 2,
-        "title": "test 2",
-        "unit": "secondvalve",
-        "alias": "중품 벨브 ",
-        "start": "10:00",
-        "period": "50",
-        "cycle": "1"
-    }
-]
-[2016-06-13 21:36:53.625] [DEBUG] libs.store.scheduleSprinkler - [{"id":1,"title":"test 1","unit":"firstvalve","alias":"소품 벨브   ","start":"12:00","period":"50","cycle":"2"},{"id":2,"title":"test 2","unit":"secondvalve","alias":"중품 벨브 ","start":"10:00","period":"50","cycle":"1"}]
-[2016-06-13 21:36:53.626] [DEBUG] libs.db.scheduleSprinkler - found schedule sprinkler: length= 2
-[2016-06-13 21:36:53.626] [DEBUG] libs.db.scheduleSprinkler - found sprinkler config: length= 4
-[2016-06-13 21:36:53.627] [DEBUG] ghConfig - sprinkler [{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 21:36:53.629] [DEBUG] libs.db.scheduleSprinkler - found environments config: length= 3
-[2016-06-13 21:36:53.629] [DEBUG] libs.store.soilMoistureControl - [read] read data, [
-    {
-        "id": 1,
-        "title": "test 1",
-        "unit": "pump",
-        "alias": "관수 펌프  ",
-        "start": "08:00",
-        "end": "20:00",
-        "period": "5",
-        "wait": "30",
-        "Humidity-Inside-Value": "97",
-        "Humidity-Inside-Oper": "<"
-    },
-    {
-        "id": 2,
-        "title": "test",
-        "unit": "pump",
-        "alias": "관수 펌프     ",
-        "start": "08:00",
-        "end": "20:00",
-        "period": "5",
-        "wait": "30",
-        "Humidity-Inside-Value": "10",
-        "Humidity-Inside-Oper": ">",
-        "Moisture-Soil-Value": "20",
-        "Moisture-Soil-Oper": "<"
-    },
-    {
-        "id": 3,
-        "title": "test",
-        "unit": "pump",
-        "alias": "관수 펌프      ",
-        "start": "08:00",
-        "end": "20:00",
-        "period": "5",
-        "wait": "30",
-        "Humidity-Inside-Value": "10",
-        "Humidity-Inside-Oper": "<",
-        "Moisture-Soil-Value": "20",
-        "Moisture-Soil-Oper": ">"
-    }
-]
-[2016-06-13 21:36:53.630] [DEBUG] libs.store.soilMoistureControl - [{"id":1,"title":"test 1","unit":"pump","alias":"관수 펌프  ","start":"08:00","end":"20:00","period":"5","wait":"30","Humidity-Inside-Value":"97","Humidity-Inside-Oper":"<"},{"id":2,"title":"test","unit":"pump","alias":"관수 펌프     ","start":"08:00","end":"20:00","period":"5","wait":"30","Humidity-Inside-Value":"10","Humidity-Inside-Oper":">","Moisture-Soil-Value":"20","Moisture-Soil-Oper":"<"},{"id":3,"title":"test","unit":"pump","alias":"관수 펌프      ","start":"08:00","end":"20:00","period":"5","wait":"30","Humidity-Inside-Value":"10","Humidity-Inside-Oper":"<","Moisture-Soil-Value":"20","Moisture-Soil-Oper":">"}]
-[2016-06-13 21:36:53.630] [DEBUG] libs.db.soilMoistureControl - found soil moisture control docs length= 3
-[2016-06-13 21:36:53.630] [DEBUG] libs.db.soilMoistureControl - found sprinkler config: length= 4
-[2016-06-13 21:36:53.630] [DEBUG] ghConfig - sprinkler [{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
-[2016-06-13 21:36:53.630] [DEBUG] libs.db.soilMoistureControl - found environments config: length= 3
-[2016-06-13 21:36:53.631] [DEBUG] libs.store.notification - [read] read data, [
-    {
-        "id": 1,
-        "title": "test",
-        "start": "08:00",
-        "end": "10:00",
-        "Temperature-Outside-Value": "10",
-        "Temperature-Outside-Oper": "<"
-    },
-    {
-        "id": 3,
-        "title": "test",
-        "start": "08:00",
-        "end": "10:00",
-        "Temperature-Outside-Value": "10",
-        "Temperature-Outside-Oper": ">",
-        "Temperature-Inside-Value": "20",
-        "Temperature-Inside-Oper": "<"
-    }
-]
-[2016-06-13 21:36:53.631] [DEBUG] libs.store.notification - [{"id":1,"title":"test","start":"08:00","end":"10:00","Temperature-Outside-Value":"10","Temperature-Outside-Oper":"<"},{"id":3,"title":"test","start":"08:00","end":"10:00","Temperature-Outside-Value":"10","Temperature-Outside-Oper":">","Temperature-Inside-Value":"20","Temperature-Inside-Oper":"<"}]
-[2016-06-13 21:36:53.632] [DEBUG] libs.db.notification - found notification: length= 2
-[2016-06-13 21:36:53.634] [DEBUG] ghConfig - sys = null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.020] [DEBUG] libs.db.environment - get environment configs : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.020] [DEBUG] libs.db.environment - found env doc : {"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}}
+[2016-08-03 10:49:15.020] [DEBUG] routes.index - get Environement Value{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}}
+[2016-08-03 10:49:15.020] [DEBUG] routes.chart - [socket.on] getEnvironmentValue] {"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}}
+[2016-08-03 10:49:15.020] [DEBUG] libs.db.environment - read environment config : {"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}}
+[2016-08-03 10:49:15.020] [DEBUG] ghConfig - sys === null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.021] [DEBUG] libs.db.environment - get environment configs : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.021] [DEBUG] libs.db.environment - found env doc : {"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}}
+[2016-08-03 10:49:15.021] [DEBUG] routes.chart - get Environement Value{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}}
+[2016-08-03 10:49:15.021] [DEBUG] routes.index - { unit: 'Humidity',
+  zone: 'Inside',
+  alias: '내부 습도',
+  type: 'number',
+  connect: 'zigbee',
+  param: 'Ah',
+  defaultvalue: 0,
+  standardUnit: '%',
+  use: { shutter: false, sprinkler: true, temperature: false } }
+[2016-08-03 10:49:15.021] [DEBUG] libs.db.environment - read environment config : {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.022] [DEBUG] ghConfig - sys === null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.022] [DEBUG] libs.db.environment - get environment configs : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.023] [DEBUG] libs.db.environment - found env doc : {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.023] [DEBUG] routes.index - get Environement Value{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.023] [DEBUG] routes.chart - [socket.on] getEnvironmentValue] {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.023] [DEBUG] libs.db.environment - read environment config : {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.023] [DEBUG] ghConfig - sys === null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.023] [DEBUG] libs.db.environment - get environment configs : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.023] [DEBUG] libs.db.environment - found env doc : {"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.023] [DEBUG] routes.chart - get Environement Value{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.024] [DEBUG] routes.index - { unit: 'Moisture',
+  zone: 'Soil',
+  alias: '토양 습도',
+  type: 'number',
+  connect: 'zigbee',
+  param: 'Lh',
+  defaultvalue: 0,
+  standardUnit: '%',
+  use: { shutter: false, sprinkler: true, temperature: false } }
+[2016-08-03 10:49:15.025] [DEBUG] libs.db.environment - read environment config : {"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.025] [DEBUG] ghConfig - sys === null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.026] [DEBUG] libs.db.environment - get environment configs : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]
+[2016-08-03 10:49:15.026] [DEBUG] libs.db.environment - found env doc : {"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.026] [DEBUG] routes.index - get Environement Value{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.026] [DEBUG] routes.chart - [socket.on] getEnvironmentValue] {"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.027] [DEBUG] libs.db.environment - read environment config : {"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}}
+[2016-08-03 10:49:15.027] [DEBUG] ghConfig - sys === null : [{"unit":"Temperature","zone":"Outside","alias":"외부 온도","type":"number","connect":"gpio","param":"28-03157454e5ff","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":false}},{"unit":"Temperature","zone":"Inside","alias":"내부 온도","type":"number","connect":"zigbee","param":"At","defaultvalue":0,"standardUnit":"℃","use":{"shutter":true,"sprinkler":false,"temperature":true}},{"unit":"Temperature","zone":"Soil","alias":"토양 온도","type":"number","connect":"zigbee","param":"Lt","defaultvalue":0,"standardUnit":"℃","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Humidity","zone":"Inside","alias":"내부 습도","type":"number","connect":"zigbee","param":"Ah","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Moisture","zone":"Soil","alias":"토양 습도","type":"number","connect":"zigbee","param":"Lh","defaultvalue":0,"standardUnit":"%","use":{"shutter":false,"sprinkler":true,"temperature":false}},{"unit":"Rain","zone":"Inside","alias":"내부 레인","type":"number","connect":"zigbee","param":"Ra","defaultvalue":0,"standardUnit":"","use":{"shutter":false,"sprinkler":false,"temperature":false}},{"unit":"Light","zone":"Inside","alias":"일사","type":"number","connect":"zigbee","param":"Li","defaultvalue":0,"standardUnit":"","use":{"shutter":true,"sprinkler":true,"temperature":false}}]

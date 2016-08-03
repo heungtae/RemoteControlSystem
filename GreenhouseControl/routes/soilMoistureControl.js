@@ -1,15 +1,12 @@
 //var humidity = require('./humidity');
 var controlData = require('../libs/db/soilMoistureControl'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('routes.soilMoistureControl');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('routes.soilMoistureControl');
 
 var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting soil moisture control server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

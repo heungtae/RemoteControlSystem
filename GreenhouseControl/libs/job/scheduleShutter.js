@@ -6,11 +6,8 @@ var CronJob = require('cron').CronJob,
 	ghConfig = require('../../ghConfig'),
 	shutter = require('../../routes/shutter'),
 	sleep = require('../sleep'),
-	log4js = require('log4js'),
+	log = require('log4js').getLogger('libs.job.scheduleShutter'),
 	send = require('../telegram/send');
-
-var	log = log4js.getLogger('libs.job.scheduleShutter');
-log.setLevel(config.loglevel);
 
 var jobCompletedList = [];
 var jobExecuteList = [];
@@ -102,7 +99,7 @@ var job = new CronJob('*/10 * * * *', function() {
 										exectime: 0,
 										playpin: 0,
 										stoppin: 0,
-										command: 'execute',
+										command: 'on',
 										conf: doc.conf,
 										envDesc: doc.envDesc
 								};
@@ -113,8 +110,6 @@ var job = new CronJob('*/10 * * * *', function() {
 									data.playpin = doc.playpin;
 									data.stoppin = doc.stoppin;
 								}
-								
-								
 								
 								shutter.updateJob(data, function(){
 									log.debug('[CronJob] ' + doc.title +'(' + doc.id + ') starting shutter: ' + JSON.stringify(data));	
@@ -274,7 +269,7 @@ var checkTempEnvironment = function(doc, callback){
 					}else if(envConf.value < (parseInt(doc[targetKey]) - parseInt(doc[rangeKey]) ) ){
 						check++;
 						doc.settime = doc.period * 60;
-						doc.direction = 'open';
+						doc.direction = 'close';
 						doc.playpin = doc.conf.closepinnumber;
 						doc.stoppin = doc.conf.openpinnumber;
 						envDesc += envConf.alias + '값이 ' + envConf.value +  '로 설정값 ' + doc[unitKey] +  ' 보다 작음; \n';

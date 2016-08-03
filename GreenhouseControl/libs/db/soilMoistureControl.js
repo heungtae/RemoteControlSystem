@@ -1,10 +1,6 @@
 var ghConfig = require('../../ghConfig'),
 	store = require('../store/soilMoistureControl'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.db.soilMoistureControl');
-
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('libs.db.soilMoistureControl');
 
 exports.get = function(callback){
 	try{

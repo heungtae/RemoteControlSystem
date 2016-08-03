@@ -2,16 +2,13 @@
 var gpio = require('../libs/gpio'),
 	controlData = require('../libs/db/emergencyControl'),
 	history = require('../libs/db/history'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('routes.emergencyControl');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('routes.emergencyControl');
 
 var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting emergency control server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

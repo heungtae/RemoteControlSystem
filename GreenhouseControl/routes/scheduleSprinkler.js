@@ -1,15 +1,12 @@
 //var humidity = require('./humidity');
 var sprinklerData = require('../libs/db/scheduleSprinkler'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('routes.scheduleSprinkler');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('routes.scheduleSprinkler');
 
 var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting schedule sprinkler server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

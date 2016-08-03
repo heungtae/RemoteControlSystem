@@ -1,7 +1,5 @@
 const fs = require('fs');
-var log4js = require('log4js');
-var	log = log4js.getLogger('libs.store.environment');
-log.setLevel(config.loglevel);
+var log = require('log4js').getLogger('libs.store.environment');
 
 var prefix = './datas/environment';
 

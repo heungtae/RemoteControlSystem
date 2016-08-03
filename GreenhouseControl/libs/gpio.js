@@ -2,9 +2,7 @@
  * http://usejsdoc.org/
  */
 var gpio,
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.gpio');
+	log = require('log4js').getLogger('libs.gpio');
 
 log.setLevel(config.loglevel);
 

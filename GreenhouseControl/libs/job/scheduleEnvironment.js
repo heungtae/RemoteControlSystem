@@ -6,10 +6,7 @@ var CronJob = require('cron').CronJob,
 	ghConfig = require('../../ghConfig'),
 	store = require('../store/environment'),
 	environment = require('../environment'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.job.scheduleEnvironment');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('libs.job.scheduleEnvironment');
 
 ghConfig.getEnvironmentConfig(null, function(confs){
 	confs.forEach(function(conf, index, array){

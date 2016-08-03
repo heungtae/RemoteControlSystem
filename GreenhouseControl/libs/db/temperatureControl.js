@@ -1,10 +1,6 @@
 var ghConfig = require('../../ghConfig'),
 	store = require('../store/temperatureControl'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.db.temperatureControl');
-
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('libs.db.temperatureControl');
 
 exports.get = function(callback){
 	try{

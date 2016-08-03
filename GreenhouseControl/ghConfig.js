@@ -3,7 +3,6 @@
  */
 //============================config end =============================
 //
-
 var shutters = [
                 {
                 	side : 'Top',
@@ -16,7 +15,8 @@ var shutters = [
                 	length : 60,
                 	stepNum : 2,
                 	motorrpm : 4, 
-                	movelength : 12
+                	movelength : 12,
+                	runtime : 0
                 },
                 {
                 	side : 'Bottom',
@@ -29,7 +29,8 @@ var shutters = [
                 	length : 140,
                 	stepNum : 5,
                 	motorrpm : 4, 
-                	movelength : 12
+                	movelength : 12,
+                	runtime : 0
                 },
                 {
                 	side : 'Top',
@@ -42,7 +43,8 @@ var shutters = [
                 	length : 250,
                 	stepNum : 5,
                 	motorrpm : 4, 
-                	movelength : 12
+                	movelength : 12,
+                	runtime : 0
                 },
                 {
                 	side : 'Bottom',
@@ -55,7 +57,8 @@ var shutters = [
                 	length : 140,
                 	stepNum : 5,
                 	motorrpm : 4, 
-                	movelength : 12
+                	movelength : 12,
+                	runtime : 0
                 }          
                 ];
 
@@ -67,7 +70,7 @@ var sprinklers = [
                 	  alias : '관수 펌프',
                 	  baseunit : true,
                 	  settime : defaultSettime,
-                	  actiontime : 0,
+                	  runtime : 0,
                 	  pinnumber : 12
                   },
                   {
@@ -75,7 +78,7 @@ var sprinklers = [
                       alias : '소품 벨브',
                       baseunit : false,
                       settime : defaultSettime,
-                      actiontime : 0,
+                      runtime : 0,
                       pinnumber : 15
 	              },
 	              {
@@ -83,7 +86,7 @@ var sprinklers = [
 	                  alias : '중품 벨브',
 	                  baseunit : false,
 	                  settime : defaultSettime,
-	                  actiontime : 0,
+	                  runtime : 0,
 	                  pinnumber : 13
 	              },
 	              {
@@ -91,7 +94,7 @@ var sprinklers = [
 	                  alias : '송백 벨브',
 	                  baseunit : false,
 	                  settime : defaultSettime,
-	                  actiontime : 0,
+	                  runtime : 0,
 	                  pinnumber : 11
 	              }           
                 ];
@@ -208,11 +211,7 @@ var Environment = [
                    }];
 //============================config end =============================
 
-log4js = require('log4js');
-
-var	log = log4js.getLogger('ghConfig');
-log.setLevel(config.loglevel);
-
+var log = require('log4js').getLogger('ghConfig');
 
 exports.getShutterConfig = function(callback){
 	callback(shutters);
@@ -223,14 +222,14 @@ exports.getSprinklerConfig = function(callback){
 };
 
 exports.getEnvironmentConfig = function(sys, callback){
-	if(sys == null){
-		log.debug('sys = null : ' + JSON.stringify(Environment));
+	if(sys === null){
+		log.debug('sys === null : ' + JSON.stringify(Environment));
 		callback(Environment);		
 	}else{
 		try{
 			var result = [];
-			for(i =0; i < Environment.length; i++ ){
-				env = Environment[i];
+			for(var i =0; i < Environment.length; i++ ){
+				var env = Environment[i];
 				
 				if(env.use[sys])
 					result.push(env);

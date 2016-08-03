@@ -1,14 +1,12 @@
-var SerialPort = require("serialport").SerialPort,
-	log4js = require('log4js');
+
 
 /* Copyright (C) Heung-tae Kim - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  * Written by Heung-tae Kim <heungtae@gmail.com>, May 2016
  */
-
-var	log = log4js.getLogger('libs.usbSensor');
-log.setLevel(config.loglevel);
+var SerialPort = require("serialport").SerialPort,
+	log4js = require('log4js').getLogger('libs.usbSensor');
 
 var serialPort = new SerialPort(config.usbSensor.port, {
   baudrate: config.usbSensor.baudrate

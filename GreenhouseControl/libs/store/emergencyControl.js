@@ -1,7 +1,5 @@
 const fs = require('fs');
-var log4js = require('log4js');
-var	log = log4js.getLogger('libs.store.emergencyControl');
-log.setLevel(config.loglevel);
+var log = require('log4js').getLogger('libs.store.emergencyControl');
 
 var emergencyControlFile = './datas/emergencyControl.dat';
 

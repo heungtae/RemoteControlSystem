@@ -61,9 +61,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 log4js.configure('log4j.json', { reloadSecs: 300 });
-
-
-//console.log(app.get('env'));
+log4js.setGlobalLogLevel(config.loglevel);
 
 // development only
 if ('development' == app.get('env')) {

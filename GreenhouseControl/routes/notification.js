@@ -1,14 +1,11 @@
 var notificationData = require('../libs/db/notification'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('routes.notification');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('routes.notification');
 
 var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting notification server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

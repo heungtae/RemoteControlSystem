@@ -1,9 +1,5 @@
-var log4js = require('log4js'),
+var log = require('log4js').getLogger('libs.db.history'),
 	store = require('../store/history');
-
-var	log = log4js.getLogger('libs.db.history');
-
-log.setLevel(config.loglevel);
 
 exports.insert = function(name, data){
 	try{

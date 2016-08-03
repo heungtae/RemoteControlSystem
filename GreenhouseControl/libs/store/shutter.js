@@ -1,6 +1,5 @@
 const fs = require('fs');
-var log4js = require('log4js');
-var	log = log4js.getLogger('libs.store.shutter');
+var log = require('log4js').getLogger('libs.store.shutter');
 log.setLevel(config.loglevel);
 
 var shutterFile = './datas/shutter.dat';

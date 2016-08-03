@@ -1,15 +1,12 @@
 //var humidity = require('./humidity');
 var shutterData = require('../libs/db/scheduleShutter'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('routes.scheduleShutter');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('routes.scheduleShutter');
 
 var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting schedule shutter server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

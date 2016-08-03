@@ -2,11 +2,8 @@
 var ghConfig = require('../ghConfig'),
 	sprinklerData = require('../libs/db/sprinkler'),
 	history = require('../libs/db/history'),
-	log4js = require('log4js'),
+	log = require('log4js').getLogger('routes.sprinkler');
 	send = require('../libs/telegram/send');
-
-var	log = log4js.getLogger('routes.sprinkler');
-log.setLevel(config.loglevel);
 
 var executeList = {};
 var socket, 
@@ -21,7 +18,7 @@ else
 	
 module.exports = function(io){
 	try{
-		console.log('setting sprinkler server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

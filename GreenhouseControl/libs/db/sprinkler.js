@@ -1,10 +1,6 @@
 var ghConfig = require('../../ghConfig'),
 	store = require('../store/sprinkler'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.db.sprinkler');
-
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('libs.db.sprinkler');
 
 exports.get = function(callback){
 	try{
@@ -16,6 +12,7 @@ exports.get = function(callback){
 					for(var j = 0; j < settimes.length; j++){
 						if( docs[i].unit === settimes[j].unit){
 							docs[i].settime = settimes[j].settime;
+							break;
 						} 
 					}
 				}

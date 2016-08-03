@@ -1,10 +1,6 @@
 var ghConfig = require('../../ghConfig'),
 	store = require('../store/shutter'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.db.shutter');
-
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('libs.db.shutter');
 
 exports.get = function(callback){
 	try{
@@ -15,6 +11,7 @@ exports.get = function(callback){
 						if( docs[i].side === steps[j].side && docs[i].position === steps[j].position){
 							docs[i].step = steps[j].step;
 							docs[i].runtime = steps[j].runtime;
+							break;
 						} 
 					}
 				}

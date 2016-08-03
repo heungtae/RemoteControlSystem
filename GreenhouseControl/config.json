@@ -31,7 +31,6 @@
     "port": 8090
   },
   "loglevel": "trace",
-  "logfile" : "logs/debug.log",
   "usbSensor" : {
 	  "port": "/dev/ttyUSB0",
 	  "baudrate": 9600

@@ -2,16 +2,13 @@
 var gpio = require('../libs/gpio'),
 	controlData = require('../libs/db/temperatureControl'),
 	history = require('../libs/db/history'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('routes.temperatureControl');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('routes.temperatureControl');
 
 var socket;
 
 module.exports = function(io){
 	try{
-		console.log('setting termperature control server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

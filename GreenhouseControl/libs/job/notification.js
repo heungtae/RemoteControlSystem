@@ -3,11 +3,8 @@ var CronJob = require('cron').CronJob,
 	env = require('../db/environment'),
 	ghConfig = require('../../ghConfig'),
 	sleep = require('../sleep'),
-	log4js = require('log4js'),
+	log = require('log4js').getLogger('libs.job.scheduleShutter'),
 	send = require('../telegram/send');
-
-var	log = log4js.getLogger('libs.job.scheduleShutter');
-log.setLevel(config.loglevel);
 
 var jobCompletedList = [];
 var jobExecuteList = [];

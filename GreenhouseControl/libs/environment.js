@@ -3,7 +3,8 @@
  */
 
 var	rpiTemp = require('rpi-temp-module'),
-	log4js = require('log4js');
+log = require('log4js').getLogger('libs.environment');
+
 var sensors;
 
 if (config.development) {
@@ -11,10 +12,6 @@ if (config.development) {
 }else{
 	sensors = require('./usbSensor');	
 }
-
-
-var	log = log4js.getLogger('libs.environment');
-log.setLevel(config.loglevel);
 
 exports.value = function(conf, callback) {
 	try{

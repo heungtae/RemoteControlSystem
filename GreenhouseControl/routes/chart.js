@@ -6,14 +6,11 @@
 var history = require('../libs/db/history'),
 	environment = require('../libs/db/environment'),
 	ghConfig = require('../ghConfig'),
-	log4js = require('log4js'),
-	log = log4js.getLogger('routes.chart');
-
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('routes.chart');
 
 module.exports = function(io){
 	try{
-		console.log('setting chart server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;

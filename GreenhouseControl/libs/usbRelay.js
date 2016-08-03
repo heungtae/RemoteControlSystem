@@ -5,10 +5,7 @@
  */
 
 var SerialPort = require("serialport").SerialPort,
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.usbRelay');
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('libs.usbRelay');
 
 var serialPort = new SerialPort(config.usbRelay.port, {
   baudrate: config.Relay.baudrate

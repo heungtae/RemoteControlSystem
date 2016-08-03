@@ -6,11 +6,8 @@ var CronJob = require('cron').CronJob,
 	ghConfig = require('../../ghConfig'),
 	store = require('../store/environment'),
 	environment = require('../environment'),
-	log4js = require('log4js'),
+	log = require('log4js').getLogger('libs.db.environment'),
 	send = require('../telegram/send');
-
-var	log = log4js.getLogger('libs.db.environment');
-log.setLevel(config.loglevel);
 
 exports.get = function(conf, callback){
 	try{

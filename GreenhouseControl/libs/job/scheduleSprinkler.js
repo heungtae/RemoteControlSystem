@@ -2,11 +2,8 @@ var CronJob = require('cron').CronJob,
 	ghConfig = require('../../ghConfig'),
 	store = require('../db/scheduleSprinkler'),
 	sprinkler = require('../../routes/sprinkler')
-	log4js = require('log4js'),
+	log = require('log4js').getLogger('libs.job.scheduleSprinkler'),
 	send = require('../telegram/send');
-
-var	log = log4js.getLogger('libs.job.scheduleSprinkler');
-log.setLevel(config.loglevel);
 
 var jobCompletedList = [];
 var jobExecuteList = [];

@@ -1,10 +1,9 @@
 /**
  * http://usejsdoc.org/
  */
-var	log4js = require('log4js'),
+var	log = require('log4js').getLogger('libs.telegram'),
 	telegram = require('telegram-bot-api'),
 	util = require('util');
-var	log = log4js.getLogger('libs.telegram');
 
 //var TOKEN = '167537300:AAFa8zPQHvjyUk84ke__owGsgPdbZP9iUlE';
 

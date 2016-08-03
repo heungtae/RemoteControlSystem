@@ -1,10 +1,6 @@
 var ghConfig = require('../../ghConfig'),
 	store = require('../store/emergencyControl'),
-	log4js = require('log4js');
-
-var	log = log4js.getLogger('libs.db.emergencyControl');
-
-log.setLevel(config.loglevel);
+	log = require('log4js').getLogger('libs.db.emergencyControl');
 
 exports.get = function(callback){
 	try{

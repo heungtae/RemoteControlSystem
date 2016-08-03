@@ -1,17 +1,15 @@
-//var humidity = require('./humidity');
 var sleep = require('../libs/sleep'),
 	ghConfig = require('../ghConfig'),
 	shutterData = require('../libs/db/shutter'),
 	history = require('../libs/db/history'),
-	log4js = require('log4js'),
+	log = require('log4js').getLogger('routes.shutter');
 	send = require('../libs/telegram/send');
 
-var log = log4js.getLogger('routes.shutter');
-log.setLevel(config.loglevel);
-
-var executeList = {};
+// 실행 중인 List
+var executingTasks = {};
 var socket,
 	intervalId;
+
 // 초기화를 진행하자.
 var device;
 
@@ -22,7 +20,7 @@ else
 
 module.exports = function(io){
 	try{
-		console.log('setting shutter server.io');
+		log.info('setting server.io');
 		
 		io.sockets.on('connection', function(connection){
 			socket = connection;
@@ -42,8 +40,7 @@ module.exports = function(io){
 	}	
 };
 
-
-
+// shutters docs을 반환 한다.
 module.exports.data = function(req, res){
 	shutterData.get(function(err, docs){
 		res.render('shutter', {
@@ -98,27 +95,39 @@ var update = module.exports.updateJob = function(data, callback){
 
 var addList = function(data, callback){
 	var side = data.side,
-     	position = data.position
+     	position = data.position,
      	step = data.step;
     
     var location = side + '-' + position;
-    var wasData = executeList[location];
     data.location = location;
+
+    var executingTask = executingTasks[location];
     
     if(data.command == config.app.shutter.defaultCommand ){
     	getConfig(data, function(shutterConf, data){
     		data.playpin = shutterConf.closepinnumber;
     		data.stoppin = shutterConf.openpinnumber;
 			
-    		executeList[location] = data;
+    		executingTasks[location] = data;
     		callback(true, data);
     	});
-    }else if(wasData === undefined || wasData.step != step){
+    }else if(executingTask === undefined || executingTask.step != step){
     	checkCommand(data, function(play, data){
     		log.debug(play + ': ' + JSON.stringify(data));
     
     		if(play){
-    			executeList[location] = data;
+    			executingTasks[location] = data;
+    			callback(true, data);    			
+    		}else{
+    			callback(false, null);
+    		}
+    	})
+    }else if(executingTask === undefined || executingTask.step != step){
+    	checkCommand(data, function(play, data){
+    		log.debug(play + ': ' + JSON.stringify(data));
+    
+    		if(play){
+    			executingTasks[location] = data;
     			callback(true, data);    			
     		}else{
     			callback(false, null);
@@ -130,29 +139,7 @@ var addList = function(data, callback){
     
 };
 
-var getConfig = function(data, callback){
-	
-	ghConfig.getShutterConfig(function(docs){
-		log.debug('found shutter documents: count= ' + docs.length);
-		
-		var conf;
-		for(var i =0; i < docs.length; i ++){
-			val = docs[i];
-			
-			log.trace(val);
-			if(val.side === data.side && val.position === data.position){
-				conf = val;
-				log.trace('found config');
-				log.trace(conf);
-				break;
-			} 
-		}
-		
-		callback(conf, data);
-	});
-	
-}
-var checkCommand = function(data, callback){
+var actionData = function(data, callback){
 	try{
 		var conf, val;
 
@@ -221,13 +208,36 @@ var checkCommand = function(data, callback){
 };
 
 
-var checkShutterAction = function(){
-	try{
-		log.trace('executeList length : ' + Object.keys(executeList).length);
+var getConfig = function(data, callback){
+	
+	ghConfig.getShutterConfig(function(docs){
+		log.debug('found shutter documents: count= ' + docs.length);
 		
-		for (var location in executeList) {
-	        if (executeList.hasOwnProperty(location)) {
-	        	var data = executeList[location];
+		var conf;
+		for(var i =0; i < docs.length; i ++){
+			val = docs[i];
+			
+			log.trace(val);
+			if(val.side === data.side && val.position === data.position){
+				conf = val;
+				log.trace('found config');
+				log.trace(conf);
+				break;
+			} 
+		}
+		
+		callback(conf, data);
+	});
+	
+}
+
+var executeTasks = function(){
+	try{
+		log.trace('executeList length : ' + Object.keys(executingTasks).length);
+		
+		for (var location in executingTasks) {
+	        if (executingTasks.hasOwnProperty(location)) {
+	        	var data = executingTasks[location];
 				var command = data.command;
 				
 				log.trace(location + ': ' + command + ', ' + data.settime + ', ' + data.exectime);
@@ -258,10 +268,10 @@ var checkShutterAction = function(){
 						//해당 playpin을 off한다.
 						device.exec(location, command, playpin, function(err, key, value){
 							log.debug(key + ' ' + command + ' ' + playpin + ': result= ' + value);
-							var completedConfig = executeList[key];
-							delete executeList[key];
+							var completedConfig = executingTasks[key];
+							delete executingTasks[key];
 							
-							log.debug(executeList);							
+							log.debug(executingTasks);							
 							send.message('창 '+ key + '가 ' + completedConfig.step + '단계로 이동했습니다.\n System 제어 결과값 :' + (value == -1 ? 'fail' : 'success'));
 							
 							if(socket != null)
@@ -273,8 +283,8 @@ var checkShutterAction = function(){
 					
 				
 				}else{
-					delete executeList[location];
-					console.log(executeList);
+					delete executingTasks[location];
+					console.log(executingTasks);
 					
 					if(socket != null)
 						socket.emit('shutterCallback', {location: location, command:config.app.shutter.defaultCommand, settime:100, exectime: 0});
