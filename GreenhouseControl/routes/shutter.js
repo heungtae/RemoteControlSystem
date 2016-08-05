@@ -16,7 +16,7 @@ var device;
 if(config.app.shutter.device == 'gpio')
 	device = require('../libs/gpio');
 else
-	device = require('../libs/usbRelay')
+	device = require('../libs/usbRelay');
 
 module.exports = function(io){
 	try{
@@ -91,9 +91,7 @@ var update = module.exports.updateJob = function(data, callback){
 	
 };
 
-
-
-var addList = function(data, callback){
+var addExecutingTask = function(data, callback){
 	var side = data.side,
      	position = data.position,
      	step = data.step;
@@ -103,7 +101,7 @@ var addList = function(data, callback){
 
     var executingTask = executingTasks[location];
     
-    if(data.command == config.app.shutter.defaultCommand ){
+    if(data.command == ghConfig.Commands[config.app.shutter.defaultCommand.toUpperCase()]){
     	getConfig(data, function(shutterConf, data){
     		data.playpin = shutterConf.closepinnumber;
     		data.stoppin = shutterConf.openpinnumber;
@@ -111,8 +109,8 @@ var addList = function(data, callback){
     		executingTasks[location] = data;
     		callback(true, data);
     	});
-    }else if(executingTask === undefined || executingTask.step != step){
-    	checkCommand(data, function(play, data){
+    }else if(data.command == ghConfig.Commands.ON && executingTask === undefined || executingTask.step != step){
+    	actionData(data, function(play, data){
     		log.debug(play + ': ' + JSON.stringify(data));
     
     		if(play){
@@ -122,17 +120,10 @@ var addList = function(data, callback){
     			callback(false, null);
     		}
     	})
-    }else if(executingTask === undefined || executingTask.step != step){
-    	checkCommand(data, function(play, data){
-    		log.debug(play + ': ' + JSON.stringify(data));
-    
-    		if(play){
-    			executingTasks[location] = data;
-    			callback(true, data);    			
-    		}else{
-    			callback(false, null);
-    		}
-    	})
+    }else if(data.command == ghConfig.Commands.AUTO && executingTask === undefined){
+    		log.debug(JSON.stringify(data));
+    		executingTasks[location] = data;
+    		callback(true, data);    			
     }else{
     	callback(false, null);
     }
@@ -156,8 +147,8 @@ var actionData = function(data, callback){
 					data.playpin = conf.closepinnumber;
 					data.stoppin = conf.openpinnumber;
 					data.stepDesc = '최대 닫기';
-					data.command = 'on';
-					data.direction = 'close';
+					data.command = ghConfig.Commands.ON;
+					data.direction = ghConfig.Directions.CLOSE;
 					callback(true, data);
 				}else if(data.step > conf.stepNum){
 					data.settime = Math.round(conf.length/(conf.movelength * conf.motorrpm) * 60 + 30);
@@ -165,8 +156,8 @@ var actionData = function(data, callback){
 					data.playpin = conf.openpinnumber;
 					data.stoppin = conf.closepinnumber;
 					data.stepDesc = '최대 열기';
-					data.command = 'on';
-					data.direction = 'open';
+					data.command = ghConfig.Commands.ON;
+					data.direction = ghConfig.Directions.OPEN;
 					callback(true, data);
 				}else{
 					
@@ -181,16 +172,16 @@ var actionData = function(data, callback){
 						data.exectime = 0;
 						data.playpin = conf.openpinnumber;
 						data.stoppin = conf.closepinnumber;
-						data.command = 'on';	
-						data.direction = 'open';
+						data.command = ghConfig.Commands.ON;
+						data.direction = ghConfig.Directions.OPEN;
 						callback(true, data);
 					}else if(stepTime < doc.runtime){
 						data.settime = settime;
 						data.exectime = 0;
 						data.playpin = conf.closepinnumber;
 						data.stoppin = conf.openpinnumber;
-						data.command = 'on';
-						data.direction = 'close';
+						data.command = ghConfig.Commands.ON;
+						data.direction = ghConfig.Directions.CLOSE;
 						callback(true, data);
 					}else{
 						callback(false, null);

@@ -3,6 +3,9 @@
  */
 //============================config end =============================
 //
+var Commands = {"OFF": "off", "ON": "on", "AUTO": "auto"};
+var Directions = {"OPEN": "open", "CLOSE": "close"};
+
 var shutters = [
                 {
                 	side : 'Top',
@@ -210,18 +213,20 @@ var Environment = [
                 	   }
                    }];
 //============================config end =============================
-
 var log = require('log4js').getLogger('ghConfig');
 
-exports.getShutterConfig = function(callback){
+
+
+
+var getShutterConfig = function(callback){
 	callback(shutters);
 };
 
-exports.getSprinklerConfig = function(callback){
+var getSprinklerConfig = function(callback){
 	callback(sprinklers);
 };
 
-exports.getEnvironmentConfig = function(sys, callback){
+var getEnvironmentConfig = function(sys, callback){
 	if(sys === null){
 		log.debug('sys === null : ' + JSON.stringify(Environment));
 		callback(Environment);		
@@ -243,3 +248,11 @@ exports.getEnvironmentConfig = function(sys, callback){
 		}
 	}
 };
+
+module.exports = {
+		getShutterConfig: getShutterConfig,
+		getSprinklerConfig: getSprinklerConfig, 
+		getEnvironmentConfig: getEnvironmentConfig,
+		Commands : Commands,
+		Directions : Directions
+		};

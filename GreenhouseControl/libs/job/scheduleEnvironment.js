@@ -24,7 +24,7 @@ ghConfig.getEnvironmentConfig(null, function(confs){
 });
 
 
-var job = new CronJob('*/10 * * * *', function() {
+var job = new CronJob('*/1 * * * *', function() {
 	try{	
 		
 		ghConfig.getEnvironmentConfig(null, function(confs){

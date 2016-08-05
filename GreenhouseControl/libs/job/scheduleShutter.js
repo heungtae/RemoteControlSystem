@@ -19,14 +19,16 @@ var jobExecuteList = [];
 // 4. 실행 가능한지를 확인 한다.
 // 5. 실행한다.
 
-var job = new CronJob('*/10 * * * *', function() {
+var job = new CronJob('*/1 * * * *', function() {
 	try{	
+		
 		emergencyControlStore.get(function(err, emgDocs, confs){
 			scheduleStore.get(function(err, schdocs, confs){
 				temperatureControlStore.get(function(err, tempDocs, confs){
 					//시간, 환경값, 실행 여부를 확인한다. 
 					jobExecuteList = [];
 										
+					log.debug('[job] Emergency Control');
 					for(var key in emgDocs){
 						var doc = emgDocs[key];
 						doc.category = 'emergency';
@@ -46,6 +48,7 @@ var job = new CronJob('*/10 * * * *', function() {
 						});
 					}
 					
+					log.debug('[job] Schedule Control');
 					for(var key in schdocs){
 						var doc = schdocs[key];
 						doc.category = 'schedule';
@@ -66,6 +69,7 @@ var job = new CronJob('*/10 * * * *', function() {
 						});							
 					}
 					
+					log.debug('[job] Temperature Control');
 					for(var key in tempDocs){
 						var doc = tempDocs[key];
 						doc.category = 'auto';
@@ -99,7 +103,7 @@ var job = new CronJob('*/10 * * * *', function() {
 										exectime: 0,
 										playpin: 0,
 										stoppin: 0,
-										command: 'on',
+										command: ghConfig.Commands.ON,
 										conf: doc.conf,
 										envDesc: doc.envDesc
 								};
@@ -109,6 +113,7 @@ var job = new CronJob('*/10 * * * *', function() {
 									data.direction = doc.direction;
 									data.playpin = doc.playpin;
 									data.stoppin = doc.stoppin;
+									data.command = ghConfig.Commands.AUTO;
 								}
 								
 								shutter.updateJob(data, function(){
@@ -120,7 +125,9 @@ var job = new CronJob('*/10 * * * *', function() {
 						});
 					}
 					
-					clearJobCompletedList(docs);
+					clearJobCompletedList(emgDocs);
+					clearJobCompletedList(schdocs);
+					clearJobCompletedList(tempDocs);
 				});
 			});
 		});
@@ -166,10 +173,10 @@ var checkEnvironment = function(doc, callback){
 			var unitKey = envConf.unit + '-' + envConf.zone;
 			var operKey = envConf.unit + '-' + envConf.zone + '-Oper';
 			
-			log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') ' + JSON.stringify(envConf));
 			
 			if(doc[operKey] != undefined){
 				envCount++;
+				log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') ' + JSON.stringify(envConf));
 					
 				if(envConf.value != undefined){
 					
@@ -227,7 +234,9 @@ var checkTempTime = function(doc, callback){
 			var now = new Date();
 			var next = new Date(now.getTime() + (doc.period * 1000 + doc.wait * 1000));
 
-			if(doc.conf.nextTempRuntime != undefined){
+			log.trace('[checkTempTime] nextTempRuntime = ' + doc.conf.nextTempRuntime);
+			
+			if(doc.conf.nextTempRuntime == undefined){
 				//nextTempRuntime이 없다는 것은 한번도 실행 되지 않았음으로 무조건 실행한다.
 				doc.conf.nextTempRuntime = next;
 			}else if(now.getTime() <= doc.conf.nextTempRuntime.getTime()){
@@ -262,14 +271,14 @@ var checkTempEnvironment = function(doc, callback){
 					if(envConf.value > (parseInt(doc[targetKey]) + parseInt(doc[rangeKey]) ) ){
 						check++;
 						doc.settime = doc.period * 60;
-						doc.direction = 'open';
+						doc.direction = ghConfig.Directions.OPEN;
 						doc.playpin = doc.conf.openpinnumber;
 						doc.stoppin = doc.conf.closepinnumber;
 						envDesc += envConf.alias + '값이 ' + envConf.value +  '로 설정값 ' + doc[unitKey] +  ' 보다 큼; \n';
 					}else if(envConf.value < (parseInt(doc[targetKey]) - parseInt(doc[rangeKey]) ) ){
 						check++;
 						doc.settime = doc.period * 60;
-						doc.direction = 'close';
+						doc.direction = ghConfig.Directions.CLOSE;
 						doc.playpin = doc.conf.closepinnumber;
 						doc.stoppin = doc.conf.openpinnumber;
 						envDesc += envConf.alias + '값이 ' + envConf.value +  '로 설정값 ' + doc[unitKey] +  ' 보다 작음; \n';
