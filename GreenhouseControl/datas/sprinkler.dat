@@ -1,22 +1,22 @@
 [
     {
-        "date": "2016-05-22T01:36:00.508Z",
+        "date": "2016-08-08T13:13:57.034Z",
         "unit": "pump",
-        "settime": "50"
+        "settime": 5
     },
     {
-        "date": "2016-05-22T01:36:00.517Z",
+        "date": "2016-08-08T13:13:57.929Z",
         "unit": "firstvalve",
-        "settime": "50"
+        "settime": 50
     },
     {
-        "date": "2016-05-22T01:36:00.531Z",
+        "date": "2016-08-08T13:13:58.921Z",
         "unit": "secondvalve",
-        "settime": "50"
+        "settime": 50
     },
     {
-        "date": "2016-03-17T13:11:20.850Z",
+        "date": "2016-08-08T13:13:59.854Z",
         "unit": "thirdvalve",
-        "settime": "10"
+        "settime": 10
     }
 ]

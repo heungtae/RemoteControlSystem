@@ -26,8 +26,8 @@ exports.add = function(conf, remainDay){
 			
 			var docsJSON = JSON.stringify(newDocs, null, 4);
 			
-			log.trace('[add] write string, ' + docsJSON);
-			log.trace('[add] write string, ' + JSON.stringify(conf, null, 4));
+			//log.trace('[add] write string, ' + docsJSON);
+			log.trace('[add] write string, ' + JSON.stringify(conf));
 			fs.writeFileSync(envFile, docsJSON);
 		})
 	}catch(e){
@@ -36,18 +36,20 @@ exports.add = function(conf, remainDay){
 }
 
 var readData = exports.read = function(conf, callback){
-	try{
-		console.log('###################');
-		
-		console.log(conf.docs);
+	try{	
+		log.trace('[readData] ' + JSON.stringify(conf));
 		
 		if(conf.docs == undefined){
 			readFile(conf, function(err, docs){
+				log.trace('[readData] file read, conf: ' + JSON.stringify(conf) + ' docs: ' + JSON.stringify(docs));
 				callback(err, docs);
 			})
 		}else{
+			log.trace('[readData] conf read, conf: ' + JSON.stringify(conf));
 			callback(null, conf.docs);
 		}
+		
+		
 	}catch(e){
 		callback(e, null);
 	}
@@ -73,6 +75,7 @@ var readFile = function(conf, callback){
 			
 		});
 	}catch(e){
+		log.error(e);
 		callback(e, null);
 	}
 }

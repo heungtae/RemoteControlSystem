@@ -1,656 +1,188 @@
 [
     {
-        "date": "2016-06-03T14:30:00.471Z",
+        "date": "2016-08-06T08:28:27.648Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T14:40:00.428Z",
+        "date": "2016-08-06T08:29:00.632Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T14:50:00.413Z",
+        "date": "2016-08-06T08:30:00.639Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T15:00:00.409Z",
+        "date": "2016-08-06T08:31:00.628Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T21:00:00.274Z",
+        "date": "2016-08-06T08:32:00.629Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T21:10:00.228Z",
+        "date": "2016-08-06T08:33:00.633Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T21:20:00.207Z",
+        "date": "2016-08-06T08:34:00.637Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T21:30:00.208Z",
+        "date": "2016-08-06T08:35:00.648Z",
         "unit": "Moisture",
         "zone": "Soil",
         "value": "4"
     },
     {
-        "date": "2016-06-03T21:40:00.157Z",
+        "date": "2016-08-06T08:37:00.248Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T21:50:00.134Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T22:00:00.244Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T22:10:00.222Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T22:20:00.185Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T22:30:00.168Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T22:40:00.146Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T22:50:00.133Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T23:00:00.126Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T23:10:00.107Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T23:20:00.093Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T23:30:00.074Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T23:40:00.062Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-03T23:50:00.052Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T00:00:00.046Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T00:00:01.055Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T00:10:01.034Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T00:20:01.034Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T00:30:01.026Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T00:40:01.028Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T00:50:00.989Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T01:00:00.971Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T01:10:00.958Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T01:20:00.948Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T01:30:00.941Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T01:40:00.923Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T01:50:00.916Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T02:00:00.930Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T02:10:00.921Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T02:20:00.906Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T02:30:00.867Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T02:40:00.853Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T02:50:00.847Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T03:00:00.833Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T03:10:00.846Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T03:20:00.831Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T03:30:00.822Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T03:40:00.805Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T03:50:00.765Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T04:00:00.759Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T04:10:00.750Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T04:20:00.769Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
+        "value": 10
     },
     {
-        "date": "2016-06-04T04:30:00.746Z",
+        "date": "2016-08-06T08:38:00.242Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T04:40:00.732Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T04:50:00.691Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T05:00:00.681Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T05:10:00.701Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T05:20:00.691Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T05:30:00.669Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T05:40:00.630Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T05:50:00.613Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T06:00:00.626Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T06:10:00.630Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T06:20:00.609Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T06:30:00.561Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T06:40:00.548Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T06:50:00.558Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T07:00:00.557Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T07:10:00.545Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T07:20:00.539Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T07:30:00.478Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T07:40:00.509Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T07:50:00.489Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T08:00:00.477Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T08:10:00.428Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T08:20:00.413Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T08:30:00.444Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T08:40:00.485Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T08:50:00.371Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T09:00:00.408Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T09:10:00.406Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T09:20:00.356Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T09:30:00.387Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T09:40:00.303Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T09:50:00.312Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T10:00:00.289Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T10:10:00.274Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T10:20:00.211Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T10:30:00.230Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
+        "value": 10
     },
     {
-        "date": "2016-06-04T10:40:00.231Z",
+        "date": "2016-08-06T08:49:00.854Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
-    },
-    {
-        "date": "2016-06-04T10:50:00.218Z",
-        "unit": "Moisture",
-        "zone": "Soil",
-        "value": "4"
+        "value": 1
     },
     {
-        "date": "2016-06-04T11:00:00.172Z",
+        "date": "2016-08-06T08:50:00.855Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T11:10:00.181Z",
+        "date": "2016-08-06T08:56:00.978Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 1
     },
     {
-        "date": "2016-06-04T11:20:00.188Z",
+        "date": "2016-08-06T08:57:00.977Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T11:20:01.124Z",
+        "date": "2016-08-06T08:58:00.979Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 3
     },
     {
-        "date": "2016-06-04T11:30:00.150Z",
+        "date": "2016-08-06T08:59:00.998Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 4
     },
     {
-        "date": "2016-06-04T11:30:01.116Z",
+        "date": "2016-08-06T09:00:00.992Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 5
     },
     {
-        "date": "2016-06-04T11:40:01.101Z",
+        "date": "2016-08-06T09:01:00.765Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 1
     },
     {
-        "date": "2016-06-04T11:50:01.099Z",
+        "date": "2016-08-06T09:09:00.737Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 1
     },
     {
-        "date": "2016-06-04T12:00:01.092Z",
+        "date": "2016-08-06T09:10:00.056Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 1
     },
     {
-        "date": "2016-06-04T12:10:01.070Z",
+        "date": "2016-08-06T09:11:00.050Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T12:20:01.071Z",
+        "date": "2016-08-06T09:16:01.002Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T12:30:01.046Z",
+        "date": "2016-08-06T09:17:00.726Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T12:40:01.029Z",
+        "date": "2016-08-06T09:22:00.623Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T12:50:01.003Z",
+        "date": "2016-08-06T09:30:00.610Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T13:00:01.016Z",
+        "date": "2016-08-06T09:40:00.581Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 3
     },
     {
-        "date": "2016-06-04T13:10:00.977Z",
+        "date": "2016-08-06T09:50:00.566Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 4
     },
     {
-        "date": "2016-06-04T13:20:00.958Z",
+        "date": "2016-08-06T13:30:00.766Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T13:30:00.995Z",
+        "date": "2016-08-06T13:40:00.046Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-04T13:40:00.346Z",
+        "date": "2016-08-07T03:20:00.239Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     },
     {
-        "date": "2016-06-05T05:50:00.430Z",
+        "date": "2016-08-07T06:30:00.217Z",
         "unit": "Moisture",
         "zone": "Soil",
-        "value": "4"
+        "value": 2
     }
 ]

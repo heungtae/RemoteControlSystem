@@ -53,13 +53,13 @@ module.exports.data = function(req, res){
 var update = module.exports.updateJob = function(data, callback){
 	log.debug("Update : " + JSON.stringify(data));
 	
-    addList(data, function(play, data){
+	addExecutingTask(data, function(play, data){
     	log.debug('device play = ' + play + ' ' + JSON.stringify(data));
     	
     	if(play){
     		//db의 step과 요청하는 step의 차이를 이용해서 open인지, close인지를 파악하고, time을 계산 한다.
     		if( intervalId === undefined)
-    			intervalId = setInterval(checkShutterAction, 1000);
+    			intervalId = setInterval(executeTasks, 1000);
     		
     		log.debug('setInterval : ' + intervalId);
     		log.debug(data);
@@ -164,7 +164,7 @@ var actionData = function(data, callback){
 					var stepTime = Math.round(( stepLength * data.step ) * (conf.movelength * conf.motorrpm) * 60);
 					var settime = Math.abs(stepTime - doc.runtime);
 					log.debug(doc);
-					log.debug('stepLength= ' + stepLength + ', stepVal=' + stepVal);
+					log.debug('stepTime= ' + stepTime + ', settime=' + settime);
 					data.stepDesc = data.step + ' 단계';
 					
 					if(stepTime > doc.runtime){

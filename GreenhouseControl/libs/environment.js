@@ -2,15 +2,16 @@
  * http://usejsdoc.org/
  */
 
-var	rpiTemp = require('rpi-temp-module'),
-log = require('log4js').getLogger('libs.environment');
+var	log = require('log4js').getLogger('libs.environment');
 
-var sensors;
+var sensors, rpiTemp;
 
 if (config.development) {
 	sensors = require('../develop/usbSensor');
+	rpiTemp = require('../develop/rpiTempModule');
 }else{
 	sensors = require('./usbSensor');	
+	rpiTemp = require('rpi-temp-module');
 }
 
 exports.value = function(conf, callback) {

@@ -34,7 +34,7 @@ serialPort.open(function (error) {
         	  for(id in datas){
         		  if(datas[id].indexOf(':') > 0){
         			  var vals = datas[id].split(':');
-        			  sensors[vals[0]] = vals[1];
+        			  sensors[vals[0]] = parseInt(vals[1]);
         		  }
         	  }
           }

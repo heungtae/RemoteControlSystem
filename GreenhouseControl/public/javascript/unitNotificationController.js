@@ -90,7 +90,7 @@ function add(index){
     	
     	if($('#' + conf.unit + '-' + conf.zone + '-Apply').is(':checked')){	
 	    	if(conf.type == 'number'){
-	    		data[conf.unit + '-' + conf.zone + '-Value'] = $('#' + conf.unit + '-' + conf.zone + '-Value').val();
+	    		data[conf.unit + '-' + conf.zone + '-Value'] = parseInt($('#' + conf.unit + '-' + conf.zone + '-Value').val());
 	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');
 	    	}else if(conf.type == 'boolean'){
 	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');

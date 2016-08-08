@@ -21,7 +21,7 @@ exports.update = function(docs){
 exports.read = function(callback){
 	try{
 		log.debug('read: ' + emergencyControlFile);
-		var file = fs.readFile(emergencyControlFile, function(err, data){
+		fs.readFile(emergencyControlFile, function(err, data){
 			if(err != undefined && err != null){
 				log.error(err);
 			}

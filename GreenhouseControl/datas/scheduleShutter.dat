@@ -4,63 +4,11 @@
         "title": "test 3",
         "side": "Top",
         "position": "First",
-        "alias": "천창-1중 ",
-        "step": "6",
+        "alias": "천창-1중   ",
+        "step": 6,
         "start": "06:00",
-        "end": "10:00"
-    },
-    {
-        "id": 4,
-        "title": "test 4",
-        "side": "Bottom",
-        "position": "First",
-        "alias": "측창-1중  ",
-        "step": "3",
-        "start": "08:00",
         "end": "10:00",
-        "Temperature-Inside-Value": "10",
-        "Temperature-Inside-Oper": "<"
-    },
-    {
-        "id": 5,
-        "title": "test 2",
-        "side": "Bottom",
-        "position": "First",
-        "alias": "측창-1중 ",
-        "step": "6",
-        "start": "08:00",
-        "end": "10:00",
-        "Temperature-Inside-Value": "20",
-        "Temperature-Inside-Oper": ">"
-    },
-    {
-        "id": 6,
-        "title": "test 1",
-        "side": "Top",
-        "position": "Second",
-        "alias": "천창-2중 ",
-        "step": "3",
-        "start": "09:00",
-        "end": "10:00",
-        "Temperature-Inside-Value": "10",
-        "Temperature-Inside-Oper": ">"
-    },
-    {
-        "id": 7,
-        "title": "test",
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중 ",
-        "start": "08:00",
-        "end": "20:00"
-    },
-    {
-        "id": 8,
-        "title": "test",
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중 ",
-        "start": "08:00",
-        "end": "20:00"
+        "Temperature-Outside-Value": 2,
+        "Temperature-Outside-Oper": ">"
     }
 ]

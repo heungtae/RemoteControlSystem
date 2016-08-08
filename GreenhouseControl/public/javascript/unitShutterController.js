@@ -66,7 +66,7 @@ function unitAction(side, position, command){
 	        
 $(".dropdown-menu li a").click(function(){
   var selText = $(this).text();
-  step = $(this).attr("value");
+  step = parseInt($(this).attr("value"));
   
   console.log(step);
   

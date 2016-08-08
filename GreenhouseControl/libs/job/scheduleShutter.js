@@ -10,7 +10,7 @@ var CronJob = require('cron').CronJob,
 	send = require('../telegram/send');
 
 var jobCompletedList = [];
-var jobExecuteList = [];
+var jobExecuteList = {};
 
 // 1. 실행 시간의 구간안에 포함되는지 확인 한다.
 // 1.1. 실행 시간이 아니라면 실행 중인 항목에 대해서 삭제 한다.
@@ -26,7 +26,7 @@ var job = new CronJob('*/1 * * * *', function() {
 			scheduleStore.get(function(err, schdocs, confs){
 				temperatureControlStore.get(function(err, tempDocs, confs){
 					//시간, 환경값, 실행 여부를 확인한다. 
-					jobExecuteList = [];
+					jobExecuteList = {};
 										
 					log.debug('[job] Emergency Control');
 					for(var key in emgDocs){
@@ -37,7 +37,9 @@ var job = new CronJob('*/1 * * * *', function() {
 							checkTime(doc, function(doc){
 								checkEnvironment(doc, function(doc){
 									checkJobCompleted(doc, function(doc){
+										
 										if(doc.inTime && doc.isEnvironment && !doc.isJobCompleted ){
+											log.debug('[job] condition : ' + (doc.inTime && doc.isEnvironment && !doc.isJobCompleted));
 											checkPriority(doc, function(){
 												
 											});
@@ -58,7 +60,9 @@ var job = new CronJob('*/1 * * * *', function() {
 							checkTime(doc, function(doc){
 								checkEnvironment(doc, function(doc){
 									checkJobCompleted(doc, function(doc){
+										log.debug('[job] condition : ' + (doc.inTime && doc.isEnvironment && !doc.isJobCompleted));
 										if(doc.inTime && doc.isEnvironment && !doc.isJobCompleted ){
+											log.debug('[job] Execute doc : ' + JSON.stringify(doc));
 											checkPriority(doc, function(){
 												
 											});
@@ -90,9 +94,12 @@ var job = new CronJob('*/1 * * * *', function() {
 						});							
 					}					
 					
+					log.debug('[job] Execute List : ' + JSON.stringify(jobExecuteList));
 					
-					for(i = 0; i < jobExecuteList.length; i++){
-						var doc = jobExecuteList[i];
+					for(var key in jobExecuteList){
+						var doc = jobExecuteList[key];
+						log.debug('[job] Execute doc : ' + JSON.stringify(doc));
+						
 						getConfiguration(doc, confs, function(doc){
 							getStep(doc, function(step, stepDesc){
 								var data = {
@@ -117,13 +124,13 @@ var job = new CronJob('*/1 * * * *', function() {
 								}
 								
 								shutter.updateJob(data, function(){
-									log.debug('[CronJob] ' + doc.title +'(' + doc.id + ') starting shutter: ' + JSON.stringify(data));	
+									log.debug('[job] ' + doc.title +'(' + doc.id + ') starting shutter: ' + JSON.stringify(data));	
 									send.message(doc.title + '으로 예약된 창 제어를 시작했습니다. \n ' + doc.alias + '를 ' + stepDesc);
 									jobCompletedList.push(doc.id);
 								});
 							});
 						});
-					}
+					};
 					
 					clearJobCompletedList(emgDocs);
 					clearJobCompletedList(schdocs);
@@ -146,15 +153,16 @@ var checkTime = function(doc, callback){
 		start.setHours(doc.start.substring(0, 2), doc.start.substring(3, 5), 00, 00);
 		end.setHours(doc.end.substring(0, 2), doc.end.substring(3, 5), 59, 59);
 		
-		log.debug('[checkTime] ' + doc.title +'(' + doc.id + ') ' + ' : ' + start + ' ' + end);
 		if(now.getTime() > start.getTime() && now.getTime() < end.getTime()){
 			doc.inTime = true;
 		}else{
 			doc.inTime = false;
 		}
+		log.trace('[checkTime] ' + doc.title +'(' + doc.id + ') : ' + ' inTime= ' + doc.inTime + ' now= ' + now + ' start=' + start + ' end=' + end);
 		callback(doc);
 	}
 	else{
+		log.debug('[checkTime] start undefined, ' + doc.title +'(' + doc.id + ') : inTime= true');
 		doc.inTime = true;
 		callback(doc);
 	}
@@ -170,13 +178,12 @@ var checkEnvironment = function(doc, callback){
 	ghConfig.getEnvironmentConfig(null, function(envResult){
 		log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') Environment configuration length : ' + envResult.length);
 		envResult.forEach(function(envConf){
-			var unitKey = envConf.unit + '-' + envConf.zone;
+			var unitKey = envConf.unit + '-' + envConf.zone + '-Value';
 			var operKey = envConf.unit + '-' + envConf.zone + '-Oper';
-			
 			
 			if(doc[operKey] != undefined){
 				envCount++;
-				log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') ' + JSON.stringify(envConf));
+				log.trace('[checkEnvironment] (' + doc.id + ') ' + doc.title + ' unitKey=' + unitKey + ' operKey=' + operKey + ' value=' + envConf.value);
 					
 				if(envConf.value != undefined){
 					
@@ -193,7 +200,7 @@ var checkEnvironment = function(doc, callback){
 							}
 						}							
 
-						log.trace('[checkEnvironment] number type environment' + doc.title +'(' + doc.id + ') Result envCount(' + envCount + ') = check(' + check + ') UnitKey: ' + unitKey + ' ' + doc[unitKey] + ' ' +  envConf.value + ' ' + doc[operKey] );
+						log.trace('[checkEnvironment] number type environment' + doc.title +'(' + doc.id + ') Result envCount(' + envCount + ') = check(' + check + ') UnitKey: ' + unitKey + ' ' +  envConf.value + ' ' + doc[operKey] + ' ' + doc[unitKey] );
 					}else if(envConf.type == 'boolean'){
 						if(doc[operKey].trim() == 'true'){
 							if(envConf.value){
@@ -222,6 +229,8 @@ var checkEnvironment = function(doc, callback){
 			doc.isEnvironment = false;
 			doc.envDesc = envDesc;
 		}
+		
+		log.trace('[checkEnvironment] result : ' + doc.title +'(' + doc.id + ') isEnvironment= ' + doc.isEnvironment + ' (' + doc.envDesc + ')');
 		
 		callback(doc);
 	});
@@ -298,6 +307,8 @@ var checkTempEnvironment = function(doc, callback){
 			doc.envDesc = envDesc;
 		}
 		
+		log.trace('[checkEnvironment] result : ' + doc.title +'(' + doc.id + ') isEnvironment= ' + doc.isEnvironment + ' (' + doc.envDesc + ')');
+		
 		callback(doc);
 	});
 }
@@ -312,8 +323,10 @@ var checkPriority = function(newDoc, callback){
 	
 	if(jobExecuteList[unitKey] == undefined){
 		jobExecuteList[unitKey] = newDoc;
+		log.trace('JobExecuteList[' + unitKey + '] == undefined, add List' + JSON.stringify(jobExecuteList) );
 	}else{
 		var doc = jobExecuteList[unitKey];
+		log.trace('JobExecuteList[' + unitKey + '] == ' + JSON.stringify(doc));
 		//compare priority
 		if(doc.funcPriority > newDoc.funcPriority || doc.priority > newDoc.priority){
 			jobExecuteList[unitKey] = newDoc				
@@ -346,12 +359,14 @@ var checkPriority = function(newDoc, callback){
 		}
 	}
 	
+	log.debug('[checkPriority] result: ' + JSON.stringify(jobExecuteList));
+	
 	callback();
 }
 
 
 
-var getStep = function(doc, conf, callback){
+var getStep = function(doc, callback){
 	
 	try{
 		var step = parseInt(doc.step.trim());
@@ -360,7 +375,7 @@ var getStep = function(doc, conf, callback){
 			step = doc.conf.stepNum;
 		}
 	
-		var stepDesc = (step == 0 ? '최대로 닫습니다.' : step == conf.stepNum ? '최대로 열겠습니다.' : step + ' 단계로 이동합니다.');
+		var stepDesc = (step == 0 ? '최대로 닫습니다.' : step == doc.conf.stepNum ? '최대로 열겠습니다.' : step + ' 단계로 이동합니다.');
 		
 		log.debug('[getStep] ' + doc.title +'(' + doc.id + ') step :' + stepDesc);
 		callback(step, stepDesc);

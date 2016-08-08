@@ -2,8 +2,7 @@
  * http://usejsdoc.org/
  */
 
-var CronJob = require('cron').CronJob,
-	ghConfig = require('../../ghConfig'),
+var ghConfig = require('../../ghConfig'),
 	store = require('../store/environment'),
 	environment = require('../environment'),
 	log = require('log4js').getLogger('libs.db.environment'),
@@ -13,7 +12,7 @@ exports.get = function(conf, callback){
 	try{
 		store.read(conf, function(err, docs){
 			if(docs != null)
-				log.debug("Environment Get: length = " + docs.length);
+				log.debug("[get] Environment Get: length = " + docs.length);
 			
 			callback(err, docs);
 		});
@@ -26,6 +25,7 @@ exports.get = function(conf, callback){
 exports.value = function(conf, callback){
 	try{
 		log.debug('read environment config : ' + JSON.stringify(conf));
+		
 		ghConfig.getEnvironmentConfig(null, function(confs){
 			log.debug('get environment configs : ' + JSON.stringify(confs));
 			
@@ -45,4 +45,12 @@ exports.value = function(conf, callback){
 		callback(e, null);
 	}
 };
+
+exports.add = function(conf, remainDay){
+	try{
+		store.add(conf, remainDay);
+	}catch(e){
+		log.error(e);
+	}
+}
 

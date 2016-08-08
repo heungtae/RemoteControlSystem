@@ -88,8 +88,8 @@ function add(index){
 	//shutter step
 	data.start = $('#start').val();
 	data.end = $('#end').val();
-	data.period = $('#period').val();
-	data.wait = $('#wait').val();
+	data.period = parseInt($('#period').val());
+	data.wait = parseInt($('#wait').val());
 	
 	//환경값 설정 결과 수집
 	for(ev = 0; ev < envConfs.length; ev++){
@@ -97,7 +97,7 @@ function add(index){
     	
     	if($('#' + conf.unit + '-' + conf.zone + '-Apply').is(':checked')){	
 	    	if(conf.type == 'number'){
-	    		data[conf.unit + '-' + conf.zone + '-Value'] = $('#' + conf.unit + '-' + conf.zone + '-Value').val();
+	    		data[conf.unit + '-' + conf.zone + '-Value'] = parseInt($('#' + conf.unit + '-' + conf.zone + '-Value').val());
 	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');
 	    	}else if(conf.type == 'boolean'){
 	    		data[conf.unit + '-' + conf.zone + '-Oper'] = $('#' + conf.unit + '-' + conf.zone + '-Oper').attr('value');

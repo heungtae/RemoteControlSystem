@@ -47,7 +47,7 @@ socket.on('sprinklerCallback', function(data){
 function unitAction(unit, command){
 	var settimeid = "#" + unit + "-settime";
 	
-	var settime = $(settimeid).val();
+	var settime = parseInt($(settimeid).val());
 	var data = {
 		unit: unit,
 		settime: settime,

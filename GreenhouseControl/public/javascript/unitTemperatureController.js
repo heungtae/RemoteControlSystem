@@ -81,7 +81,7 @@ function add(index){
 	
 	//title
 	data['title'] = $('#title').val();
-	data['priority'] = $('#priority').val();
+	data['priority'] = parseInt($('#priority').val());
 
 	//shutter unit config
 	var unitArray = $('#side-position').attr('value').split('-');
@@ -104,8 +104,8 @@ function add(index){
     	var conf = envConfs[ev];
     	
     	if($('#' + conf.unit + '-' + conf.zone + '-Apply').is(':checked')){	
-	    	data[conf.unit + '-' + conf.zone + '-Target'] = $('#' + conf.unit + '-' + conf.zone + '-Target').val();
-	    	data[conf.unit + '-' + conf.zone + '-Range'] = $('#' + conf.unit + '-' + conf.zone + '-Range').val();
+	    	data[conf.unit + '-' + conf.zone + '-Target'] = parseInt($('#' + conf.unit + '-' + conf.zone + '-Target').val());
+	    	data[conf.unit + '-' + conf.zone + '-Range'] = parseInt($('#' + conf.unit + '-' + conf.zone + '-Range').val());
     	}
     }
 	
