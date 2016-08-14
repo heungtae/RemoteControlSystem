@@ -4,21 +4,20 @@ var ghConfig = require('../../ghConfig'),
 
 exports.get = function(callback){
 	try{
-		store.read(function(err, settimes){
-			log.debug(JSON.stringify(settimes));
-			
-			ghConfig.getSprinklerConfig(function(docs){
-				for (var i = 0; i < docs.length; i++) { 
-					for(var j = 0; j < settimes.length; j++){
-						if( docs[i].unit === settimes[j].unit){
-							docs[i].settime = settimes[j].settime;
+		store.read(function(err, docs){
+			ghConfig.getSprinklerConfig(function(confs){
+				for (var i = 0; i < confs.length; i++) { 
+					for(var j = 0; j < docs.length; j++){
+						if( confs[i].unit === docs[j].unit){
+							confs[i].settime = docs[j].settime;
 							break;
 						} 
 					}
 				}
 				
-				log.debug('found sprinkler documents: count= ' + docs.length);
-				callback(err, docs);						
+				log.trace('[get] found sprinkler documents: count= ' + confs.length);
+				
+				callback(err, confs);						
 			});
 		});
 	}catch(e){
@@ -30,10 +29,17 @@ exports.get = function(callback){
 
 exports.update = function(data, callback){
 	try{
-		store.addAndUpdate(data.unit, data.settime);
+		store.update(data.unit, data.settime);
 		callback('document(s) updated');
 	}catch(e){
 		log.error(e);
 		callback(e, null);
 	}
+};
+
+
+module.exports = {
+		update : update,
+		get : read,
+		read  : read
 };

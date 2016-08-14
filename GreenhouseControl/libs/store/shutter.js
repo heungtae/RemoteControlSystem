@@ -1,61 +1,61 @@
-const fs = require('fs');
-var log = require('log4js').getLogger('libs.store.shutter');
-log.setLevel(config.loglevel);
+var file = require('file'),
+	log = require('log4js').getLogger('libs.store.shutter');
 
 var shutterFile = './datas/shutter.dat';
+var docs;
 
-exports.addAndUpdate = function(side, position, step, runtime){
+var update = function(side, position, step, runtime){
 	try{
-		var data = fs.readFileSync(shutterFile);
 		
-		if(data.length == 0)
-			data = '[ ]';
-		log.trace('[addAndUpdate] read data, ' + data);
-		
-		var docs = JSON.parse(data);
-		
-		var count = 0;
-		for(var key in docs) {
-			if( docs[key].side === side && docs[key].position === position ){
-				docs[key].date = new Date();
-				docs[key].step = step;
-				docs[key].runtime = runtime;
-				count++;
-			}
-		}	
-		
-		if(count === 0){
-			var obj = {date: new Date(), side: side, position: position, step: step, runtime: runtime};
+		read(function(err, datas){
+			step = step === undefined ? 0 : step;
+			runtime = runtime === undefined ? 0 : runtime;
 			
-			docs.push(obj);
-		}
+			var count = 0;
+			for(var key in datas) {
+				if( datas[key].side === side && datas[key].position === position ){
+					datas[key].date = new Date();
+					datas[key].step = step;
+					datas[key].runtime = runtime;
+					count++;
+					break;
+				}
+			}	
+			
+			if(count === 0){
+				var obj = {date: new Date(), side: side, position: position, step: step, runtime: runtime};
+				
+				datas.push(obj);
+			}
+			
+			docs = datas;
+			
+			file.updateSync(shutterFile, datas);
+		});
 		
-		var docsJSON = JSON.stringify(docs, null, 4);
 		
-		log.trace('[add] write string, ' + docsJSON);
-		
-		fs.writeFileSync(shutterFile, docsJSON);
 	}catch(e){
 		log.error(e);
 	}
 };
 
-exports.read = function(callback){
+//read synchronous
+var read = function(callback){
 	try{
-		fs.readFile(shutterFile, function(err, data){
-			if(err != undefined && err != null){
-				log.error(err);
-			}
+		if(docs != undefined)
+			callback(null, docs);
 		
-			if(data.length == 0)
-				data = '[ ]';
-			log.trace('[read] read data, ' + data);
-			
-			var docs = JSON.parse(data);
-			
-			callback(null, docs);			
+		file.readSync(shutterFile, function(err, readDocs){
+			//메모리상의 데이터를 업데이트 한다.
+			docs = readDocs;
+			callback(err, docs);
 		});
 	}catch(e){
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		read : read
 };

@@ -2,17 +2,18 @@ var ghConfig = require('../../ghConfig'),
 	store = require('../store/scheduleSprinkler'),
 	log = require('log4js').getLogger('libs.db.scheduleSprinkler');
 
-exports.get = function(callback){
+var get = function(callback){
 	try{
 		store.read(function(err, docs){
-			log.debug('found schedule sprinkler: length= ' + docs.length);
+			log.trace('[get] found schedule sprinkler: length= ' + docs.length);
 			
-			ghConfig.getSprinklerConfig(function(conf){
-				log.debug('found sprinkler config: length= ' + conf.length);
+			ghConfig.getSprinklerConfig(function(confs){
+				log.trace('[get] found sprinkler config: length= ' + confs.length);
 
-				ghConfig.getEnvironmentConfig('sprinkler', function(envConf){
-					log.debug('found environments config: length= ' + envConf.length);
-					callback(err, docs, conf, envConf);											
+				ghConfig.getEnvironmentConfig('sprinkler', function(envConfs){
+					log.trace('[get] found environments config: length= ' + envConfs.length);
+					
+					callback(err, docs, confs, envConfs);											
 				});
 								
 			});
@@ -25,7 +26,7 @@ exports.get = function(callback){
 };
 
 
-exports.update = function(data, callback){
+var update = function(data, callback){
 	try{
 		store.update(data);
 		callback('document(s) updated');
@@ -33,4 +34,10 @@ exports.update = function(data, callback){
 		log.error(e);
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		get : read,
+		read  : read
 };

@@ -1,63 +1,56 @@
-const fs = require('fs');
-var log = require('log4js').getLogger('libs.store.sprinkler');
+var file = require('file'),
+	log = require('log4js').getLogger('libs.store.sprinkler');
 
 var sprinklerFile = './datas/sprinkler.dat';
+var docs;
 
-exports.addAndUpdate = function(unit, settime){
+var update = function(unit, settime){
 	try{
-		var data = fs.readFileSync(sprinklerFile);
-		if(data.length == 0)
-			data = '[ ]';
 		
-		log.trace('[addAndUpdate] read data, ' + data);
-		
-		var docs = JSON.parse(data);
-		unit = unit.trim();
-		
-		var count = 0;
-		for(var key in docs) {
-			if( docs[key].unit === unit ){
-				docs[key].date = new Date();
-				docs[key].settime = settime;
-				count++;
-			}
-		}	
-		
-		if(count === 0){
-			var obj = {date: new Date(), unit: unit, settime: settime};
+		read(function(err, datas){
+			settime = settime === undefined ? 0 : settime;
 			
-			docs.push(obj);
-		}
+			var count = 0;
+			for(var key in datas) {
+				if( datas[key].unit === unit ){
+					datas[key].date = new Date();
+					datas[key].settime = settime;
+					count++;
+					break;
+				}
+			}	
+			
+			if(count === 0)	
+				datas.push({date: new Date(), unit: unit, settime: settime});
+			
+			docs = datas;
+			
+			file.updateSync(shutterFile, datas);
+		});
 		
-		var docsJSON = JSON.stringify(docs, null, 4);
 		
-		log.trace('[add] write string, ' + docsJSON);
-		
-		fs.writeFileSync(sprinklerFile, docsJSON);
 	}catch(e){
 		log.error(e);
 	}
 };
 
-exports.read = function(callback){
+//read synchronous
+var read = function(callback){
 	try{
-		fs.readFile(sprinklerFile, function(err, data){
-			if(err != undefined && err != null){
-				log.error(err);
-			}
-			
-			if(data.length == 0)
-				data = '[ ]';
-			
-			log.trace('[read] read data, ' + data);
-			
-			var docs = JSON.parse(data);
-			
-			log.trace(JSON.stringify(docs));
+		if(docs != undefined)
 			callback(null, docs);
+		
+		file.readSync(sprinklerFile, function(err, readDocs){
+			//메모리상의 데이터를 업데이트 한다.
+			docs = readDocs;
+			callback(err, docs);
 		});
 	}catch(e){
-		log.error(e);
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		read : read
 };

@@ -2,16 +2,15 @@ var ghConfig = require('../../ghConfig'),
 	store = require('../store/notification'),
 	log = require('log4js').getLogger('libs.db.notification');
 
-exports.get = function(callback){
+var read = function(callback){
 	try{
 		store.read(function(err, docs){
-			log.debug('found notification: length= ' + docs.length);
-			ghConfig.getEnvironmentConfig(null, function(envConf){
-				if(envConf == null)
-					log.debug('found environment config: null');
-				else
-					log.debug('found environment config: length= ' + envConf.length);
-				callback(err, docs, envConf);											
+			log.trace('[get] found notification: length= ' + docs.length);
+			
+			ghConfig.getEnvironmentConfig(null, function(envConfs){
+				log.trace('[get] found environment configs: length= ' + envConfs.length);
+				
+				callback(err, docs, envConfs);											
 			});
 			
 		});
@@ -22,7 +21,7 @@ exports.get = function(callback){
 };
 
 
-exports.update = function(docs, callback){
+var update = function(docs, callback){
 	try{
 		store.update(docs);
 		
@@ -31,4 +30,10 @@ exports.update = function(docs, callback){
 		log.error(e);
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		get : read,
+		read  : read
 };

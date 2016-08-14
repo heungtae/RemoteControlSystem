@@ -5,17 +5,17 @@ var ghConfig = require('../../ghConfig'),
 exports.get = function(callback){
 	try{
 		store.read(function(err, docs){
-			log.debug('found temperature Control Docs length= ' + docs.length);
+			log.trace('[get] found temperature Control Docs length= ' + docs.length);
 			
-			ghConfig.getShutterConfig(function(conf){
-				log.debug('found shutter config length= ' + conf.length);
+			ghConfig.getShutterConfig(function(confs){
+				log.trace('[get] found shutter config length= ' + confs.length);
 
-				ghConfig.getEnvironmentConfig('temperature', function(envConf){
-					if(envConf == null)
-						log.debug('found environment config: null');
+				ghConfig.getEnvironmentConfig('temperature', function(envConfs){
+					if(envConfs == null)
+						log.debug('[get] found environment config: null');
 					else
-						log.debug('found environment config: length= ' + envConf.length);
-					callback(err, docs, conf, envConf);											
+						log.trace('[get] found environment config: length= ' + envConfs.length);
+					callback(err, docs, confs, envConfs);											
 				});
 			});
 			
@@ -36,4 +36,10 @@ exports.update = function(docs, callback){
 		log.error(e);
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		get : read,
+		read  : read
 };

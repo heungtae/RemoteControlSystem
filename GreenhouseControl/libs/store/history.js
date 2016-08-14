@@ -1,62 +1,53 @@
-const fs = require('fs');
-var log = require('log4js').getLogger('libs.store.historyFile');
+var fs = require('fs'),
+	log = require('log4js').getLogger('libs.store.historyFile');
 
 var historyFile = './datas/history.dat';
+var docs;
 
-exports.add = function(val, remainDay){
+//sync write
+var update = function(val, remainDay){
 	try{
 		
-		read(function(err, docs){
-			var newDocs =[];
+		read(function(err, datas){
+			var updateDocs =[];
 			
-			var count = 0;	
-			for(var key in docs) {
-				var dateVal = new Date(docs[key].date);
+			//가장 최근 데이터를 가장 앞에 넣는다.
+			updateDocs.push({date: new Date(), history : val});
+			
+			for(var key in datas) {
+				var dateVal = new Date(datas[key].date);
 				
 				if( dateVal.getTime() > remainDay.getTime() ){
-					newDocs[count++] = docs[key];
+					updateDocs.push(datas[key]);
 				}
 			}	
 			
-			var obj = {date: new Date(), history : val};
-			newDocs.push(obj);
+			docs = updateDocs;
 			
-			var docsJSON = JSON.stringify(newDocs, null, 4);
-			
-			log.trace('[add] write string, ' + docsJSON);
-			
-			fs.writeFileSync(historyFile, docsJSON);
+			file.update(historyFile, docs);
 		})
 	}catch(e){
 		log.error(e);
 	}
 }
 
-
-exports.read = function(callback){
+//async read
+var read = function(callback){
 	try{
-		fs.readFile(historyFile,  function(err, data) {
-			if(err != undefined && err != null){
-				log.error(err);
-			}
-			log.trace('[read] read data, ' + data);
-			
-			if(data.length == undefined || data.length == 0)
-				data = '[ ]';
-			
-			var docs = JSON.parse(data);
-			
-			var newDocs =[];
-			var len = docs.length;
-			
-			for(i = len -1; i >= 0; i--){
-				newDocs.push(docs[i]);
-			}
-			
-			callback(null, newDocs);
-			
+		if(docs != undefined)
+			callback(null, docs);
+		
+		file.read(historyFile, function(err, readDocs){
+			//메모리상의 데이터를 업데이트 한다.
+			docs = readDocs;
+			callback(err, docs);
 		});
 	}catch(e){
 		callback(e, null);
 	}
 }
+
+module.exports = {
+		update : update,
+		read : read
+};

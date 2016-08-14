@@ -1,42 +1,35 @@
-const fs = require('fs');
-var log = require('log4js').getLogger('libs.store.emergencyControl');
+var file = require('file'),
+	log = require('log4js').getLogger('libs.store.emergencyControl');
 
 var emergencyControlFile = './datas/emergencyControl.dat';
+var docs;
 
+//sync write
 //delete는 id를 제외한 모든 데이터를 삭제하는 것으로 진행한다.
-exports.update = function(docs){
-	try{
-		log.debug('update: ' + emergencyControlFile);
-		var docsJSON = JSON.stringify(docs, null, 4);
-		
-		log.trace('[update] write string, ' + docsJSON);
-		
-		fs.writeFileSync(emergencyControlFile, docsJSON);
-		
-	}catch(e){
-		log.error(e);
-	}
+var update = function(updateDocs){
+	//메모리상의 데이터를 업데이트 한다.
+	docs = updateDocs;
+	file.updateSync(emergencyControlFile, docs);
 };
 
-exports.read = function(callback){
+//sync read
+var read = function(callback){
 	try{
-		log.debug('read: ' + emergencyControlFile);
-		fs.readFile(emergencyControlFile, function(err, data){
-			if(err != undefined && err != null){
-				log.error(err);
-			}
-			
-			if(data == undefined || data.length == 0)
-				data = '[ ]';
-			
-			log.debug('[read] read data, ' + data);
-			
-			var docs = JSON.parse(data);
-			
-			log.debug(JSON.stringify(docs));
+		if(docs != undefined)
 			callback(null, docs);
+		
+		file.readSync(emergencyControlFile, function(err, readDocs){
+			//메모리상의 데이터를 업데이트 한다.
+			docs = readDocs;
+			callback(err, docs);
 		});
+		
 	}catch(e){
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		read : read
 };

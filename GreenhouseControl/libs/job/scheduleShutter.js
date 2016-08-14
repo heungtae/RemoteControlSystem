@@ -125,7 +125,7 @@ var job = new CronJob('*/1 * * * *', function() {
 								
 								shutter.updateJob(data, function(){
 									log.debug('[job] ' + doc.title +'(' + doc.id + ') starting shutter: ' + JSON.stringify(data));	
-									send.message(doc.title + '으로 예약된 창 제어를 시작했습니다. \n ' + doc.alias + '를 ' + stepDesc);
+									send.message(doc.title + '으로 예약된 창 제어를 시작했습니다. \n '+ doc.alias.trim() + '를 ' + stepDesc + ' \n' + doc.envDesc);
 									jobCompletedList.push(doc.id);
 								});
 							});
@@ -369,16 +369,15 @@ var checkPriority = function(newDoc, callback){
 var getStep = function(doc, callback){
 	
 	try{
-		var step = parseInt(doc.step.trim());
 		
-		if(step > doc.conf.stepNum){
-			step = doc.conf.stepNum;
+		if(doc.step > doc.conf.stepNum){
+			doc.step = doc.conf.stepNum;
 		}
 	
-		var stepDesc = (step == 0 ? '최대로 닫습니다.' : step == doc.conf.stepNum ? '최대로 열겠습니다.' : step + ' 단계로 이동합니다.');
+		var stepDesc = (doc.step == 0 ? '최대로 닫습니다.' : doc.step == doc.conf.stepNum ? '최대로 열겠습니다.' : doc.step + ' 단계로 이동합니다.');
 		
 		log.debug('[getStep] ' + doc.title +'(' + doc.id + ') step :' + stepDesc);
-		callback(step, stepDesc);
+		callback(doc.step, stepDesc);
 		
 	}catch(e){
 		log.error(e);

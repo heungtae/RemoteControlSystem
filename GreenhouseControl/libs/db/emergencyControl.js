@@ -2,20 +2,20 @@ var ghConfig = require('../../ghConfig'),
 	store = require('../store/emergencyControl'),
 	log = require('log4js').getLogger('libs.db.emergencyControl');
 
-exports.get = function(callback){
+var isReadStore = false;
+
+var get = function(callback){
 	try{
 		store.read(function(err, docs){
-			log.debug('found emergency Control Docs length= ' + docs.length);
+			log.trace('[get] found emergency Control Docs length= ' + docs.length);
 			
-			ghConfig.getShutterConfig(function(conf){
-				log.debug('found shutter config length= ' + conf.length);
-
-				ghConfig.getEnvironmentConfig(null, function(envConf){
-					if(envConf == null)
-						log.debug('found environment config: null');
-					else
-						log.debug('found environment config: length= ' + envConf.length);
-					callback(err, docs, conf, envConf);											
+			ghConfig.getShutterConfig(function(confs){
+				log.trace('[get] found shutter config length= ' + confs.length);
+				
+				ghConfig.getEnvironmentConfig(null, function(envConfs){
+					log.trace('[get] found environment config length= ' + envConfs.length);
+					
+					callback(err, docs, confs, envConfs);											
 				});
 			});
 			
@@ -27,13 +27,18 @@ exports.get = function(callback){
 };
 
 
-exports.update = function(docs, callback){
+var update = function(docs, callback){
 	try{
 		store.update(docs);
-		
 		callback('document(s) updated');
 	}catch(e){
 		log.error(e);
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		get : read,
+		read  : read
 };

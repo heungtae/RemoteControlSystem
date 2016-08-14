@@ -4,14 +4,14 @@
 
 var CronJob = require('cron').CronJob,
 	ghConfig = require('../../ghConfig'),
-	store = require('../db/environment'),
+	db = require('../db/environment'),
 	environment = require('../environment'),
 	log = require('log4js').getLogger('libs.job.scheduleEnvironment');
 
 ghConfig.getEnvironmentConfig(null, function(confs){
 	confs.forEach(function(conf, index, array){
 		log.debug('[initialize] start : ' + JSON.stringify(conf));
-		store.get(conf, function(err, result){
+		db.get(conf, function(err, result){
 			conf.docs = result;
 			conf.value = result[result.length - 1].value;
 			log.debug('[initialize] get lastest value : ' + JSON.stringify(result[result.length - 1]));
@@ -36,7 +36,7 @@ var job = new CronJob('*/10 * * * *', function() {
 					if(result.value != undefined){
 						var remainDay = new Date();
 						remainDay.setDate(remainDay.getDate() - config.app.environment.remainday);
-						store.add(result, remainDay);
+						db.update(result, remainDay);
 						log.debug('[Job] store added conf=' + JSON.stringify(conf));
 					}
 				});

@@ -8,11 +8,11 @@ var ghConfig = require('../../ghConfig'),
 	log = require('log4js').getLogger('libs.db.environment'),
 	send = require('../telegram/send');
 
-exports.get = function(conf, callback){
+var get = function(conf, callback){
 	try{
 		store.read(conf, function(err, docs){
 			if(docs != null)
-				log.debug("[get] Environment Get: length = " + docs.length);
+				log.trace("[get] Environment Get: length = " + docs.length);
 			
 			callback(err, docs);
 		});
@@ -22,22 +22,24 @@ exports.get = function(conf, callback){
 	}
 };
 
-exports.value = function(conf, callback){
+var value = function(conf, callback){
 	try{
-		log.debug('read environment config : ' + JSON.stringify(conf));
+		log.trace('[value] read environment config : ' + JSON.stringify(conf));
 		
 		ghConfig.getEnvironmentConfig(null, function(confs){
-			log.debug('get environment configs : ' + JSON.stringify(confs));
+			log.trace('[value] get environment configs : ' + JSON.stringify(confs));
 			
-			var doc;
+			var conf;
 			for(idx in confs){
-				doc = confs[idx];
-				if(doc.unit == conf.unit && doc.zone == conf.zone)
+				conf = confs[idx];
+				if(conf.unit == conf.unit && conf.zone == conf.zone)
 					break;
 			};
 			
-			log.debug('found env doc : ' + JSON.stringify(doc));
-			callback(null, doc);
+			log.trace('[value] found environment conf : ' + JSON.stringify(conf));
+			log.debug('[value] value= ' + conf.value);
+			
+			callback(null, conf);
 			
 		});
 	}catch(e){
@@ -46,11 +48,17 @@ exports.value = function(conf, callback){
 	}
 };
 
-exports.add = function(conf, remainDay){
+var update = function(conf, remainDay){
 	try{
-		store.add(conf, remainDay);
+		store.update(conf, remainDay);
 	}catch(e){
 		log.error(e);
 	}
 }
 
+module.exports = {
+		update : update,
+		get : read,
+		read  : read,
+		value : value
+};

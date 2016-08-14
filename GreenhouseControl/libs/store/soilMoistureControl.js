@@ -1,42 +1,31 @@
-const fs = require('fs');
-var log = require('log4js').getLogger('libs.store.soilMoistureControl');
+var file = require('file'),
+	log = require('log4js').getLogger('libs.store.soilMoistureControl');
 
 var soilMoistureControlFile = './datas/soilMoistureControl.dat';
+var docs;
 
-//delete는 id를 제외한 모든 데이터를 삭제하는 것으로 진행한다.
-exports.update = function(docs){
-	try{
-		log.debug('update: ' + soilMoistureControlFile);
-		var docsJSON = JSON.stringify(docs, null, 4);
-		
-		log.trace('[update] write string, ' + docsJSON);
-		
-		fs.writeFileSync(soilMoistureControlFile, docsJSON);
-		
-	}catch(e){
-		log.error(e);
-	}
+var update = function(updateDocs){
+	//메모리상의 데이터를 업데이트 한다.
+	docs = updateDocs;
+	file(soilMoistureControlFile, docs);
 };
 
-exports.read = function(callback){
+var read = function(callback){
 	try{
-		log.debug('read: ' + soilMoistureControlFile);
-		var file = fs.readFile(soilMoistureControlFile, function(err, data){
-			if(err != undefined && err != null){
-				log.error(err);
-			}
-			
-			if(data == undefined || data.length == 0)
-				data = '[ ]';
-			
-			log.debug('[read] read data, ' + data);
-			
-			var docs = JSON.parse(data);
-			
-			log.debug(JSON.stringify(docs));
+		if(docs != undefined)
 			callback(null, docs);
+		
+		file.readSync(soilMoistureControlFile, function(err, readDocs){
+			//메모리상의 데이터를 업데이트 한다.
+			docs = readDocs;
+			callback(err, docs);
 		});
 	}catch(e){
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		read : read
 };

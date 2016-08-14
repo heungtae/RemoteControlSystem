@@ -1,6 +1,6 @@
 var sleep = require('../libs/sleep'),
 	ghConfig = require('../ghConfig'),
-	shutterData = require('../libs/db/shutter'),
+	db = require('../libs/db/shutter'),
 	history = require('../libs/db/history'),
 	log = require('log4js').getLogger('routes.shutter');
 	send = require('../libs/telegram/send');
@@ -42,7 +42,7 @@ module.exports = function(io){
 
 // shutters docs을 반환 한다.
 module.exports.data = function(req, res){
-	shutterData.get(function(err, docs){
+	db.get(function(err, docs){
 		res.render('shutter', {
 			title : config.app.title.shutter,
 			shutters: docs
@@ -51,30 +51,31 @@ module.exports.data = function(req, res){
 };
 
 var update = module.exports.updateJob = function(data, callback){
-	log.debug("Update : " + JSON.stringify(data));
+	log.debug("[Update] " + JSON.stringify(data));
 	
 	addExecutingTask(data, function(play, data){
-    	log.debug('device play = ' + play + ' ' + JSON.stringify(data));
+    	log.debug('[update] device play = ' + play + ' ' + JSON.stringify(data));
     	
     	if(play){
     		//db의 step과 요청하는 step의 차이를 이용해서 open인지, close인지를 파악하고, time을 계산 한다.
     		if( intervalId === undefined)
     			intervalId = setInterval(executeTasks, 1000);
     		
-    		log.debug('setInterval : ' + intervalId);
-    		log.debug(data);
+    		log.debug('[update] setInterval : ' + JSON.stringify(intervalId) + '\n' + JSON.stringify(data));
+    		
+    		log.debug('[update] ' + data.conf.alias + ' ' + config.app.shutter.defaultCommand + ': pin= ' + data.stoppin);
     		
     		device.exec(data, config.app.shutter.defaultCommand, data.stoppin, function(err, key, value){
-    			log.debug(data.alias + ' ' + config.app.shutter.defaultCommand + ': pin= ' + data.stoppin + ', value= ' + value);
+    			log.debug('[update] ' + data.config.alias + ' ' + config.app.shutter.defaultCommand + ': pin= ' + data.stoppin + ', value= ' + value);
     			
     			if(data.command != config.app.shutter.defaultCommand && value != -1 ){    		
-    				log.debug("sleeping......");
+    				log.debug('[update] ' + "sleeping......");
     				sleep.sleep(config.app.shutter.defaultSleep);
     			}
     			
     			device.exec(data, 'on', data.playpin, function(err, key, value){
-    				log.debug(data.alias + ' on : pin= ' + data.playpin + ', value= ' + value);
-    				send.message(data.alias + '가 ' + data.stepDesc + '로 이동을 시작했습니다. \n' + data.settime + '초 동안 수행 됩니다.\n 시스템 제어 결과값 :' + (value == -1 ? 'fail' : 'success'));
+    				log.debug('[update] ' + data.conf.alias + ' on : pin= ' + data.playpin + ', value= ' + value);
+    				send.message(data.conf.alias + '가 ' + data.stepDesc + '로 이동을 시작했습니다. \n' + (data.settime / 60) + '분 동안 수행 됩니다.\n 시스템 제어 결과값 :' + (value == -1 ? 'fail' : 'success'));
 					
     				if(data.command != config.app.shutter.defaultCommand){
     					shutterData.update(data, function(err, result){
@@ -111,7 +112,7 @@ var addExecutingTask = function(data, callback){
     	});
     }else if(data.command == ghConfig.Commands.ON && executingTask === undefined || executingTask.step != step){
     	actionData(data, function(play, data){
-    		log.debug(play + ': ' + JSON.stringify(data));
+    		log.debug('[addExecutingTask] ' + play + ': ' + JSON.stringify(data));
     
     		if(play){
     			executingTasks[location] = data;
@@ -121,7 +122,7 @@ var addExecutingTask = function(data, callback){
     		}
     	})
     }else if(data.command == ghConfig.Commands.AUTO && executingTask === undefined){
-    		log.debug(JSON.stringify(data));
+    		log.debug('[addExecutingTask] ' + JSON.stringify(data));
     		executingTasks[location] = data;
     		callback(true, data);    			
     }else{
@@ -137,7 +138,7 @@ var actionData = function(data, callback){
 		getConfig(data, function(shutterConf){
 			conf = shutterConf;
 			
-			shutterData.getShutter(data, function(err, doc){
+			db.getShutter(data, function(err, doc){
 				var stepLength = conf.length / conf.stepNum;
 				data.doc = doc;
 				
@@ -161,10 +162,10 @@ var actionData = function(data, callback){
 					callback(true, data);
 				}else{
 					
-					var stepTime = Math.round(( stepLength * data.step ) * (conf.movelength * conf.motorrpm) * 60);
+					var stepTime = Math.round(( stepLength * data.step ) / (conf.movelength * conf.motorrpm) * 60);
 					var settime = Math.abs(stepTime - doc.runtime);
-					log.debug(doc);
-					log.debug('stepTime= ' + stepTime + ', settime=' + settime);
+					log.debug('[actionData] ' + JSON.stringify(doc));
+					log.debug('step=' + data.step + ' stepTime=' + stepTime + ' settime=' + settime);
 					data.stepDesc = data.step + ' 단계';
 					
 					if(stepTime > doc.runtime){
@@ -249,7 +250,7 @@ var executeTasks = function(){
 						else
 							data.doc.runtime -= 1;
 						
-						shutterData.update(data.doc, function(err, result){});
+						
 						
 					}else{
 						command = config.app.shutter.defaultCommand;
@@ -262,7 +263,13 @@ var executeTasks = function(){
 							var completedConfig = executingTasks[key];
 							delete executingTasks[key];
 							
+							if(completedConfig.step == 0)
+								completedConfig.doc.runtime = 0;
+							
+							db.update(data.doc, function(err, result){});
+							
 							log.debug(executingTasks);							
+							
 							send.message('창 '+ key + '가 ' + completedConfig.step + '단계로 이동했습니다.\n System 제어 결과값 :' + (value == -1 ? 'fail' : 'success'));
 							
 							if(socket != null)
@@ -275,7 +282,9 @@ var executeTasks = function(){
 				
 				}else{
 					delete executingTasks[location];
-					console.log(executingTasks);
+					db.update(data.doc, function(err, result){});
+					
+					log.debug(executingTasks);
 					
 					if(socket != null)
 						socket.emit('shutterCallback', {location: location, command:config.app.shutter.defaultCommand, settime:100, exectime: 0});

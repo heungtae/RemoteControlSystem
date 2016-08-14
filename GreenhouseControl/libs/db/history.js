@@ -1,14 +1,13 @@
 var log = require('log4js').getLogger('libs.db.history'),
 	store = require('../store/history');
 
-exports.insert = function(name, data){
+var update = function(name, data){
 	try{
 
-		var historyData = name + ' : ' + JSON.stringify(data).replace(/,/gi,", ");
+		var historyData = '[' +  name + '] ' + JSON.stringify(data).replace(/,/gi,", ");
 		
-		log.debug(historyData);
+		log.trace(historyData);
 		
-
 		var remainDate = new Date();
 		remainDate.setDate(remainDate.getDate() - config.app.history.remainday);
 
@@ -19,13 +18,13 @@ exports.insert = function(name, data){
 	}
 };
 
-exports.select = function(callback){
+var read = function(callback){
 	try{
 		store.read(function(err, docs) {
 			if (err) {
 				log.error(err);
 			}else {
-					log.debug('found history documents: count= ' + docs !== null ? docs.length : 0);
+				log.debug('found history documents: count= ' + docs !== null ? docs.length : 0);
 			}
 			
 			callback(err, docs);
@@ -35,4 +34,10 @@ exports.select = function(callback){
 		log.error(e);
 		callback(e, null);
 	}
+};
+
+module.exports = {
+		update : update,
+		select : read,
+		read  : read
 };
