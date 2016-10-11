@@ -1,6 +1,12 @@
 [
     {
-        "date": "2016-08-10T13:20:00.454Z",
+        "date": "2016-09-23T11:10:00.208Z",
+        "unit": "Rain",
+        "zone": "Inside",
+        "value": 2
+    },
+    {
+        "date": "2016-09-23T11:10:00.207Z",
         "unit": "Rain",
         "zone": "Inside",
         "value": 2

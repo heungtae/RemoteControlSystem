@@ -2,7 +2,7 @@ var ghConfig = require('../../ghConfig'),
 	store = require('../store/soilMoistureControl'),
 	log = require('log4js').getLogger('libs.db.soilMoistureControl');
 
-exports.get = function(callback){
+var get = function(callback){
 	try{
 		store.read(function(err, docs){
 			log.trace('[get] found soil moisture control docs length= ' + docs.length);
@@ -25,7 +25,7 @@ exports.get = function(callback){
 };
 
 
-exports.update = function(data, callback){
+var update = function(data, callback){
 	try{
 		store.update(data);
 		callback('document(s) updated');
@@ -37,6 +37,6 @@ exports.update = function(data, callback){
 
 module.exports = {
 		update : update,
-		get : read,
-		read  : read
+		get : get,
+		read  : get
 };

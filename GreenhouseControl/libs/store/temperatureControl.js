@@ -1,10 +1,4 @@
-const fs = require('fs');
-var log = require('log4js').getLogger('libs.store.temperatureControl');
-
-var temperatureControlFile = './datas/temperatureControl.dat';
-
-
-var file = require('file'),
+var file = require('./file'),
 log = require('log4js').getLogger('libs.store.temperatureControl');
 
 var temperatureControlFile = './datas/temperatureControl.dat';
@@ -18,7 +12,7 @@ var update = function(updateDocs){
 
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
 		file.readSync(temperatureControlFile, function(err, readDocs){

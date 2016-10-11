@@ -1,4 +1,4 @@
-var file = require('file'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.soilMoistureControl');
 
 var soilMoistureControlFile = './datas/soilMoistureControl.dat';
@@ -12,7 +12,7 @@ var update = function(updateDocs){
 
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
 		file.readSync(soilMoistureControlFile, function(err, readDocs){

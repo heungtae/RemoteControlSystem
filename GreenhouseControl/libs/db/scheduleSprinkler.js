@@ -38,6 +38,6 @@ var update = function(data, callback){
 
 module.exports = {
 		update : update,
-		get : read,
-		read  : read
+		get : get,
+		read  : get
 };

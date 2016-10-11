@@ -106,11 +106,12 @@ var addExecutingTask = function(data, callback){
     	getConfig(data, function(shutterConf, data){
     		data.playpin = shutterConf.closepinnumber;
     		data.stoppin = shutterConf.openpinnumber;
-			
+    		
     		executingTasks[location] = data;
+    		log.debug('[addExecutingTask] ' + JSON.stringify(data));
     		callback(true, data);
     	});
-    }else if(data.command == ghConfig.Commands.ON && executingTask === undefined || executingTask.step != step){
+    }else if(data.command == ghConfig.Commands.ON && (executingTask === undefined || executingTask.step != step)){
     	actionData(data, function(play, data){
     		log.debug('[addExecutingTask] ' + play + ': ' + JSON.stringify(data));
     
@@ -140,7 +141,7 @@ var actionData = function(data, callback){
 			
 			db.getShutter(data, function(err, doc){
 				var stepLength = conf.length / conf.stepNum;
-				data.doc = doc;
+				//data.doc = doc;
 				
 				if(data.step == 0){
 					data.settime = Math.round(conf.length/(conf.movelength * conf.motorrpm) * 60 + 30);
@@ -233,7 +234,7 @@ var executeTasks = function(){
 				var command = data.command;
 				
 				log.trace(location + ': ' + command + ', ' + data.settime + ', ' + data.exectime);
-				
+				log.trace(data);
 				if(command != config.app.shutter.defaultCommand){
 					var settime = data.settime;
 					var exectime = data.exectime;
@@ -246,9 +247,9 @@ var executeTasks = function(){
 							socket.emit('shutterCallback', {location: location, command:command, settime:settime, exectime: exectime});
 						
 						if(data.direction == 'open')
-							data.doc.runtime += 1;
+							data.conf.runtime += 1;
 						else
-							data.doc.runtime -= 1;
+							data.conf.runtime -= 1;
 						
 						
 						
@@ -264,9 +265,9 @@ var executeTasks = function(){
 							delete executingTasks[key];
 							
 							if(completedConfig.step == 0)
-								completedConfig.doc.runtime = 0;
+								completedConfig.conf.runtime = 0;
 							
-							db.update(data.doc, function(err, result){});
+							db.update(data.conf, function(err, result){});
 							
 							log.debug(executingTasks);							
 							
@@ -282,7 +283,7 @@ var executeTasks = function(){
 				
 				}else{
 					delete executingTasks[location];
-					db.update(data.doc, function(err, result){});
+					db.update(data.conf, function(err, result){});
 					
 					log.debug(executingTasks);
 					

@@ -2,7 +2,7 @@ var ghConfig = require('../../ghConfig'),
 	store = require('../store/shutter'),
 	log = require('log4js').getLogger('libs.db.shutter');
 
-exports.get = function(callback){
+var get = function(callback){
 	try{
 		store.read(function(err, steps){
 			ghConfig.getShutterConfig(function(confs){
@@ -27,7 +27,7 @@ exports.get = function(callback){
 	}
 };
 
-exports.getShutter = function(data, callback){
+var getShutter = function(data, callback){
 	try{
 		this.get(function(err, docs, value){
 			for(var i =0; i < docs.length; i++){
@@ -46,7 +46,7 @@ exports.getShutter = function(data, callback){
 	}
 };
 
-exports.update = function(data, callback){
+var update = function(data, callback){
 	try{
 		store.update(data.side, data.position, data.step, data.runtime);
 		
@@ -59,8 +59,8 @@ exports.update = function(data, callback){
 
 module.exports = {
 		update : update,
-		get : read,
-		read  : read,
+		get : get,
+		read  : get,
 		getShutter : getShutter
 };
 

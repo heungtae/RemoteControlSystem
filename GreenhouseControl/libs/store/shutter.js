@@ -1,4 +1,4 @@
-var file = require('file'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.shutter');
 
 var shutterFile = './datas/shutter.dat';
@@ -42,10 +42,13 @@ var update = function(side, position, step, runtime){
 //read synchronous
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
+		
+		
 		file.readSync(shutterFile, function(err, readDocs){
+			log.info(readDocs);
 			//메모리상의 데이터를 업데이트 한다.
 			docs = readDocs;
 			callback(err, docs);

@@ -1,4 +1,4 @@
-var file = require('file'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.scheduleShutter');
 
 var scheduleShutterFile = './datas/scheduleShutter.dat';
@@ -13,7 +13,7 @@ var update = function(updateDocs){
 //read synchronous
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
 		file.readSync(scheduleShutterFile, function(err, readDocs){

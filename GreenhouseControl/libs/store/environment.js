@@ -1,4 +1,4 @@
-var file = require('file'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.environment');
 
 var prefix = './datas/environment';
@@ -7,7 +7,7 @@ var docs = {};
 var update = function(conf, remainDay){
 	try{
 		
-		readData(conf, function(err, datas){
+		read(conf, function(err, datas){
 			var envFile = prefix + '-' + conf.unit + '-' + conf.zone + '.dat';
 			var updateDocs =[];
 			
@@ -37,7 +37,7 @@ var read = function(conf, callback){
 	try{	
 		var envFile = prefix + '-' + conf.unit + '-' + conf.zone + '.dat';
 
-		if(docs[envFile] != undefined)
+		if(docs[envFile] != undefined && docs[envFile] != null)
 			callback(null, docs[envFile]);
 		
 		file.readSync(envFile, function(err, readDocs){

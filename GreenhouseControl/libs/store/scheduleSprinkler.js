@@ -1,4 +1,4 @@
-var fs = require('fs'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.scheduleSprinkler');
 
 var scheduleSprinklerFile = './datas/scheduleSprinkler.dat';
@@ -14,7 +14,7 @@ var update = function(updateDocs){
 //read synchronous
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
 		file.readSync(scheduleSprinklerFile, function(err, readDocs){

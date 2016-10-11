@@ -39,5 +39,6 @@ var read = function(callback){
 module.exports = {
 		update : update,
 		select : read,
-		read  : read
+		read  : read,
+		get : read
 };

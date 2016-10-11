@@ -2,7 +2,7 @@ var ghConfig = require('../../ghConfig'),
 	store = require('../store/sprinkler'),
 	log = require('log4js').getLogger('libs.db.sprinkler');
 
-exports.get = function(callback){
+var get = function(callback){
 	try{
 		store.read(function(err, docs){
 			ghConfig.getSprinklerConfig(function(confs){
@@ -27,7 +27,7 @@ exports.get = function(callback){
 };
 
 
-exports.update = function(data, callback){
+var update = function(data, callback){
 	try{
 		store.update(data.unit, data.settime);
 		callback('document(s) updated');
@@ -40,6 +40,6 @@ exports.update = function(data, callback){
 
 module.exports = {
 		update : update,
-		get : read,
-		read  : read
+		get : get,
+		read  : get
 };

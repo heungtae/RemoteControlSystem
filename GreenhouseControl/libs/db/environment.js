@@ -58,7 +58,7 @@ var update = function(conf, remainDay){
 
 module.exports = {
 		update : update,
-		get : read,
-		read  : read,
+		read : get,
+		get : get,
 		value : value
 };

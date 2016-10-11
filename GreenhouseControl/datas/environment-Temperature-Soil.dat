@@ -1,6 +1,12 @@
 [
     {
-        "date": "2016-08-10T13:20:00.450Z",
+        "date": "2016-09-23T11:10:00.201Z",
+        "unit": "Temperature",
+        "zone": "Soil",
+        "value": 2
+    },
+    {
+        "date": "2016-09-23T11:10:00.200Z",
         "unit": "Temperature",
         "zone": "Soil",
         "value": 2

@@ -1,6 +1,12 @@
 [
     {
-        "date": "2016-08-10T13:20:00.446Z",
+        "date": "2016-09-23T11:10:00.194Z",
+        "unit": "Temperature",
+        "zone": "Outside",
+        "value": 2
+    },
+    {
+        "date": "2016-09-23T11:10:00.187Z",
         "unit": "Temperature",
         "zone": "Outside",
         "value": 2

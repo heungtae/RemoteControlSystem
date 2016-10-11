@@ -12,9 +12,11 @@ ghConfig.getEnvironmentConfig(null, function(confs){
 	confs.forEach(function(conf, index, array){
 		log.debug('[initialize] start : ' + JSON.stringify(conf));
 		db.get(conf, function(err, result){
-			conf.docs = result;
-			conf.value = result[result.length - 1].value;
-			log.debug('[initialize] get lastest value : ' + JSON.stringify(result[result.length - 1]));
+			//conf.docs = result;
+			conf.value = result != null ? result[result.length - 1].value : conf.defaultvalue;
+			if(result != null){
+				log.debug('[initialize] get lastest value : ' + JSON.stringify(result[result.length - 1]));
+			}
 			log.debug('[initialize] completed : ' + JSON.stringify(conf));
 		});
 	});

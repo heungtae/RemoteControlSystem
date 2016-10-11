@@ -2,7 +2,7 @@ var ghConfig = require('../../ghConfig'),
 	store = require('../store/temperatureControl'),
 	log = require('log4js').getLogger('libs.db.temperatureControl');
 
-exports.get = function(callback){
+var get = function(callback){
 	try{
 		store.read(function(err, docs){
 			log.trace('[get] found temperature Control Docs length= ' + docs.length);
@@ -27,7 +27,7 @@ exports.get = function(callback){
 };
 
 
-exports.update = function(docs, callback){
+var update = function(docs, callback){
 	try{
 		store.update(docs);
 		
@@ -40,6 +40,6 @@ exports.update = function(docs, callback){
 
 module.exports = {
 		update : update,
-		get : read,
-		read  : read
+		get : get,
+		read  : get
 };

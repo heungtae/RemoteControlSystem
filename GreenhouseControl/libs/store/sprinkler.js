@@ -1,4 +1,4 @@
-var file = require('file'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.sprinkler');
 
 var sprinklerFile = './datas/sprinkler.dat';
@@ -37,7 +37,7 @@ var update = function(unit, settime){
 //read synchronous
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
 		file.readSync(sprinklerFile, function(err, readDocs){

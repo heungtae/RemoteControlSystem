@@ -1,4 +1,4 @@
-var file = require('file'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.emergencyControl');
 
 var emergencyControlFile = './datas/emergencyControl.dat';
@@ -15,7 +15,7 @@ var update = function(updateDocs){
 //sync read
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
 		file.readSync(emergencyControlFile, function(err, readDocs){

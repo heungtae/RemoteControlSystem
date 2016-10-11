@@ -1,4 +1,4 @@
-var fs = require('fs'),
+var file = require('./file'),
 	log = require('log4js').getLogger('libs.store.historyFile');
 
 var historyFile = './datas/history.dat';
@@ -34,7 +34,7 @@ var update = function(val, remainDay){
 //async read
 var read = function(callback){
 	try{
-		if(docs != undefined)
+		if(docs != undefined && docs != null)
 			callback(null, docs);
 		
 		file.read(historyFile, function(err, readDocs){
