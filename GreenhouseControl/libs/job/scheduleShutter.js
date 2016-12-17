@@ -19,7 +19,7 @@ var jobExecuteList = {};
 // 4. 실행 가능한지를 확인 한다.
 // 5. 실행한다.
 
-var job = new CronJob('*/1 * * * *', function() {
+var job = new CronJob('*/10 * * * * *', function() {
 	try{	
 		
 		emergencyControlStore.get(function(err, emgDocs, confs){
@@ -33,6 +33,7 @@ var job = new CronJob('*/1 * * * *', function() {
 						var doc = emgDocs[key];
 						doc.category = 'emergency';
 						doc.funcPriority = 1;
+						log.trace('[job] Emergency Control: ' + JSON.stringify(doc, null, 4));
 						getConfiguration(doc, confs, function(doc){
 							checkTime(doc, function(doc){
 								checkEnvironment(doc, function(doc){
@@ -55,6 +56,7 @@ var job = new CronJob('*/1 * * * *', function() {
 						var doc = schdocs[key];
 						doc.category = 'schedule';
 						doc.funcPriority = 2;
+						log.trace('[job] Schedule Control: ' + JSON.stringify(doc, null, 4));
 						
 						getConfiguration(doc, confs, function(doc){
 							checkTime(doc, function(doc){
@@ -78,6 +80,7 @@ var job = new CronJob('*/1 * * * *', function() {
 						var doc = tempDocs[key];
 						doc.category = 'auto';
 						doc.funcPriority = 3;
+						log.trace('[job] Temperature Control: ' + JSON.stringify(doc, null, 4));
 						
 						getConfiguration(doc, confs, function(doc){
 							checkTempTime(doc, function(doc){
@@ -94,11 +97,11 @@ var job = new CronJob('*/1 * * * *', function() {
 						});							
 					}					
 					
-					log.debug('[job] Execute List : ' + JSON.stringify(jobExecuteList));
+					log.debug('[job] Execute List : ' + JSON.stringify(jobExecuteList, null, 4));
 					
 					for(var key in jobExecuteList){
 						var doc = jobExecuteList[key];
-						log.debug('[job] Execute doc : ' + JSON.stringify(doc));
+						log.debug('[job] Execute doc : ' + JSON.stringify(doc, null, 4));
 						
 						getConfiguration(doc, confs, function(doc){
 							getStep(doc, function(step, stepDesc){
@@ -124,7 +127,7 @@ var job = new CronJob('*/1 * * * *', function() {
 								}
 								
 								shutter.updateJob(data, function(){
-									log.debug('[job] ' + doc.title +'(' + doc.id + ') starting shutter: ' + JSON.stringify(data));	
+									log.debug('[job] ' + doc.title +'(' + doc.id + ') starting shutter: ' + JSON.stringify(data, null, 4));	
 									send.message(doc.title + '으로 예약된 창 제어를 시작했습니다. \n '+ doc.alias.trim() + '를 ' + stepDesc + ' \n' + doc.envDesc);
 									jobCompletedList.push(doc.id);
 								});
@@ -183,7 +186,7 @@ var checkEnvironment = function(doc, callback){
 			
 			if(doc[operKey] != undefined){
 				envCount++;
-				log.trace('[checkEnvironment] (' + doc.id + ') ' + doc.title + ' unitKey=' + unitKey + ' operKey=' + operKey + ' value=' + envConf.value);
+				log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') unitKey=' + unitKey + ' operKey=' + operKey + ' value=' + envConf.value);
 					
 				if(envConf.value != undefined){
 					
@@ -200,7 +203,7 @@ var checkEnvironment = function(doc, callback){
 							}
 						}							
 
-						log.trace('[checkEnvironment] number type environment' + doc.title +'(' + doc.id + ') Result envCount(' + envCount + ') = check(' + check + ') UnitKey: ' + unitKey + ' ' +  envConf.value + ' ' + doc[operKey] + ' ' + doc[unitKey] );
+						log.trace('[checkEnvironment] number type environment : ' + doc.title +'(' + doc.id + ') Result envCount(' + envCount + ') = check(' + check + ') UnitKey: ' + unitKey + ' ' +  envConf.value + ' ' + doc[operKey] + ' ' + doc[unitKey] );
 					}else if(envConf.type == 'boolean'){
 						if(doc[operKey].trim() == 'true'){
 							if(envConf.value){
@@ -214,7 +217,7 @@ var checkEnvironment = function(doc, callback){
 							}
 						}	
 					
-						log.trace('[checkEnvironment] boolean type environment' + doc.title +'(' + doc.id + ') Result envCount(' + envCount + ') = check(' + check + ') UnitKey: ' + unitKey + ' ' +  envConf.value + ' = ' + doc[operKey]);
+						log.trace('[checkEnvironment] boolean type environment: ' + doc.title +'(' + doc.id + ') Result envCount(' + envCount + ') = check(' + check + ') UnitKey: ' + unitKey + ' ' +  envConf.value + ' = ' + doc[operKey]);
 					}
 					
 				}
@@ -323,10 +326,10 @@ var checkPriority = function(newDoc, callback){
 	
 	if(jobExecuteList[unitKey] == undefined){
 		jobExecuteList[unitKey] = newDoc;
-		log.trace('JobExecuteList[' + unitKey + '] == undefined, add List' + JSON.stringify(jobExecuteList) );
+		log.trace('[checkPriority] JobExecuteList[' + unitKey + '] == undefined, added Lists: ' + JSON.stringify(newDoc, null, 4) );
 	}else{
 		var doc = jobExecuteList[unitKey];
-		log.trace('JobExecuteList[' + unitKey + '] == ' + JSON.stringify(doc));
+		log.trace('[checkPriority] JobExecuteList[' + unitKey + '] == ' + JSON.stringify(doc, null, 4));
 		//compare priority
 		if(doc.funcPriority > newDoc.funcPriority || doc.priority > newDoc.priority){
 			jobExecuteList[unitKey] = newDoc				
@@ -359,7 +362,7 @@ var checkPriority = function(newDoc, callback){
 		}
 	}
 	
-	log.debug('[checkPriority] result: ' + JSON.stringify(jobExecuteList));
+	log.debug('[checkPriority] result: ' + JSON.stringify(jobExecuteList, null, 4));
 	
 	callback();
 }

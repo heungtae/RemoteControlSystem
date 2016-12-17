@@ -1,26 +1,146 @@
-[2016-09-23 20:40:07.664] [ERROR] routes.shutter - [TypeError: Cannot read property 'runtime' of null]
-TypeError: Cannot read property 'runtime' of null
-    at /Users/heungtae/git/GreenhouseControl/routes/shutter.js:167:43
-    at Object.getShutter (/Users/heungtae/git/GreenhouseControl/libs/db/shutter.js:45:3)
-    at /Users/heungtae/git/GreenhouseControl/routes/shutter.js:142:7
-    at /Users/heungtae/git/GreenhouseControl/routes/shutter.js:222:3
-    at Object.getShutterConfig (/Users/heungtae/git/GreenhouseControl/ghConfig.js:222:2)
-    at getConfig (/Users/heungtae/git/GreenhouseControl/routes/shutter.js:206:11)
-    at actionData (/Users/heungtae/git/GreenhouseControl/routes/shutter.js:139:3)
-    at addExecutingTask (/Users/heungtae/git/GreenhouseControl/routes/shutter.js:115:6)
-    at module.exports.updateJob (/Users/heungtae/git/GreenhouseControl/routes/shutter.js:56:2)
-    at Socket.<anonymous> (/Users/heungtae/git/GreenhouseControl/routes/shutter.js:32:5)
-    at emitOne (events.js:77:13)
-    at Socket.emit (events.js:169:7)
-    at Socket.onevent (/Users/heungtae/git/GreenhouseControl/node_modules/socket.io/lib/socket.js:335:8)
-    at Socket.onpacket (/Users/heungtae/git/GreenhouseControl/node_modules/socket.io/lib/socket.js:295:12)
-    at Client.ondecoded (/Users/heungtae/git/GreenhouseControl/node_modules/socket.io/lib/client.js:193:14)
-    at Decoder.Emitter.emit (/Users/heungtae/git/GreenhouseControl/node_modules/component-emitter/index.js:134:20)
-[2016-09-23 20:40:07.664] [DEBUG] routes.shutter - [addExecutingTask] false: null
-[2016-09-23 20:40:07.664] [DEBUG] routes.shutter - [update] device play = false null
-[2016-09-23 20:40:07.665] [DEBUG] routes.shutter - Starting shutter action
-[2016-09-23 20:40:08.664] [ERROR] routes.shutter - [TypeError: Cannot read property 'runtime' of undefined]
-TypeError: Cannot read property 'runtime' of undefined
-    at executeTasks [as _repeat] (/Users/heungtae/git/GreenhouseControl/routes/shutter.js:250:17)
-    at wrapper [as _onTimeout] (timers.js:275:19)
-    at Timer.listOnTimeout (timers.js:92:15)
+[2016-10-11 20:17:50.603] [DEBUG] libs.job.scheduleShutter - [job] Execute doc : {
+    "id": 1,
+    "title": "Test emergency control",
+    "side": "Top",
+    "position": "First",
+    "alias": "천창-1중   ",
+    "step": 2,
+    "Temperature-Outside-Value": 1,
+    "Temperature-Outside-Oper": ">",
+    "category": "emergency",
+    "funcPriority": 1,
+    "conf": {
+        "side": "Top",
+        "position": "First",
+        "alias": "천창-1중",
+        "autopriority": 3,
+        "step": 0,
+        "openpinnumber": 40,
+        "closepinnumber": 38,
+        "length": 60,
+        "stepNum": 2,
+        "motorrpm": 4,
+        "movelength": 12,
+        "runtime": 0
+    },
+    "inTime": true,
+    "isEnvironment": true,
+    "envDesc": "외부 온도값이 2로 설정값 1 보다 큼; \n",
+    "isJobCompleted": false
+}
+[2016-10-11 20:17:50.603] [DEBUG] libs.job.scheduleShutter - [getStep] Test emergency control(1) step :최대로 열겠습니다.
+[2016-10-11 20:17:50.604] [DEBUG] routes.shutter - [Update] {"side":"Top","position":"First","step":2,"settime":0,"exectime":0,"playpin":0,"stoppin":0,"command":"on","conf":{"side":"Top","position":"First","alias":"천창-1중","autopriority":3,"step":0,"openpinnumber":40,"closepinnumber":38,"length":60,"stepNum":2,"motorrpm":4,"movelength":12,"runtime":0},"envDesc":"외부 온도값이 2로 설정값 1 보다 큼; \n"}
+[2016-10-11 20:17:50.604] [DEBUG] routes.shutter - found shutter documents: count= 4
+[2016-10-11 20:17:50.604] [TRACE] routes.shutter - { side: 'Top',
+  position: 'First',
+  alias: '천창-1중',
+  autopriority: 3,
+  step: 0,
+  openpinnumber: 40,
+  closepinnumber: 38,
+  length: 60,
+  stepNum: 2,
+  motorrpm: 4,
+  movelength: 12,
+  runtime: 0 }
+[2016-10-11 20:17:50.605] [TRACE] routes.shutter - found config
+[2016-10-11 20:17:50.606] [TRACE] routes.shutter - { side: 'Top',
+  position: 'First',
+  alias: '천창-1중',
+  autopriority: 3,
+  step: 0,
+  openpinnumber: 40,
+  closepinnumber: 38,
+  length: 60,
+  stepNum: 2,
+  motorrpm: 4,
+  movelength: 12,
+  runtime: 0 }
+[2016-10-11 20:17:50.614] [DEBUG] libs.store.file - [readSync] ./datas/shutter.dat
+[2016-10-11 20:17:50.614] [TRACE] libs.store.file - [readSync] read data, [
+    {
+        "date": "2016-03-17T13:11:34.054Z",
+        "side": "First",
+        "position": "Top",
+        "step": 0,
+        "runtime": 0
+    },
+    {
+        "date": "2016-03-17T13:20:54.520Z",
+        "side": "First",
+        "position": "Bottom",
+        "step": 0,
+        "runtime": 0
+    },
+    {
+        "date": "2016-09-23T11:27:17.321Z",
+        "side": "Top",
+        "position": "First",
+        "step": 0,
+        "runtime": 75
+    }
+]
+[2016-10-11 20:17:50.615] [INFO] libs.store.shutter - [ { date: '2016-03-17T13:11:34.054Z',
+    side: 'First',
+    position: 'Top',
+    step: 0,
+    runtime: 0 },
+  { date: '2016-03-17T13:20:54.520Z',
+    side: 'First',
+    position: 'Bottom',
+    step: 0,
+    runtime: 0 },
+  { date: '2016-09-23T11:27:17.321Z',
+    side: 'Top',
+    position: 'First',
+    step: 0,
+    runtime: 75 } ]
+[2016-10-11 20:17:50.616] [DEBUG] libs.db.shutter - [get] found shutters documents: count= 4
+[2016-10-11 20:17:50.617] [DEBUG] libs.db.shutter - [getShutter] found shutters document
+[2016-10-11 20:17:50.618] [DEBUG] routes.shutter - [actionData] {"side":"Top","position":"First","alias":"천창-1중","autopriority":3,"step":0,"openpinnumber":40,"closepinnumber":38,"length":60,"stepNum":2,"motorrpm":4,"movelength":12,"runtime":75}
+[2016-10-11 20:17:50.618] [DEBUG] routes.shutter - step=2 stepTime=75 settime=0
+[2016-10-11 20:17:50.618] [DEBUG] routes.shutter - [addExecutingTask] false: null
+[2016-10-11 20:17:50.619] [DEBUG] routes.shutter - [update] device play = false null
+[2016-10-11 20:17:50.619] [DEBUG] libs.job.scheduleShutter - [job] Test emergency control(1) starting shutter: {
+    "side": "Top",
+    "position": "First",
+    "step": 2,
+    "settime": 0,
+    "exectime": 0,
+    "playpin": 0,
+    "stoppin": 0,
+    "command": "on",
+    "conf": {
+        "side": "Top",
+        "position": "First",
+        "alias": "천창-1중",
+        "autopriority": 3,
+        "step": 0,
+        "openpinnumber": 40,
+        "closepinnumber": 38,
+        "length": 60,
+        "stepNum": 2,
+        "motorrpm": 4,
+        "movelength": 12,
+        "runtime": 75
+    },
+    "envDesc": "외부 온도값이 2로 설정값 1 보다 큼; \n",
+    "location": "Top-First",
+    "stepDesc": "2 단계"
+}
+[2016-10-11 20:17:50.629] [TRACE] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :[1]
+[2016-10-11 20:17:50.629] [TRACE] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :[1]
+[2016-10-11 20:17:50.630] [TRACE] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :[1]
+[2016-10-11 20:17:52.120] [DEBUG] libs.telegram - { message_id: 10925,
+  from: 
+   { id: 167537300,
+     first_name: '비닐하우스알림',
+     username: 'GreenhouseAlertBot' },
+  chat: 
+   { id: 189659617,
+     first_name: '흥태',
+     last_name: '김',
+     username: 'heungtae',
+     type: 'private' },
+  date: 1476184671,
+  text: 'Test emergency control으로 예약된 창 제어를 시작했습니다. \n 천창-1중를 최대로 열겠습니다. \n외부 온도값이 2로 설정값 1 보다 큼;' }

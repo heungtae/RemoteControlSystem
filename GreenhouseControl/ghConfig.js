@@ -228,7 +228,7 @@ var getSprinklerConfig = function(callback){
 
 var getEnvironmentConfig = function(sys, callback){
 	if(sys === null){
-		log.trace('sys === null : ' + JSON.stringify(Environment));
+		log.trace('[getEnvironmentConfig] sys === null : ' + JSON.stringify(Environment, null, 4));
 		callback(Environment);		
 	}else{
 		try{
@@ -240,7 +240,7 @@ var getEnvironmentConfig = function(sys, callback){
 					result.push(env);
 			}
 
-			log.trace(sys + ' ' + JSON.stringify(result));
+			log.trace('[getEnvironmentConfig] sys ===' + sys + ' ' + JSON.stringify(result, null, 4));
 			callback(result);
 			
 		}catch(e){

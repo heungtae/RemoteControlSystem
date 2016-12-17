@@ -1,14 +1,14 @@
 [
     {
         "id": 1,
-        "title": "test",
+        "title": "Test temperature control",
         "priority": "3",
         "side": "Bottom",
         "position": "First",
         "alias": "측창-1중  ",
         "period": 0.5,
         "wait": 10,
-        "Temperature-Inside-Target": "25",
+        "Temperature-Inside-Target": "2",
         "Temperature-Inside-Range": "3"
     }
 ]
