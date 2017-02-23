@@ -1,638 +1,174 @@
-[2016-10-11 20:09:50.055] [TRACE] libs.db.emergencyControl - [get] found emergency Control Docs length= 1
-[2016-10-11 20:09:50.055] [TRACE] libs.db.emergencyControl - [get] found shutter config length= 4
-[2016-10-11 20:09:50.055] [TRACE] ghConfig - [getEnvironmentConfig] sys === null : [
-    {
-        "unit": "Temperature",
-        "zone": "Outside",
-        "alias": "외부 온도",
-        "type": "number",
-        "connect": "gpio",
-        "param": "28-03157454e5ff",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Temperature",
-        "zone": "Inside",
-        "alias": "내부 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "At",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": true
-        },
-        "value": 2
-    },
-    {
-        "unit": "Temperature",
-        "zone": "Soil",
-        "alias": "토양 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Lt",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": false,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Humidity",
-        "zone": "Inside",
-        "alias": "내부 습도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Ah",
-        "defaultvalue": 0,
-        "standardUnit": "%",
-        "use": {
-            "shutter": false,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Moisture",
-        "zone": "Soil",
-        "alias": "토양 습도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Lh",
-        "defaultvalue": 0,
-        "standardUnit": "%",
-        "use": {
-            "shutter": false,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Rain",
-        "zone": "Inside",
-        "alias": "내부 레인",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Ra",
-        "defaultvalue": 0,
-        "standardUnit": "",
-        "use": {
-            "shutter": false,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Light",
-        "zone": "Inside",
-        "alias": "일사",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Li",
-        "defaultvalue": 0,
-        "standardUnit": "",
-        "use": {
-            "shutter": true,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    }
-]
-[2016-10-11 20:09:50.055] [TRACE] libs.db.emergencyControl - [get] found environment config length= 7
-[2016-10-11 20:09:50.056] [DEBUG] libs.store.file - [readSync] ./datas/scheduleShutter.dat
-[2016-10-11 20:09:50.056] [TRACE] libs.store.file - [readSync] read data, [
-    {
-        "id": 3,
-        "title": "Test shutter schedule control",
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중   ",
-        "step": 6,
-        "start": "06:00",
-        "end": "10:00",
-        "Temperature-Outside-Value": 3,
-        "Temperature-Outside-Oper": ">"
-    }
-]
-[2016-10-11 20:09:50.057] [TRACE] libs.db.scheduleShutter - [get] found schedule shutter: length= 1
-[2016-10-11 20:09:50.057] [TRACE] libs.db.scheduleShutter - [get] found shutter configs: length= 4
-[2016-10-11 20:09:50.057] [TRACE] ghConfig - [getEnvironmentConfig] sys ===shutter [
-    {
-        "unit": "Temperature",
-        "zone": "Outside",
-        "alias": "외부 온도",
-        "type": "number",
-        "connect": "gpio",
-        "param": "28-03157454e5ff",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Temperature",
-        "zone": "Inside",
-        "alias": "내부 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "At",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": true
-        },
-        "value": 2
-    },
-    {
-        "unit": "Light",
-        "zone": "Inside",
-        "alias": "일사",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Li",
-        "defaultvalue": 0,
-        "standardUnit": "",
-        "use": {
-            "shutter": true,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    }
-]
-[2016-10-11 20:09:50.058] [TRACE] libs.db.scheduleShutter - [get] found environment configs: length= 3
-[2016-10-11 20:09:50.058] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
-[2016-10-11 20:09:50.058] [TRACE] libs.store.file - [readSync] read data, [
-    {
-        "id": 1,
-        "title": "Test temperature control",
-        "priority": "3",
-        "side": "Bottom",
-        "position": "First",
-        "alias": "측창-1중  ",
-        "period": 0.5,
-        "wait": 10,
-        "Temperature-Inside-Target": "2",
-        "Temperature-Inside-Range": "3"
-    }
-]
-[2016-10-11 20:09:50.059] [TRACE] libs.db.temperatureControl - [get] found temperature Control Docs length= 1
-[2016-10-11 20:09:50.059] [TRACE] libs.db.temperatureControl - [get] found shutter config length= 4
-[2016-10-11 20:09:50.059] [TRACE] ghConfig - [getEnvironmentConfig] sys ===temperature [
-    {
-        "unit": "Temperature",
-        "zone": "Inside",
-        "alias": "내부 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "At",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": true
-        },
-        "value": 2
-    }
-]
-[2016-10-11 20:09:50.059] [TRACE] libs.db.temperatureControl - [get] found environment config: length= 1
-[2016-10-11 20:09:50.060] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
-[2016-10-11 20:09:50.060] [TRACE] libs.job.scheduleShutter - [job] Emergency Control: {
-    "id": 1,
-    "title": "Test emergency control",
-    "side": "Top",
-    "position": "First",
-    "alias": "천창-1중   ",
-    "step": 2,
-    "Temperature-Outside-Value": 1,
-    "Temperature-Outside-Oper": ">",
-    "category": "emergency",
-    "funcPriority": 1
-}
-[2016-10-11 20:09:50.061] [DEBUG] libs.job.scheduleShutter - [checkTime] start undefined, Test emergency control(1) : inTime= true
-[2016-10-11 20:09:50.061] [TRACE] ghConfig - [getEnvironmentConfig] sys === null : [
-    {
-        "unit": "Temperature",
-        "zone": "Outside",
-        "alias": "외부 온도",
-        "type": "number",
-        "connect": "gpio",
-        "param": "28-03157454e5ff",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Temperature",
-        "zone": "Inside",
-        "alias": "내부 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "At",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": true
-        },
-        "value": 2
-    },
-    {
-        "unit": "Temperature",
-        "zone": "Soil",
-        "alias": "토양 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Lt",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": false,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Humidity",
-        "zone": "Inside",
-        "alias": "내부 습도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Ah",
-        "defaultvalue": 0,
-        "standardUnit": "%",
-        "use": {
-            "shutter": false,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Moisture",
-        "zone": "Soil",
-        "alias": "토양 습도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Lh",
-        "defaultvalue": 0,
-        "standardUnit": "%",
-        "use": {
-            "shutter": false,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Rain",
-        "zone": "Inside",
-        "alias": "내부 레인",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Ra",
-        "defaultvalue": 0,
-        "standardUnit": "",
-        "use": {
-            "shutter": false,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Light",
-        "zone": "Inside",
-        "alias": "일사",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Li",
-        "defaultvalue": 0,
-        "standardUnit": "",
-        "use": {
-            "shutter": true,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    }
-]
-[2016-10-11 20:09:50.061] [TRACE] libs.job.scheduleShutter - [checkEnvironment] Test emergency control(1) Environment configuration length : 7
-[2016-10-11 20:09:50.062] [TRACE] libs.job.scheduleShutter - [checkEnvironment] (1) Test emergency control unitKey=Temperature-Outside-Value operKey=Temperature-Outside-Oper value=2
-[2016-10-11 20:09:50.062] [TRACE] libs.job.scheduleShutter - [checkEnvironment] number type environmentTest emergency control(1) Result envCount(1) = check(1) UnitKey: Temperature-Outside-Value 2 > 1
-[2016-10-11 20:09:50.062] [TRACE] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+[2017-02-23 20:48:50.957] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:48:50.957] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:48:50.957] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
 )
-[2016-10-11 20:09:50.063] [DEBUG] libs.job.scheduleShutter - [job] condition : true
-[2016-10-11 20:09:50.063] [TRACE] libs.job.scheduleShutter - JobExecuteList[Top-First] == undefined, add List{"Top-First":{"id":1,"title":"Test emergency control","side":"Top","position":"First","alias":"천창-1중   ","step":2,"Temperature-Outside-Value":1,"Temperature-Outside-Oper":">","category":"emergency","funcPriority":1,"conf":{"side":"Top","position":"First","alias":"천창-1중","autopriority":3,"step":0,"openpinnumber":40,"closepinnumber":38,"length":60,"stepNum":2,"motorrpm":4,"movelength":12,"runtime":0},"inTime":true,"isEnvironment":true,"envDesc":"외부 온도값이 2로 설정값 1 보다 큼; \n","isJobCompleted":false}}
-[2016-10-11 20:09:50.064] [DEBUG] libs.job.scheduleShutter - [checkPriority] result: {"Top-First":{"id":1,"title":"Test emergency control","side":"Top","position":"First","alias":"천창-1중   ","step":2,"Temperature-Outside-Value":1,"Temperature-Outside-Oper":">","category":"emergency","funcPriority":1,"conf":{"side":"Top","position":"First","alias":"천창-1중","autopriority":3,"step":0,"openpinnumber":40,"closepinnumber":38,"length":60,"stepNum":2,"motorrpm":4,"movelength":12,"runtime":0},"inTime":true,"isEnvironment":true,"envDesc":"외부 온도값이 2로 설정값 1 보다 큼; \n","isJobCompleted":false}}
-[2016-10-11 20:09:50.064] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
-[2016-10-11 20:09:50.064] [TRACE] libs.job.scheduleShutter - [job] Schedule Control: {
-    "id": 3,
-    "title": "Test shutter schedule control",
-    "side": "Top",
-    "position": "First",
-    "alias": "천창-1중   ",
-    "step": 6,
-    "start": "06:00",
-    "end": "10:00",
-    "Temperature-Outside-Value": 3,
-    "Temperature-Outside-Oper": ">",
-    "category": "schedule",
-    "funcPriority": 2
-}
-[2016-10-11 20:09:50.065] [TRACE] libs.job.scheduleShutter - [checkTime] Test shutter schedule control(3) :  inTime= false now= Tue Oct 11 2016 20:09:50 GMT+0900 (KST) start=Tue Oct 11 2016 06:00:00 GMT+0900 (KST) end=Tue Oct 11 2016 10:00:59 GMT+0900 (KST)
-[2016-10-11 20:09:50.067] [TRACE] ghConfig - [getEnvironmentConfig] sys === null : [
-    {
-        "unit": "Temperature",
-        "zone": "Outside",
-        "alias": "외부 온도",
-        "type": "number",
-        "connect": "gpio",
-        "param": "28-03157454e5ff",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Temperature",
-        "zone": "Inside",
-        "alias": "내부 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "At",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": true,
-            "sprinkler": false,
-            "temperature": true
-        },
-        "value": 2
-    },
-    {
-        "unit": "Temperature",
-        "zone": "Soil",
-        "alias": "토양 온도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Lt",
-        "defaultvalue": 0,
-        "standardUnit": "℃",
-        "use": {
-            "shutter": false,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Humidity",
-        "zone": "Inside",
-        "alias": "내부 습도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Ah",
-        "defaultvalue": 0,
-        "standardUnit": "%",
-        "use": {
-            "shutter": false,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Moisture",
-        "zone": "Soil",
-        "alias": "토양 습도",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Lh",
-        "defaultvalue": 0,
-        "standardUnit": "%",
-        "use": {
-            "shutter": false,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Rain",
-        "zone": "Inside",
-        "alias": "내부 레인",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Ra",
-        "defaultvalue": 0,
-        "standardUnit": "",
-        "use": {
-            "shutter": false,
-            "sprinkler": false,
-            "temperature": false
-        },
-        "value": 2
-    },
-    {
-        "unit": "Light",
-        "zone": "Inside",
-        "alias": "일사",
-        "type": "number",
-        "connect": "zigbee",
-        "param": "Li",
-        "defaultvalue": 0,
-        "standardUnit": "",
-        "use": {
-            "shutter": true,
-            "sprinkler": true,
-            "temperature": false
-        },
-        "value": 2
-    }
-]
-[2016-10-11 20:09:50.068] [TRACE] libs.job.scheduleShutter - [checkEnvironment] Test shutter schedule control(3) Environment configuration length : 7
-[2016-10-11 20:09:50.069] [TRACE] libs.job.scheduleShutter - [checkEnvironment] (3) Test shutter schedule control unitKey=Temperature-Outside-Value operKey=Temperature-Outside-Oper value=2
-[2016-10-11 20:09:50.069] [TRACE] libs.job.scheduleShutter - [checkEnvironment] number type environmentTest shutter schedule control(3) Result envCount(1) = check(0) UnitKey: Temperature-Outside-Value 2 > 3
-[2016-10-11 20:09:50.069] [TRACE] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false ()
-[2016-10-11 20:09:50.070] [DEBUG] libs.job.scheduleShutter - [job] condition : false
-[2016-10-11 20:09:50.070] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
-[2016-10-11 20:09:50.071] [TRACE] libs.job.scheduleShutter - [job] Temperature Control: {
-    "id": 1,
-    "title": "Test temperature control",
-    "priority": "3",
-    "side": "Bottom",
-    "position": "First",
-    "alias": "측창-1중  ",
-    "period": 0.5,
-    "wait": 10,
-    "Temperature-Inside-Target": "2",
-    "Temperature-Inside-Range": "3",
-    "category": "auto",
-    "funcPriority": 3
-}
-[2016-10-11 20:09:50.071] [DEBUG] libs.job.scheduleShutter - [checkTime] start undefined, Test temperature control(1) : inTime= true
-[2016-10-11 20:09:50.071] [TRACE] libs.job.scheduleShutter - [checkTempTime] nextTempRuntime = undefined
-[2016-10-11 20:09:50.071] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {
-    "Top-First": {
-        "id": 1,
-        "title": "Test emergency control",
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중   ",
-        "step": 2,
-        "Temperature-Outside-Value": 1,
-        "Temperature-Outside-Oper": ">",
-        "category": "emergency",
-        "funcPriority": 1,
-        "conf": {
-            "side": "Top",
-            "position": "First",
-            "alias": "천창-1중",
-            "autopriority": 3,
-            "step": 0,
-            "openpinnumber": 40,
-            "closepinnumber": 38,
-            "length": 60,
-            "stepNum": 2,
-            "motorrpm": 4,
-            "movelength": 12,
-            "runtime": 0
-        },
-        "inTime": true,
-        "isEnvironment": true,
-        "envDesc": "외부 온도값이 2로 설정값 1 보다 큼; \n",
-        "isJobCompleted": false
-    }
-}
-[2016-10-11 20:09:50.072] [DEBUG] libs.job.scheduleShutter - [job] Execute doc : {
-    "id": 1,
-    "title": "Test emergency control",
-    "side": "Top",
-    "position": "First",
-    "alias": "천창-1중   ",
-    "step": 2,
-    "Temperature-Outside-Value": 1,
-    "Temperature-Outside-Oper": ">",
-    "category": "emergency",
-    "funcPriority": 1,
-    "conf": {
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중",
-        "autopriority": 3,
-        "step": 0,
-        "openpinnumber": 40,
-        "closepinnumber": 38,
-        "length": 60,
-        "stepNum": 2,
-        "motorrpm": 4,
-        "movelength": 12,
-        "runtime": 0
-    },
-    "inTime": true,
-    "isEnvironment": true,
-    "envDesc": "외부 온도값이 2로 설정값 1 보다 큼; \n",
-    "isJobCompleted": false
-}
-[2016-10-11 20:09:50.072] [DEBUG] libs.job.scheduleShutter - [getStep] Test emergency control(1) step :최대로 열겠습니다.
-[2016-10-11 20:09:50.072] [DEBUG] routes.shutter - [Update] {"side":"Top","position":"First","step":2,"settime":0,"exectime":0,"playpin":0,"stoppin":0,"command":"on","conf":{"side":"Top","position":"First","alias":"천창-1중","autopriority":3,"step":0,"openpinnumber":40,"closepinnumber":38,"length":60,"stepNum":2,"motorrpm":4,"movelength":12,"runtime":0},"envDesc":"외부 온도값이 2로 설정값 1 보다 큼; \n"}
-[2016-10-11 20:09:50.073] [DEBUG] routes.shutter - found shutter documents: count= 4
-[2016-10-11 20:09:50.073] [TRACE] routes.shutter - { side: 'Top',
-  position: 'First',
-  alias: '천창-1중',
-  autopriority: 3,
-  step: 0,
-  openpinnumber: 40,
-  closepinnumber: 38,
-  length: 60,
-  stepNum: 2,
-  motorrpm: 4,
-  movelength: 12,
-  runtime: 0 }
-[2016-10-11 20:09:50.074] [TRACE] routes.shutter - found config
-[2016-10-11 20:09:50.074] [TRACE] routes.shutter - { side: 'Top',
-  position: 'First',
-  alias: '천창-1중',
-  autopriority: 3,
-  step: 0,
-  openpinnumber: 40,
-  closepinnumber: 38,
-  length: 60,
-  stepNum: 2,
-  motorrpm: 4,
-  movelength: 12,
-  runtime: 0 }
-[2016-10-11 20:09:50.075] [DEBUG] libs.store.file - [readSync] ./datas/shutter.dat
-[2016-10-11 20:09:50.076] [TRACE] libs.store.file - [readSync] read data, [
-    {
-        "date": "2016-03-17T13:11:34.054Z",
-        "side": "First",
-        "position": "Top",
-        "step": 0,
-        "runtime": 0
-    },
-    {
-        "date": "2016-03-17T13:20:54.520Z",
-        "side": "First",
-        "position": "Bottom",
-        "step": 0,
-        "runtime": 0
-    },
-    {
-        "date": "2016-09-23T11:27:17.321Z",
-        "side": "Top",
-        "position": "First",
-        "step": 0,
-        "runtime": 75
-    }
-]
-[2016-10-11 20:09:50.076] [INFO] libs.store.shutter - [ { date: '2016-03-17T13:11:34.054Z',
-    side: 'First',
-    position: 'Top',
-    step: 0,
-    runtime: 0 },
-  { date: '2016-03-17T13:20:54.520Z',
-    side: 'First',
-    position: 'Bottom',
-    step: 0,
-    runtime: 0 },
-  { date: '2016-09-23T11:27:17.321Z',
-    side: 'Top',
-    position: 'First',
-    step: 0,
-    runtime: 75 } ]
+[2017-02-23 20:48:50.957] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:48:50.957] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:48:50.957] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:48:50 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:48:50.958] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:48:50.958] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:48:50.959] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:48:50.959] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:48:50.959] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:48:50.959] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:48:50.959] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:48:50.959] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:48:50 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:48:50.960] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:48:50.960] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:48:50.960] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:48:50.960] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:48:50.960] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:48:50.961] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:48:50.961] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:48:50.961] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:48:50.961] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.942] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.942] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.943] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.943] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.943] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.943] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.944] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.944] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.944] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.944] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.945] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:00.945] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:00.945] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.945] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.945] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.945] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:49:00.946] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.946] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.946] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.946] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.946] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.946] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.947] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.948] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.948] [DEBUG] libs.store.file - [readSync] ./datas/scheduleShutter.dat
+[2017-02-23 20:49:00.948] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.948] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.948] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.949] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.949] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.949] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.949] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.949] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.949] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.949] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.950] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:00.950] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:00.950] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.950] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.950] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.950] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:49:00.950] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.950] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.951] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.951] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.951] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.951] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.951] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.952] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.952] [DEBUG] libs.store.file - [readSync] ./datas/emergencyControl.dat
+[2017-02-23 20:49:00.953] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.953] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.953] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.953] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.953] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.954] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.954] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.954] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.954] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.954] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.954] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:00.954] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:00.955] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.955] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.955] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.955] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:49:00.955] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.955] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.955] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.955] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:00.956] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:00.957] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.957] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.957] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.957] [DEBUG] libs.store.file - [readSync] ./datas/scheduleShutter.dat
+[2017-02-23 20:49:00.957] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.957] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.957] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:00.958] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:00.959] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.959] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.959] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:00.959] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:49:00.959] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:00.959] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:00.959] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:00.959] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:00.960] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:00.960] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:00 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:00.960] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:00.960] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:00.960] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:00.960] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:00.960] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true

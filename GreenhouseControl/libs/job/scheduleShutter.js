@@ -9,8 +9,9 @@ var CronJob = require('cron').CronJob,
 	log = require('log4js').getLogger('libs.job.scheduleShutter'),
 	send = require('../telegram/send');
 
-var jobCompletedList = [];
+var jobCompletedList = {};
 var jobExecuteList = {};
+
 
 // 1. 실행 시간의 구간안에 포함되는지 확인 한다.
 // 1.1. 실행 시간이 아니라면 실행 중인 항목에 대해서 삭제 한다.
@@ -98,7 +99,7 @@ var job = new CronJob('*/10 * * * * *', function() {
 					}					
 					
 					log.debug('[job] Execute List : ' + JSON.stringify(jobExecuteList, null, 4));
-					
+							
 					for(var key in jobExecuteList){
 						var doc = jobExecuteList[key];
 						log.debug('[job] Execute doc : ' + JSON.stringify(doc, null, 4));
@@ -129,7 +130,8 @@ var job = new CronJob('*/10 * * * * *', function() {
 								shutter.updateJob(data, function(){
 									log.debug('[job] ' + doc.title +'(' + doc.id + ') starting shutter: ' + JSON.stringify(data, null, 4));	
 									send.message(doc.title + '으로 예약된 창 제어를 시작했습니다. \n '+ doc.alias.trim() + '를 ' + stepDesc + ' \n' + doc.envDesc);
-									jobCompletedList.push(doc.id);
+									
+									addJobCompletedList(doc);
 								});
 							});
 						});
@@ -147,6 +149,7 @@ var job = new CronJob('*/10 * * * * *', function() {
   },null,true
 );
 
+
 var checkTime = function(doc, callback){
 	if(doc['start'] != undefined){
 		var now = new Date(),
@@ -161,12 +164,13 @@ var checkTime = function(doc, callback){
 		}else{
 			doc.inTime = false;
 		}
-		log.trace('[checkTime] ' + doc.title +'(' + doc.id + ') : ' + ' inTime= ' + doc.inTime + ' now= ' + now + ' start=' + start + ' end=' + end);
+		
+		log.debug('[checkTime] result :' + doc.title +'(' + doc.id + ') : ' + ' inTime= ' + doc.inTime + ' now= ' + now + ' start=' + start + ' end=' + end);
 		callback(doc);
 	}
 	else{
-		log.debug('[checkTime] start undefined, ' + doc.title +'(' + doc.id + ') : inTime= true');
 		doc.inTime = true;
+		log.debug('[checkTime] result : start undefined, ' + doc.title +'(' + doc.id + ') inTime= true');
 		callback(doc);
 	}
 }
@@ -180,6 +184,7 @@ var checkEnvironment = function(doc, callback){
 	
 	ghConfig.getEnvironmentConfig(null, function(envResult){
 		log.trace('[checkEnvironment] ' + doc.title +'(' + doc.id + ') Environment configuration length : ' + envResult.length);
+		
 		envResult.forEach(function(envConf){
 			var unitKey = envConf.unit + '-' + envConf.zone + '-Value';
 			var operKey = envConf.unit + '-' + envConf.zone + '-Oper';
@@ -195,11 +200,15 @@ var checkEnvironment = function(doc, callback){
 							if(envConf.value > parseInt(doc[unitKey])){
 								check++;
 								envDesc += envConf.alias + '값이 ' + envConf.value +  '로 설정값 ' + doc[unitKey] +  ' 보다 큼; \n';
+							}else{
+								envDesc += envConf.alias + '값이 ' + envConf.value +  '로 설정값 ' + doc[unitKey] +  ' 보다 작음; \n';
 							}
 						} else {
 							if(envConf.value < parseInt(doc[unitKey])){
 								check++;
 								envDesc += envConf.alias + '값이 ' + envConf.value +  '로 설정값 ' + doc[unitKey] +  ' 보다 작음; \n ';
+							}else{
+								envDesc += envConf.alias + '값이 ' + envConf.value +  '로 설정값 ' + doc[unitKey] +  ' 보다 큼; \n ';
 							}
 						}							
 
@@ -209,11 +218,15 @@ var checkEnvironment = function(doc, callback){
 							if(envConf.value){
 								check++;
 								envDesc += envConf.alias + '가 ' + envConf.value + '로 설정과 동일함; \n'; 
+							}else{
+								envDesc += envConf.alias + '가 ' + envConf.value + '로 설정과 비동일함; \n';
 							}
 						} else {
 							if(!envConf.value){
 								check++;
 								envDesc += envConf.alias + '가 ' + envConf.value + '로 설정과 동일함; \n'; 
+							}else{
+								envDesc += envConf.alias + '가 ' + envConf.value + '로 설정과 비동일함; \n';
 							}
 						}	
 					
@@ -233,7 +246,7 @@ var checkEnvironment = function(doc, callback){
 			doc.envDesc = envDesc;
 		}
 		
-		log.trace('[checkEnvironment] result : ' + doc.title +'(' + doc.id + ') isEnvironment= ' + doc.isEnvironment + ' (' + doc.envDesc + ')');
+		log.debug('[checkEnvironment] result : ' + doc.title +'(' + doc.id + ') isEnvironment= ' + doc.isEnvironment + ' (' + doc.envDesc + ')');
 		
 		callback(doc);
 	});
@@ -242,18 +255,23 @@ var checkEnvironment = function(doc, callback){
 var checkTempTime = function(doc, callback){
 	
 	checkTime(doc, function(doc){
+		//시간 설정이 되어 있는 경우만 주기 반복을 점검 한다.
 		if(doc.inTime){
 			var now = new Date();
 			var next = new Date(now.getTime() + (doc.period * 1000 + doc.wait * 1000));
-
-			log.trace('[checkTempTime] nextTempRuntime = ' + doc.conf.nextTempRuntime);
 			
 			if(doc.conf.nextTempRuntime == undefined){
 				//nextTempRuntime이 없다는 것은 한번도 실행 되지 않았음으로 무조건 실행한다.
 				doc.conf.nextTempRuntime = next;
+				log.trace('[checkTempTime] first time, NextTempRuntime= ' + doc.conf.nextTempRuntime + ' now= ' + now);
 			}else if(now.getTime() <= doc.conf.nextTempRuntime.getTime()){
 				//현재 시간이 nextTempRuntime 보다 작으면 실행하면 안됨으로 inTime에서 false로 변경하여 반환 한다.
 				doc.inTime = false;
+				log.trace('[checkTempTime] inTime= False, NextTempRuntime= ' + doc.conf.nextTempRuntime + ' now= ' + now);
+			}else if(now.getTime() > doc.conf.nextTempRuntime.getTime()){
+				//현재 시간이 nextTempRuntime 보다 크면 실행, inTime에서 true로 변경하여 반환 한다.
+				doc.conf.nextTempRuntime = next;
+				log.trace('[checkTempTime] inTime= true, NextTempRuntime= ' + doc.conf.nextTempRuntime + ' now= ' + now);
 			}
 		}
 	});
@@ -310,17 +328,24 @@ var checkTempEnvironment = function(doc, callback){
 			doc.envDesc = envDesc;
 		}
 		
-		log.trace('[checkEnvironment] result : ' + doc.title +'(' + doc.id + ') isEnvironment= ' + doc.isEnvironment + ' (' + doc.envDesc + ')');
+		log.debug('[checkEnvironment] result : ' + doc.title +'(' + doc.id + ') isEnvironment= ' + doc.isEnvironment + ' (' + doc.envDesc + ')');
 		
 		callback(doc);
 	});
 }
 
 var checkJobCompleted = function(doc, callback){
-	doc.isJobCompleted = jobCompletedList[doc.id] == undefined ? false : true;
+	if(jobCompletedList[doc.category] !== undefined){
+		doc.isJobCompleted = jobCompletedList[doc.category][doc.id] === undefined ? false : true;
+	}
+	
+	log.debug('[checkJobCompleted] result : ' + doc.title +'(' + doc.id + ') isJobCompleted= ' + doc.isJobCompleted);
 	callback(doc);
 }
 		
+var checkJobCompletedId = function(id){
+	
+}
 var checkPriority = function(newDoc, callback){
 	var unitKey = newDoc.side + '-' + newDoc.position;
 	
@@ -404,14 +429,24 @@ var getConfiguration = function(doc, confs, callback){
 	callback(doc, conf);
 }
 
+var addJobCompletedList = function(doc){
+	if(jobCompletedList[doc.category] === undefined){
+		jobCompletedList[doc.category] = [];										
+	}
+	
+	jobCompletedList[doc.category].push(doc.id);
+	
+	log.debug('[addJobCompletedList] Completed List : ' + JSON.stringify(jobCompletedList, null, 4));
+}
+
 var clearJobCompletedList = function(docs){
 	for(var key in docs){
 		var doc = docs[key];
 		
-		if(!doc.inTime && jobCompletedList[doc.id] != undefined){			
-			delete jobCompletedList[doc.id]; 
+		if(!doc.inTime && jobCompletedList[doc.category] != undefined){			
+			delete jobCompletedList[doc.category].remove(doc.id); 
 		}
 	}
 	
-	log.trace('[clearJobCompletedList] Job Completed List :' + JSON.stringify(jobCompletedList));
+	log.debug('[clearJobCompletedList] Job Completed List :' + JSON.stringify(jobCompletedList));
 }

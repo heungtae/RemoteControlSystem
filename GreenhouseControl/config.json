@@ -30,7 +30,7 @@
     "ip" : "localhost",
     "port": 8090
   },
-  "loglevel": "trace",
+  "loglevel": "debug",
   "usbSensor" : {
 	  "port": "/dev/ttyUSB0",
 	  "baudrate": 9600

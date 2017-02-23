@@ -1,146 +1,116 @@
-[2016-10-11 20:17:50.603] [DEBUG] libs.job.scheduleShutter - [job] Execute doc : {
-    "id": 1,
-    "title": "Test emergency control",
-    "side": "Top",
-    "position": "First",
-    "alias": "천창-1중   ",
-    "step": 2,
-    "Temperature-Outside-Value": 1,
-    "Temperature-Outside-Oper": ">",
-    "category": "emergency",
-    "funcPriority": 1,
-    "conf": {
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중",
-        "autopriority": 3,
-        "step": 0,
-        "openpinnumber": 40,
-        "closepinnumber": 38,
-        "length": 60,
-        "stepNum": 2,
-        "motorrpm": 4,
-        "movelength": 12,
-        "runtime": 0
-    },
-    "inTime": true,
-    "isEnvironment": true,
-    "envDesc": "외부 온도값이 2로 설정값 1 보다 큼; \n",
-    "isJobCompleted": false
-}
-[2016-10-11 20:17:50.603] [DEBUG] libs.job.scheduleShutter - [getStep] Test emergency control(1) step :최대로 열겠습니다.
-[2016-10-11 20:17:50.604] [DEBUG] routes.shutter - [Update] {"side":"Top","position":"First","step":2,"settime":0,"exectime":0,"playpin":0,"stoppin":0,"command":"on","conf":{"side":"Top","position":"First","alias":"천창-1중","autopriority":3,"step":0,"openpinnumber":40,"closepinnumber":38,"length":60,"stepNum":2,"motorrpm":4,"movelength":12,"runtime":0},"envDesc":"외부 온도값이 2로 설정값 1 보다 큼; \n"}
-[2016-10-11 20:17:50.604] [DEBUG] routes.shutter - found shutter documents: count= 4
-[2016-10-11 20:17:50.604] [TRACE] routes.shutter - { side: 'Top',
-  position: 'First',
-  alias: '천창-1중',
-  autopriority: 3,
-  step: 0,
-  openpinnumber: 40,
-  closepinnumber: 38,
-  length: 60,
-  stepNum: 2,
-  motorrpm: 4,
-  movelength: 12,
-  runtime: 0 }
-[2016-10-11 20:17:50.605] [TRACE] routes.shutter - found config
-[2016-10-11 20:17:50.606] [TRACE] routes.shutter - { side: 'Top',
-  position: 'First',
-  alias: '천창-1중',
-  autopriority: 3,
-  step: 0,
-  openpinnumber: 40,
-  closepinnumber: 38,
-  length: 60,
-  stepNum: 2,
-  motorrpm: 4,
-  movelength: 12,
-  runtime: 0 }
-[2016-10-11 20:17:50.614] [DEBUG] libs.store.file - [readSync] ./datas/shutter.dat
-[2016-10-11 20:17:50.614] [TRACE] libs.store.file - [readSync] read data, [
-    {
-        "date": "2016-03-17T13:11:34.054Z",
-        "side": "First",
-        "position": "Top",
-        "step": 0,
-        "runtime": 0
-    },
-    {
-        "date": "2016-03-17T13:20:54.520Z",
-        "side": "First",
-        "position": "Bottom",
-        "step": 0,
-        "runtime": 0
-    },
-    {
-        "date": "2016-09-23T11:27:17.321Z",
-        "side": "Top",
-        "position": "First",
-        "step": 0,
-        "runtime": 75
-    }
-]
-[2016-10-11 20:17:50.615] [INFO] libs.store.shutter - [ { date: '2016-03-17T13:11:34.054Z',
-    side: 'First',
-    position: 'Top',
-    step: 0,
-    runtime: 0 },
-  { date: '2016-03-17T13:20:54.520Z',
-    side: 'First',
-    position: 'Bottom',
-    step: 0,
-    runtime: 0 },
-  { date: '2016-09-23T11:27:17.321Z',
-    side: 'Top',
-    position: 'First',
-    step: 0,
-    runtime: 75 } ]
-[2016-10-11 20:17:50.616] [DEBUG] libs.db.shutter - [get] found shutters documents: count= 4
-[2016-10-11 20:17:50.617] [DEBUG] libs.db.shutter - [getShutter] found shutters document
-[2016-10-11 20:17:50.618] [DEBUG] routes.shutter - [actionData] {"side":"Top","position":"First","alias":"천창-1중","autopriority":3,"step":0,"openpinnumber":40,"closepinnumber":38,"length":60,"stepNum":2,"motorrpm":4,"movelength":12,"runtime":75}
-[2016-10-11 20:17:50.618] [DEBUG] routes.shutter - step=2 stepTime=75 settime=0
-[2016-10-11 20:17:50.618] [DEBUG] routes.shutter - [addExecutingTask] false: null
-[2016-10-11 20:17:50.619] [DEBUG] routes.shutter - [update] device play = false null
-[2016-10-11 20:17:50.619] [DEBUG] libs.job.scheduleShutter - [job] Test emergency control(1) starting shutter: {
-    "side": "Top",
-    "position": "First",
-    "step": 2,
-    "settime": 0,
-    "exectime": 0,
-    "playpin": 0,
-    "stoppin": 0,
-    "command": "on",
-    "conf": {
-        "side": "Top",
-        "position": "First",
-        "alias": "천창-1중",
-        "autopriority": 3,
-        "step": 0,
-        "openpinnumber": 40,
-        "closepinnumber": 38,
-        "length": 60,
-        "stepNum": 2,
-        "motorrpm": 4,
-        "movelength": 12,
-        "runtime": 75
-    },
-    "envDesc": "외부 온도값이 2로 설정값 1 보다 큼; \n",
-    "location": "Top-First",
-    "stepDesc": "2 단계"
-}
-[2016-10-11 20:17:50.629] [TRACE] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :[1]
-[2016-10-11 20:17:50.629] [TRACE] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :[1]
-[2016-10-11 20:17:50.630] [TRACE] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :[1]
-[2016-10-11 20:17:52.120] [DEBUG] libs.telegram - { message_id: 10925,
-  from: 
-   { id: 167537300,
-     first_name: '비닐하우스알림',
-     username: 'GreenhouseAlertBot' },
-  chat: 
-   { id: 189659617,
-     first_name: '흥태',
-     last_name: '김',
-     username: 'heungtae',
-     type: 'private' },
-  date: 1476184671,
-  text: 'Test emergency control으로 예약된 창 제어를 시작했습니다. \n 천창-1중를 최대로 열겠습니다. \n외부 온도값이 2로 설정값 1 보다 큼;' }
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.962] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.962] [DEBUG] libs.store.file - [readSync] ./datas/scheduleShutter.dat
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:20 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:20.963] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.964] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:20.964] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:20 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:20.965] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:20.966] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.966] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.966] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.966] [DEBUG] libs.store.file - [readSync] ./datas/emergencyControl.dat
+[2017-02-23 20:49:20.966] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:20.966] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:20.966] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:20.966] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:20.967] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:20.967] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:20 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:20.967] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:20.967] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:20.967] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:20.967] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:20.967] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:20.968] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:20.968] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.968] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.968] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.968] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:49:20.968] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:20.968] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:20 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:20.969] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:20.970] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:20.970] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:20.970] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.970] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.970] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.970] [DEBUG] libs.store.file - [readSync] ./datas/scheduleShutter.dat
+[2017-02-23 20:49:20.970] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:20.970] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:20 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:20.971] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.972] [DEBUG] libs.store.file - [readSync] ./datas/temperatureControl.dat
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [job] Emergency Control
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test emergency control(1) inTime= true
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test emergency control(1) isEnvironment= true (외부 온도값이 2로 설정값 1 보다 큼; 
+)
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test emergency control(1) isJobCompleted= true
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [job] Schedule Control
+[2017-02-23 20:49:20.972] [DEBUG] libs.job.scheduleShutter - [checkTime] result :Test shutter schedule control(3) :  inTime= false now= Thu Feb 23 2017 20:49:20 GMT+0900 (KST) start=Thu Feb 23 2017 06:00:00 GMT+0900 (KST) end=Thu Feb 23 2017 19:00:59 GMT+0900 (KST)
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [checkEnvironment] result : Test shutter schedule control(3) isEnvironment= false (외부 온도값이 2로 설정값 3 보다 작음; 
+)
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [checkJobCompleted] result : Test shutter schedule control(3) isJobCompleted= undefined
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [job] condition : false
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [job] Temperature Control
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [checkTime] result : start undefined, Test temperature control(1) inTime= true
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [job] Execute List : {}
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}
+[2017-02-23 20:49:20.973] [DEBUG] libs.job.scheduleShutter - [clearJobCompletedList] Job Completed List :{"emergency":[1,1,1]}

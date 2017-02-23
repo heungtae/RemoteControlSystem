@@ -2,7 +2,7 @@ var sleep = require('../libs/sleep'),
 	ghConfig = require('../ghConfig'),
 	db = require('../libs/db/shutter'),
 	history = require('../libs/db/history'),
-	log = require('log4js').getLogger('routes.shutter');
+	log = require('log4js').getLogger('routes.shutter'),
 	send = require('../libs/telegram/send');
 
 // 실행 중인 List
@@ -13,10 +13,12 @@ var socket,
 // 초기화를 진행하자.
 var device;
 
-if(config.app.shutter.device == 'gpio')
+if(global.config.app.shutter.device === 'gpio'){
 	device = require('../libs/gpio');
-else
+}
+else{
 	device = require('../libs/usbRelay');
+}
 
 module.exports = function(io){
 	try{
@@ -44,7 +46,7 @@ module.exports = function(io){
 module.exports.data = function(req, res){
 	db.get(function(err, docs){
 		res.render('shutter', {
-			title : config.app.title.shutter,
+			title : global.config.app.title.shutter,
 			shutters: docs
 		});
 	});
@@ -235,7 +237,7 @@ var executeTasks = function(){
 				
 				log.trace(location + ': ' + command + ', ' + data.settime + ', ' + data.exectime);
 				log.trace(data);
-				if(command != config.app.shutter.defaultCommand){
+				if(command !== config.app.shutter.defaultCommand){
 					var settime = data.settime;
 					var exectime = data.exectime;
 					var playpin = data.playpin;
@@ -243,7 +245,7 @@ var executeTasks = function(){
 					if(settime > exectime){
 						data.exectime = exectime + 1;
 						
-						if(socket != null)
+						if(socket !== null)
 							socket.emit('shutterCallback', {location: location, command:command, settime:settime, exectime: exectime});
 						
 						if(data.direction == 'open')

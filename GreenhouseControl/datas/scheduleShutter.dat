@@ -7,7 +7,7 @@
         "alias": "천창-1중   ",
         "step": 6,
         "start": "06:00",
-        "end": "10:00",
+        "end": "19:00",
         "Temperature-Outside-Value": 3,
         "Temperature-Outside-Oper": ">"
     }
